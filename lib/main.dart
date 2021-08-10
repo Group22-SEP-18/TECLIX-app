@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/test.dart';
+import 'package:teclix/UI/test.dart';
 
 void main() {
   runApp(MyApp());
