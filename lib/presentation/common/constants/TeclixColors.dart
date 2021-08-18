@@ -17,3 +17,6 @@ const MaterialColor PrimaryMaterialColor = MaterialColor(0xFF00AB55, {
   800: Color.fromRGBO(0, 171, 85, .9),
   900: Color.fromRGBO(0, 171, 85, 1),
 });
+
+//font colors
+const ColorHeadingFont = Color.fromRGBO(81, 68, 82, 1);
