@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
-class TEst extends StatelessWidget {
-  final String word;
-  const TEst({Key key, this.word}) : super(key: key);
-
+class SignupScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("heloo"),
+        title: Text('appbar'),
       ),
       body: Center(
-        child: Text("dkjbFJ"),
+        child: Text('body'),
       ),
     );
   }

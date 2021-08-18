@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:teclix/UI/common/TeclixColors.dart';
-import 'package:teclix/UI/test.dart';
+import 'package:teclix/UI/screens/signup/signup_scaffold.dart';
 
 void main() {
   runApp(TeclixApp());
@@ -29,7 +29,7 @@ class TeclixApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: PrimaryMaterialColor,
       ),
-      home: TEst(),
+      home: SignupScaffold(),
     );
   }
 }
