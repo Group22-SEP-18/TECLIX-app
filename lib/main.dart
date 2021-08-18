@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:teclix/UI/common/TeclixColors.dart';
-import 'package:teclix/UI/screens/signup/signup_scaffold.dart';
+import 'package:teclix/presentation/common/TeclixColors.dart';
+import 'package:teclix/presentation/screens/signup/signup_scaffold.dart';
 
 void main() {
   runApp(TeclixApp());
