@@ -16,7 +16,6 @@ class SignupStart extends StatelessWidget {
           Column(
             children: [
               Container(
-                color: Colors.amber,
                 //temp
                 child: Image.asset('static/images/test.png'),
               ),
