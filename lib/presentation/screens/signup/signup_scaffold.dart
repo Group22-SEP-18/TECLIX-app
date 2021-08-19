@@ -3,8 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/logic/bloc/signup/signup_bloc.dart';
 import 'package:teclix/logic/bloc/signup/signup_event.dart';
 import 'package:teclix/logic/bloc/signup/signup_state.dart';
+import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
+import 'package:teclix/presentation/screens/signup/signup_employee_Details.dart';
+import 'package:teclix/presentation/screens/signup/signup_finish.dart';
+import 'package:teclix/presentation/screens/signup/signup_name.dart';
+import 'package:teclix/presentation/screens/signup/signup_password.dart';
+import 'package:teclix/presentation/screens/signup/signup_profile_picture.dart';
 import 'package:teclix/presentation/screens/signup/signup_start.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 class SignupScaffold extends StatelessWidget {
   @override
@@ -44,7 +51,36 @@ class SignupScaffold extends StatelessWidget {
                             children: [
                               pageSwitcher(state.step),
                               SizedBox(
-                                height: 25.0,
+                                height: state.step ==
+                                        SignupProcessSteps.SIGNUP_FINISH
+                                    ? 22.0
+                                    : 43.0,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    bottom: 5.0, top: 5.0),
+                                child: Visibility(
+                                  visible: (state.step !=
+                                      SignupProcessSteps.SIGNUP_START),
+                                  child: DotsIndicator(
+                                    dotsCount:
+                                        SignupBloc.processOrder.length - 1,
+                                    position: (state.flowPosition - 1 < 0)
+                                        ? 0
+                                        : state.flowPosition - 1,
+                                    decorator: DotsDecorator(
+                                      activeColor: ColorPrimary,
+                                      color: ColorLightGreen,
+                                      spacing:
+                                          EdgeInsets.symmetric(horizontal: 4.0),
+                                      activeSize: Size(13.0, 13.0),
+                                      size: Size(12.0, 12.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20.0,
                               ),
                             ],
                           ),
@@ -66,19 +102,19 @@ Widget pageSwitcher(SignupProcessSteps step) {
       return SignupStart();
       break;
     case SignupProcessSteps.SIGNUP_EMP_DETAILS:
-      // TODO: Handle this case.
+      return SignupEmpDetails();
       break;
     case SignupProcessSteps.SIGNUP_BASIC_DETAILS:
-      // TODO: Handle this case.
+      return SignupName();
       break;
     case SignupProcessSteps.SIGNUP_PASSWORD:
-      // TODO: Handle this case.
+      return SignupPassword();
       break;
     case SignupProcessSteps.SIGNUP_PROFILE_PICTURE:
-      // TODO: Handle this case.
+      return SignupProfilePicture();
       break;
     case SignupProcessSteps.SIGNUP_FINISH:
-      // TODO: Handle this case.
+      return SignupFinish();
       break;
   }
 }

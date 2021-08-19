@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const ColorPrimary = Color.fromRGBO(0, 171, 85, 1);
 const ColorPrimaryLight = Color.fromRGBO(91, 229, 132, 1);
+const ColorLightGreen = Color.fromRGBO(200, 250, 205, 1);
 const ColorDarkGreen = Color.fromRGBO(0, 123, 85, 1);
 
 /*To use in theme.dart as default theme color*/

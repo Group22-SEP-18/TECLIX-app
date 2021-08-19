@@ -32,6 +32,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         if (nextIndex < processOrder.length) {
           yield state.clone(
             step: processOrder[nextIndex],
+            flowPosition: nextIndex.toDouble(),
           );
         } else {
           //  even to submit the regiter form
@@ -44,6 +45,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         if (prevIndex >= 0) {
           yield state.clone(
             step: processOrder[prevIndex],
+            flowPosition: prevIndex.toDouble(),
           );
         } else {
           // when it reaches the first back btn
