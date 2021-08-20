@@ -61,18 +61,22 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
           CommonPadding(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 CircleAvatar(
-                  radius: 150.0,
-                  backgroundImage: _image != null
-                      ? Image.file(
-                          _image,
-                          fit: BoxFit.cover,
-                        ).image
-                      : ExactAssetImage(
-                          'static/images/profile_picture_placeholder.png',
-                        ),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: 150.0,
+                    backgroundImage: _image != null
+                        ? Image.file(
+                            _image,
+                            fit: BoxFit.cover,
+                          ).image
+                        : Image.asset(
+                            'static/images/profile_placeholder.png',
+                            fit: BoxFit.contain,
+                          ).image,
+                  ),
+                  radius: 151.0,
                 ),
                 SizedBox(
                   height: 30.0,
