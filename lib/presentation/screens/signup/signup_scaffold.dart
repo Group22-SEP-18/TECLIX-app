@@ -5,6 +5,7 @@ import 'package:teclix/logic/bloc/signup/signup_event.dart';
 import 'package:teclix/logic/bloc/signup/signup_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
+import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/screens/signup/signup_employee_Details.dart';
 import 'package:teclix/presentation/screens/signup/signup_finish.dart';
 import 'package:teclix/presentation/screens/signup/signup_name.dart';
@@ -29,13 +30,28 @@ class SignupScaffold extends StatelessWidget {
             child: Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                title: Center(
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: 25.0,
+                automaticallyImplyLeading: false,
+                titleSpacing: 0.0,
+                title: Stack(
+                  children: [
+                    Positioned(
+                      left: 10.0,
+                      top: 0.0,
+                      child: HeaderBackButton(
+                        whenTapped: () => signupBloc.add(
+                          PreviousStepEvent(currentStep: state.step),
+                        ),
+                      ),
                     ),
-                  ),
+                    Align(
+                      child: Text(
+                        'Register',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               body: CustomScrollView(
