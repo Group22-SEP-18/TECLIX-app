@@ -30,12 +30,17 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_bloc: ^7.1.0
   dio: ^4.0.0
+#  check network connectivity
   connectivity_plus: ^1.0.6
   flutter_barcode_scanner: ^2.0.0
+#  make the app responsive
   responsive_framework: ^0.1.4
   shared_preferences: ^2.0.6
   flutter_map: ^0.13.1
   dots_indicator: ^2.0.0
+#  select images from gallery and open camera
+  image_picker: ^0.8.3+2
+  image_cropper: ^1.4.1
 
 dev_dependencies:
   flutter_test:
