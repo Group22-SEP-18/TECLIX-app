@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,11 +49,14 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            height: 30.0,
+            height: 65.0,
           ),
           MainHeading(
             text: 'Profile Picture',
             fontSize: 24.0,
+          ),
+          SizedBox(
+            height: 30.0,
           ),
           CommonPadding(
             child: Column(
@@ -62,7 +64,7 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 CircleAvatar(
-                  radius: 120.0,
+                  radius: 150.0,
                   backgroundImage: _image != null
                       ? Image.file(
                           _image,
@@ -73,7 +75,7 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
                         ),
                 ),
                 SizedBox(
-                  height: 25.0,
+                  height: 30.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -117,6 +119,7 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
               ],
             ),
           ),
+          Spacer(),
           BlocBuilder<SignupBloc, SignupState>(
             buildWhen: (previous, current) => previous.step != current.step,
             builder: (context, state) {

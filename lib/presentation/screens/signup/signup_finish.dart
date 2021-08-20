@@ -23,14 +23,14 @@ class SignupFinish extends StatelessWidget {
           Column(
             children: [
               SizedBox(
-                height: 30.0,
+                height: 65.0,
               ),
               MainHeading(
                 text: "Confirm Registration",
                 fontSize: 24.0,
               ),
               SizedBox(
-                height: 20.0,
+                height: 40.0,
               ),
               CommonPadding(
                 child: InfoText(
@@ -42,9 +42,7 @@ class SignupFinish extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 20.0,
-          ),
+          Spacer(),
           Column(
             children: [
               BlocBuilder<SignupBloc, SignupState>(

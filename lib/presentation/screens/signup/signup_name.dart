@@ -20,11 +20,14 @@ class SignupName extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            height: 30.0,
+            height: 65.0,
           ),
           MainHeading(
             text: 'Name',
             fontSize: 24.0,
+          ),
+          SizedBox(
+            height: 30.0,
           ),
           CommonPadding(
             child: Column(
@@ -39,7 +42,7 @@ class SignupName extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 15.0,
+                  height: 20.0,
                 ),
                 BlocBuilder<SignupBloc, SignupState>(
                   builder: (context, state) {
@@ -49,11 +52,12 @@ class SignupName extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 15.0,
+                  height: 20.0,
                 ),
               ],
             ),
           ),
+          Spacer(),
           BlocBuilder<SignupBloc, SignupState>(
             builder: (context, state) {
               return CommonPadding(

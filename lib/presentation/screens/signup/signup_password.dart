@@ -21,11 +21,14 @@ class SignupPassword extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            height: 30.0,
+            height: 65.0,
           ),
           MainHeading(
             text: 'Password',
             fontSize: 24.0,
+          ),
+          SizedBox(
+            height: 30.0,
           ),
           CommonPadding(
             child: Column(
@@ -41,7 +44,7 @@ class SignupPassword extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 15.0,
+                  height: 20.0,
                 ),
                 BlocBuilder<SignupBloc, SignupState>(
                   builder: (context, state) {
@@ -52,11 +55,12 @@ class SignupPassword extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 15.0,
+                  height: 20.0,
                 ),
               ],
             ),
           ),
+          Spacer(),
           CommonPadding(
             child: InfoText(
               text:
@@ -65,6 +69,7 @@ class SignupPassword extends StatelessWidget {
                   "lectus in dictum scelerisque, erat Leo viverra sem, non sagittis est diam ut nisl',",
             ),
           ),
+          Spacer(),
           BlocBuilder<SignupBloc, SignupState>(
             builder: (context, state) {
               return CommonPadding(
