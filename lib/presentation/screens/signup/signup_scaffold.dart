@@ -60,6 +60,7 @@ class SignupScaffold extends StatelessWidget {
                       : ClampingScrollPhysics(),
                   slivers: [
                     SliverFillRemaining(
+                      hasScrollBody: false,
                       child: Container(
                         child: getAnimatedPageSwitcher(
                           child: Column(
