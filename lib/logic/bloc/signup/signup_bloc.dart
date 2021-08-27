@@ -51,6 +51,37 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
           // when it reaches the first back btn
         }
         break;
+      case AddEmployeeDetialsEvent:
+        yield state.clone(
+          salesperson: state.salesperson.copyWith(
+            email: (event as AddEmployeeDetialsEvent).email,
+            employeeNo: (event as AddEmployeeDetialsEvent).employeeNo,
+            contactNo: (event as AddEmployeeDetialsEvent).contactNo,
+          ),
+        );
+        break;
+      case AddNameEvent:
+        yield state.clone(
+          salesperson: state.salesperson.copyWith(
+            firstName: (event as AddNameEvent).firstName,
+            lastName: (event as AddNameEvent).lastName,
+          ),
+        );
+        break;
+      case AddPasswordEvent:
+        yield state.clone(
+          salesperson: state.salesperson.copyWith(
+            password: (event as AddPasswordEvent).password,
+          ),
+        );
+        break;
+      case AddProfilePictureEvent:
+        yield state.clone(
+          salesperson: state.salesperson.copyWith(
+            profilePicture: (event as AddProfilePictureEvent).profilePicture,
+          ),
+        );
+        break;
     }
   }
 
