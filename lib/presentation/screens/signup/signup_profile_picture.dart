@@ -39,7 +39,8 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
           ));
       if (croppedImage != null) {
         _image = croppedImage;
-        setState(() {});
+        signupBloc.add(AddProfilePictureEvent(profilePicture: _image));
+        // setState(() {});
       }
     }
 
@@ -62,21 +63,29 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CircleAvatar(
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    radius: 150.0,
-                    backgroundImage: _image != null
-                        ? Image.file(
-                            _image,
-                            fit: BoxFit.cover,
-                          ).image
-                        : Image.asset(
-                            'static/images/profile_placeholder.png',
-                            fit: BoxFit.contain,
-                          ).image,
-                  ),
-                  radius: 151.0,
+                BlocBuilder<SignupBloc, SignupState>(
+                  buildWhen: (prev, cur) =>
+                      prev.salesperson.profilePicture !=
+                      cur.salesperson.profilePicture,
+                  builder: (context, state) {
+                    return CircleAvatar(
+                      child: CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        radius: 150.0,
+                        backgroundImage:
+                            state.salesperson.profilePicture != null
+                                ? Image.file(
+                                    state.salesperson.profilePicture,
+                                    fit: BoxFit.cover,
+                                  ).image
+                                : Image.asset(
+                                    'static/images/profile_placeholder.png',
+                                    fit: BoxFit.contain,
+                                  ).image,
+                      ),
+                      radius: 151.0,
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 30.0,
@@ -132,9 +141,11 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
                   title: 'Next',
                   titleColor: Colors.white,
                   colour: ColorPrimary,
-                  onPressed: () => signupBloc.add(
-                    NextStepEvent(currentStep: state.step),
-                  ),
+                  onPressed: () => {
+                    signupBloc.add(
+                      NextStepEvent(currentStep: state.step),
+                    ),
+                  },
                 ),
               );
             },

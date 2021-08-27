@@ -11,6 +11,8 @@ import 'package:teclix/presentation/screens/signup/widgets/infoText.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class SignupPassword extends StatelessWidget {
+  static final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final signupBloc = BlocProvider.of<SignupBloc>(context);
@@ -37,7 +39,9 @@ class SignupPassword extends StatelessWidget {
               children: [
                 BlocBuilder<SignupBloc, SignupState>(
                   builder: (context, state) {
+                    passwordController.text = state.salesperson.password;
                     return RoundedTextField(
+                      controller: passwordController,
                       hint: 'Password',
                       hideText: true,
                     );
@@ -77,9 +81,14 @@ class SignupPassword extends StatelessWidget {
                   title: 'Next',
                   titleColor: Colors.white,
                   colour: ColorPrimary,
-                  onPressed: () => signupBloc.add(
-                    NextStepEvent(currentStep: state.step),
-                  ),
+                  onPressed: () => {
+                    signupBloc.add(
+                      AddPasswordEvent(password: passwordController.text),
+                    ),
+                    signupBloc.add(
+                      NextStepEvent(currentStep: state.step),
+                    ),
+                  },
                 ),
               );
             },

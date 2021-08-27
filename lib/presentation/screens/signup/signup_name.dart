@@ -10,6 +10,8 @@ import 'package:teclix/presentation/common/widgets/rounded_text_field.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class SignupName extends StatelessWidget {
+  static final firstNameController = TextEditingController();
+  static final lastNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final signupBloc = BlocProvider.of<SignupBloc>(context);
@@ -36,7 +38,9 @@ class SignupName extends StatelessWidget {
               children: [
                 BlocBuilder<SignupBloc, SignupState>(
                   builder: (context, state) {
+                    firstNameController.text = state.salesperson.firstName;
                     return RoundedTextField(
+                      controller: firstNameController,
                       hint: 'First Name',
                     );
                   },
@@ -46,7 +50,9 @@ class SignupName extends StatelessWidget {
                 ),
                 BlocBuilder<SignupBloc, SignupState>(
                   builder: (context, state) {
+                    lastNameController.text = state.salesperson.lastName;
                     return RoundedTextField(
+                      controller: lastNameController,
                       hint: 'Last Name',
                     );
                   },
@@ -65,9 +71,17 @@ class SignupName extends StatelessWidget {
                   title: 'Next',
                   titleColor: Colors.white,
                   colour: ColorPrimary,
-                  onPressed: () => signupBloc.add(
-                    NextStepEvent(currentStep: state.step),
-                  ),
+                  onPressed: () => {
+                    signupBloc.add(
+                      AddNameEvent(
+                        firstName: firstNameController.text,
+                        lastName: lastNameController.text,
+                      ),
+                    ),
+                    signupBloc.add(
+                      NextStepEvent(currentStep: state.step),
+                    ),
+                  },
                 ),
               );
             },

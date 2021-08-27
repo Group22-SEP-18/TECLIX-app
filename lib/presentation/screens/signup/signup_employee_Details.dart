@@ -10,6 +10,10 @@ import 'package:teclix/presentation/common/widgets/rounded_text_field.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class SignupEmpDetails extends StatelessWidget {
+  static final emailController = TextEditingController();
+  static final empNoController = TextEditingController();
+  static final contactNoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final signupBloc = BlocProvider.of<SignupBloc>(context);
@@ -36,7 +40,9 @@ class SignupEmpDetails extends StatelessWidget {
               children: [
                 BlocBuilder<SignupBloc, SignupState>(
                   builder: (context, state) {
+                    emailController.text = state.salesperson.email;
                     return RoundedTextField(
+                      controller: emailController,
                       hint: 'Email',
                     );
                   },
@@ -46,7 +52,9 @@ class SignupEmpDetails extends StatelessWidget {
                 ),
                 BlocBuilder<SignupBloc, SignupState>(
                   builder: (context, state) {
+                    empNoController.text = state.salesperson.employeeNo;
                     return RoundedTextField(
+                      controller: empNoController,
                       hint: 'Employee Number',
                     );
                   },
@@ -56,7 +64,9 @@ class SignupEmpDetails extends StatelessWidget {
                 ),
                 BlocBuilder<SignupBloc, SignupState>(
                   builder: (context, state) {
+                    contactNoController.text = state.salesperson.contactNo;
                     return RoundedTextField(
+                      controller: contactNoController,
                       hint: 'Contact Number',
                     );
                   },
@@ -75,9 +85,18 @@ class SignupEmpDetails extends StatelessWidget {
                   title: 'Next',
                   titleColor: Colors.white,
                   colour: ColorPrimary,
-                  onPressed: () => signupBloc.add(
-                    NextStepEvent(currentStep: state.step),
-                  ),
+                  onPressed: () => {
+                    signupBloc.add(
+                      AddEmployeeDetialsEvent(
+                        email: emailController.text,
+                        employeeNo: empNoController.text,
+                        contactNo: contactNoController.text,
+                      ),
+                    ),
+                    signupBloc.add(
+                      NextStepEvent(currentStep: state.step),
+                    ),
+                  },
                 ),
               );
             },
