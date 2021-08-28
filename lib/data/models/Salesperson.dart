@@ -8,6 +8,7 @@ class Salesperson {
   String contactNo;
   String password;
   File profilePicture;
+  String token;
 
   Salesperson({
     this.employeeNo,
@@ -17,6 +18,7 @@ class Salesperson {
     this.contactNo,
     this.password,
     this.profilePicture,
+    this.token,
   });
 
   Salesperson copyWith({
