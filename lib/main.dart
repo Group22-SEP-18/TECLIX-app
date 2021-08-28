@@ -5,7 +5,7 @@ import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/signup/signup_bloc.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/routing/routes.dart';
-import 'package:teclix/presentation/screens/signin/signin_page.dart';
+import 'package:teclix/presentation/screens/signin/welcome_page.dart';
 
 void main() {
   runApp(TeclixApp());
@@ -43,7 +43,7 @@ class TeclixApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primarySwatch: PrimaryMaterialColor,
         ),
-        initialRoute: SignInPage.id,
+        initialRoute: WelcomePage.id,
         routes: Routes.mapToMainRoutes(context),
       ),
     );

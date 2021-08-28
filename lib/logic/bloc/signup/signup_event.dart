@@ -18,8 +18,9 @@ class NextStepEvent extends SignupEvent {
 }
 
 class PreviousStepEvent extends SignupEvent {
+  final BuildContext context;
   final SignupProcessSteps currentStep;
-  PreviousStepEvent({this.currentStep});
+  PreviousStepEvent({this.currentStep, this.context});
 }
 
 class AddEmployeeDetialsEvent extends SignupEvent {

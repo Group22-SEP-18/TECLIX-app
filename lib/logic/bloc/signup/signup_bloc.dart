@@ -42,13 +42,14 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       case PreviousStepEvent:
         final currentStep = (event as PreviousStepEvent).currentStep;
         final prevIndex = processOrder.indexOf(currentStep) - 1;
+        final context = (event as PreviousStepEvent).context;
         if (prevIndex >= 0) {
           yield state.clone(
             step: processOrder[prevIndex],
             flowPosition: prevIndex.toDouble(),
           );
         } else {
-          // when it reaches the first back btn
+          Navigator.pop(context);
         }
         break;
       case AddEmployeeDetialsEvent:

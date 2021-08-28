@@ -110,7 +110,7 @@ class SignInPage extends StatelessWidget {
                           fontSize: 19.0,
                           onClick: () {
                             Future.delayed(Duration(milliseconds: 250), () {
-                              Navigator.of(context).pushReplacement(
+                              Navigator.of(context).push(
                                 Routes.getMaterialPageRoute(
                                     SignupProvider.id, context),
                               );

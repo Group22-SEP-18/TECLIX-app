@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
+import 'package:teclix/presentation/screens/signin/welcome_page.dart';
 import 'package:teclix/presentation/screens/start_up.dart';
 
 class Routes {
   static final Map<String, Widget> routes = {
     StartUpPage.id: StartUpPage(),
+    WelcomePage.id: WelcomePage(),
     SignupProvider.id: SignupProvider(),
     SignInPage.id: SignInPage(),
   };
