@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
-import 'package:teclix/logic/bloc/signup/signup_bloc.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/routing/routes.dart';
-import 'package:teclix/presentation/screens/signin/welcome_page.dart';
+import 'package:teclix/presentation/screens/start_up.dart';
 
 void main() {
   runApp(TeclixApp());
@@ -19,10 +18,6 @@ class TeclixApp extends StatelessWidget {
       providers: [
         BlocProvider<RootBloc>(
           create: (context) => RootBloc(context),
-        ),
-        //temp remove when loading page is done
-        BlocProvider<SignupBloc>(
-          create: (context) => SignupBloc(context),
         ),
       ],
       child: MaterialApp(
@@ -43,7 +38,7 @@ class TeclixApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primarySwatch: PrimaryMaterialColor,
         ),
-        initialRoute: WelcomePage.id,
+        initialRoute: StartUpPage.id,
         routes: Routes.mapToMainRoutes(context),
       ),
     );

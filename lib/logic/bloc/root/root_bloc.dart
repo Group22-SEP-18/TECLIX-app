@@ -7,7 +7,17 @@ import 'root_event.dart';
 import 'root_state.dart';
 
 class RootBloc extends Bloc<RootEvent, RootState> {
-  RootBloc(BuildContext context) : super(RootState.initialState);
+  RootBloc(BuildContext context) : super(RootState.initialState) {
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    //TODO: init sign in automatically when app starts
+    // Get email and password from shared prefs?
+    // final auth = locator<AuthService>();
+    // User user = await auth.createUserWithEmailAndPassword(email, password);
+    add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
+  }
 
   @override
   Stream<RootState> mapEventToState(RootEvent event) async* {
@@ -26,9 +36,14 @@ class RootBloc extends Bloc<RootEvent, RootState> {
         //:TODO call the login function
         // if sucessful do this
         yield state.clone(
-          userLoginState: UserLoginState.LOGGED_IN,
+          userLoginState: UserLoginState.LOGGED_IN, loading: false,
           // :TODO clone the user obj as well
         );
+        break;
+      case ChangeUerLoginStateEvent:
+        UserLoginState userLoginState =
+            (event as ChangeUerLoginStateEvent).userLoginState;
+        yield state.clone(userLoginState: userLoginState);
     }
   }
 
