@@ -6,7 +6,8 @@ import 'signup_bloc.dart';
 import 'signup_state.dart';
 
 class SignupProvider extends BlocProvider<SignupBloc> {
-  static const String id = '/';
+  static const String id = '/salesperson_register';
+
   SignupProvider({
     Key key,
   }) : super(

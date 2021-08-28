@@ -4,7 +4,7 @@ import 'package:teclix/logic/bloc/signup/signup_bloc.dart';
 import 'package:teclix/logic/bloc/signup/signup_event.dart';
 import 'package:teclix/logic/bloc/signup/signup_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
-import 'package:teclix/presentation/common/widgets/cancle_text.dart';
+import 'package:teclix/presentation/common/widgets/text_button.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/screens/signup/widgets/infoText.dart';
@@ -59,7 +59,7 @@ class SignupFinish extends StatelessWidget {
                   );
                 },
               ),
-              CancelText(text: 'Cancel'),
+              TextBtn(text: 'Cancel'),
             ],
           ),
         ],
