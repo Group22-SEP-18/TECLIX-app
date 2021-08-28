@@ -3,7 +3,7 @@ import 'package:teclix/data/models/Salesperson.dart';
 
 enum UserLoginState {
   LOGGED_IN,
-  lOGGED_OUT,
+  LOGGED_OUT,
   CHECKING,
 }
 

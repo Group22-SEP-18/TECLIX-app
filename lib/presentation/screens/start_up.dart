@@ -20,7 +20,7 @@ class StartUpPage extends StatelessWidget {
 
               Navigator.pushReplacementNamed(context, SignInPage.id);
               break;
-            case UserLoginState.lOGGED_OUT:
+            case UserLoginState.LOGGED_OUT:
               Navigator.pushReplacementNamed(context, WelcomePage.id);
               break;
             default:
