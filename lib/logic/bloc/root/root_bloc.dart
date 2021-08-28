@@ -17,6 +17,18 @@ class RootBloc extends Bloc<RootEvent, RootState> {
         yield state.clone(error: "");
         yield state.clone(error: error);
         break;
+
+      case LogInUserEvent:
+        final email = (event as LogInUserEvent).email;
+        final password = (event as LogInUserEvent).password;
+
+        print(email);
+        //:TODO call the login function
+        // if sucessful do this
+        yield state.clone(
+          userLoginState: UserLoginState.LOGGED_IN,
+          // :TODO clone the user obj as well
+        );
     }
   }
 
@@ -34,7 +46,9 @@ class RootBloc extends Bloc<RootEvent, RootState> {
   void _addErr(e) {
     if (e is StateError) return;
     try {
-      add(ErrorEvent((e is String) ? e : (e.message ?? "Something went wrong. Please try again!")));
+      add(ErrorEvent((e is String)
+          ? e
+          : (e.message ?? "Something went wrong. Please try again!")));
     } catch (e) {
       add(ErrorEvent("Something went wrong. Please try again!"));
     }

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/logic/bloc/root/root_bloc.dart';
+import 'package:teclix/logic/bloc/root/root_event.dart';
+import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
@@ -11,8 +15,12 @@ import 'package:teclix/presentation/screens/signup/widgets/infoText.dart';
 class SignInPage extends StatelessWidget {
   static const String id = '/sigin';
 
+  static final emailController = TextEditingController();
+  static final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final rootBloc = BlocProvider.of<RootBloc>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -49,26 +57,44 @@ class SignInPage extends StatelessWidget {
                         SizedBox(
                           height: 20.0,
                         ),
-                        RoundedTextField(
-                          hint: 'Email',
+                        BlocBuilder<RootBloc, RootState>(
+                          builder: (context, state) {
+                            return RoundedTextField(
+                              controller: emailController,
+                              hint: 'Email',
+                            );
+                          },
                         ),
                         SizedBox(
                           height: 20.0,
                         ),
-                        RoundedTextField(
-                          hint: 'Password',
-                          hideText: true,
+                        BlocBuilder<RootBloc, RootState>(
+                          builder: (context, state) {
+                            return RoundedTextField(
+                              controller: passwordController,
+                              hint: 'Password',
+                              hideText: true,
+                            );
+                          },
                         ),
                       ],
                     ),
                   ),
                   Spacer(),
+                  SizedBox(
+                    height: 30.0,
+                  ),
                   CommonPadding(
                     child: RoundedButton(
                       title: 'Login to my account',
                       titleColor: Colors.white,
                       colour: ColorPrimary,
-                      onPressed: () {},
+                      onPressed: () => rootBloc.add(
+                        LogInUserEvent(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        ),
+                      ),
                     ),
                   ),
                   Row(

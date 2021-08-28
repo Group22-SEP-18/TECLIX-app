@@ -8,3 +8,10 @@ class ErrorEvent extends RootEvent {
 
   ErrorEvent(this.error);
 }
+
+class LogInUserEvent extends RootEvent {
+  final String email;
+  final String password;
+
+  LogInUserEvent({this.email, this.password});
+}
