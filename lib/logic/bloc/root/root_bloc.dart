@@ -7,7 +7,17 @@ import 'root_event.dart';
 import 'root_state.dart';
 
 class RootBloc extends Bloc<RootEvent, RootState> {
-  RootBloc(BuildContext context) : super(RootState.initialState);
+  RootBloc(BuildContext context) : super(RootState.initialState) {
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    //TODO: init sign in automatically when app starts
+    // Get email and password from shared prefs?
+    // final auth = locator<AuthService>();
+    // User user = await auth.createUserWithEmailAndPassword(email, password);
+    add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_OUT));
+  }
 
   @override
   Stream<RootState> mapEventToState(RootEvent event) async* {
@@ -17,6 +27,23 @@ class RootBloc extends Bloc<RootEvent, RootState> {
         yield state.clone(error: "");
         yield state.clone(error: error);
         break;
+
+      case LogInUserEvent:
+        final email = (event as LogInUserEvent).email;
+        final password = (event as LogInUserEvent).password;
+
+        print(email);
+        //:TODO call the login function
+        // if sucessful do this
+        yield state.clone(
+          userLoginState: UserLoginState.LOGGED_IN, loading: false,
+          // :TODO clone the user obj as well
+        );
+        break;
+      case ChangeUerLoginStateEvent:
+        UserLoginState userLoginState =
+            (event as ChangeUerLoginStateEvent).userLoginState;
+        yield state.clone(userLoginState: userLoginState);
     }
   }
 
@@ -34,7 +61,9 @@ class RootBloc extends Bloc<RootEvent, RootState> {
   void _addErr(e) {
     if (e is StateError) return;
     try {
-      add(ErrorEvent((e is String) ? e : (e.message ?? "Something went wrong. Please try again!")));
+      add(ErrorEvent((e is String)
+          ? e
+          : (e.message ?? "Something went wrong. Please try again!")));
     } catch (e) {
       add(ErrorEvent("Something went wrong. Please try again!"));
     }

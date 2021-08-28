@@ -23,7 +23,8 @@ class SignupScaffold extends StatelessWidget {
       builder: (context, state) {
         return WillPopScope(
           onWillPop: () {
-            signupBloc.add(PreviousStepEvent(currentStep: state.step));
+            signupBloc.add(
+                PreviousStepEvent(currentStep: state.step, context: context));
             return;
           },
           child: SafeArea(
@@ -39,7 +40,8 @@ class SignupScaffold extends StatelessWidget {
                       top: 0.0,
                       child: HeaderBackButton(
                         whenTapped: () => signupBloc.add(
-                          PreviousStepEvent(currentStep: state.step),
+                          PreviousStepEvent(
+                              currentStep: state.step, context: context),
                         ),
                       ),
                     ),
