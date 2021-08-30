@@ -43,9 +43,12 @@ class SignInPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Container(
-                    //temp
                     child: Image.asset('static/images/login_cover.png'),
+                    height: 350.0,
                   ),
                   SizedBox(
                     height: 20.0,
