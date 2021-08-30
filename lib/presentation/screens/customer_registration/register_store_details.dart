@@ -88,8 +88,7 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                   title: 'Next',
                   titleColor: Colors.white,
                   colour: ColorPrimary,
-                  onPressed: () =>
-                  {
+                  onPressed: () => {
                     customerRegisterBloc.add(AddStoreDetailsEvent(
                       storeName: storeNameController.text,
                       email: emailController.text,
