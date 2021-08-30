@@ -99,7 +99,9 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                                 imageQuality: 50,
                                 preferredCameraDevice: CameraDevice.front,
                               );
-                              _cropImage(pickedImage.path);
+                              if (pickedImage != null) {
+                                _cropImage(pickedImage.path);
+                              }
                             },
                           ),
                           right: 0.0,
