@@ -7,7 +7,7 @@ import 'customer_registration_state.dart';
 
 class CustomerRegistrationProvider
     extends BlocProvider<CustomerRegistrationBloc> {
-  static const String id = '/salesperson_register';
+  static const String id = '/customer-register';
 
   CustomerRegistrationProvider({
     Key key,
@@ -31,7 +31,7 @@ class CustomerRegistrationView extends StatelessWidget {
           },
         ),
       ],
-      child: CustomerRegistrationScaffold(),
+      child: CustomerRegisterScaffold(),
     );
   }
 }

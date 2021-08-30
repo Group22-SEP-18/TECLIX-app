@@ -4,8 +4,8 @@ import 'package:teclix/logic/bloc/customer_registration/customer_registration_bl
 
 enum CustomerRegProcessSteps {
   CUSTOMER_REG_START,
-  CUSTOMER_REG_BASIC_DETAILS,
-  CUSTOMER_REG_CONTACT_DETAILS,
+  CUSTOMER_REG_STORE_DETAILS,
+  CUSTOMER_REG_OWNER_DETAILS,
   CUSTOMER_REG_ADDRESS,
   CUSTOMER_REG_FINISH,
 }

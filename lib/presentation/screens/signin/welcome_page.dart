@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
@@ -25,6 +26,14 @@ class WelcomePage extends StatelessWidget {
               colour: ColorPrimary,
               onPressed: () => Navigator.of(context).push(
                 Routes.getMaterialPageRoute(SignInPage.id, context),
+              ),
+            ),
+            RoundedButton(
+              title: 'customer register',
+              colour: ColorPrimary,
+              onPressed: () => Navigator.of(context).push(
+                Routes.getMaterialPageRoute(
+                    CustomerRegistrationProvider.id, context),
               ),
             ),
           ],

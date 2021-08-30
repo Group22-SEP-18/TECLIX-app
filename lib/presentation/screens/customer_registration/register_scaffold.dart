@@ -5,8 +5,13 @@ import 'package:teclix/logic/bloc/customer_registration/customer_registration_ev
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_state.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
+import 'package:teclix/presentation/screens/customer_registration/register_address.dart';
+import 'package:teclix/presentation/screens/customer_registration/register_finish.dart';
+import 'package:teclix/presentation/screens/customer_registration/register_owner_details.dart';
+import 'package:teclix/presentation/screens/customer_registration/register_store_details.dart';
+import 'package:teclix/presentation/screens/customer_registration/register_start.dart';
 
-class CustomerRegistrationScaffold extends StatelessWidget {
+class CustomerRegisterScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final customerRegisterBloc =
@@ -40,7 +45,7 @@ class CustomerRegistrationScaffold extends StatelessWidget {
                     ),
                     Align(
                       child: Text(
-                        'Register',
+                        'Register Customer',
                         style: TextStyle(
                           fontSize: 25.0,
                         ),
@@ -87,22 +92,22 @@ class CustomerRegistrationScaffold extends StatelessWidget {
 Widget pageSwitcher(CustomerRegProcessSteps step) {
   switch (step) {
     case CustomerRegProcessSteps.CUSTOMER_REG_START:
-      // TODO: Handle this case.
+      return CustomerRegisterStart();
       break;
-    case CustomerRegProcessSteps.CUSTOMER_REG_BASIC_DETAILS:
-      // TODO: Handle this case.
+    case CustomerRegProcessSteps.CUSTOMER_REG_STORE_DETAILS:
+      return CustomerRegisterStoreDetails();
       break;
-    case CustomerRegProcessSteps.CUSTOMER_REG_CONTACT_DETAILS:
-      // TODO: Handle this case.
+    case CustomerRegProcessSteps.CUSTOMER_REG_OWNER_DETAILS:
+      return CustomerRegisterOwnerDetails();
       break;
     case CustomerRegProcessSteps.CUSTOMER_REG_ADDRESS:
-      // TODO: Handle this case.
+      return CustomerRegisterAddress();
       break;
     case CustomerRegProcessSteps.CUSTOMER_REG_FINISH:
-      // TODO: Handle this case.
+      return CustomerRegisterFinish();
       break;
     default:
-      // TODO: Handle this case.
+      return CustomerRegisterStart();
       break;
   }
 }

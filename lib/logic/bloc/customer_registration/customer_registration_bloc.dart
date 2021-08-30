@@ -10,8 +10,8 @@ class CustomerRegistrationBloc
     extends Bloc<CustomerRegistrationEvent, CustomerRegistrationState> {
   static List<CustomerRegProcessSteps> processOrder = [
     CustomerRegProcessSteps.CUSTOMER_REG_START,
-    CustomerRegProcessSteps.CUSTOMER_REG_BASIC_DETAILS,
-    CustomerRegProcessSteps.CUSTOMER_REG_CONTACT_DETAILS,
+    CustomerRegProcessSteps.CUSTOMER_REG_STORE_DETAILS,
+    CustomerRegProcessSteps.CUSTOMER_REG_OWNER_DETAILS,
     CustomerRegProcessSteps.CUSTOMER_REG_ADDRESS,
     CustomerRegProcessSteps.CUSTOMER_REG_FINISH,
   ];
