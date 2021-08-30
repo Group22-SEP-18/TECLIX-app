@@ -135,5 +135,8 @@ Widget pageSwitcher(SignupProcessSteps step) {
     case SignupProcessSteps.SIGNUP_FINISH:
       return SignupFinish();
       break;
+    default:
+      return SignupStart();
+      break;
   }
 }
