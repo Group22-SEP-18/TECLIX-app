@@ -36,7 +36,6 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
       if (croppedImage != null) {
         _image = croppedImage;
         signupBloc.add(AddProfilePictureEvent(profilePicture: _image));
-        // setState(() {});
       }
     }
 
