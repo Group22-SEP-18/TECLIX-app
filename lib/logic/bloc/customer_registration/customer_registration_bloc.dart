@@ -52,6 +52,39 @@ class CustomerRegistrationBloc
           Navigator.pop(context);
         }
         break;
+      case AddStoreDetailsEvent:
+        yield state.clone(
+            customer: state.customer.copyWith(
+          shopName: (event as AddStoreDetailsEvent).storeName,
+          email: (event as AddStoreDetailsEvent).email,
+          contactNo: (event as AddStoreDetailsEvent).contactNo,
+        ));
+        break;
+      case AddOwnerNameEvent:
+        yield state.clone(
+            customer: state.customer.copyWith(
+          ownerFistName: (event as AddOwnerNameEvent).firstName,
+          ownerLastName: (event as AddOwnerNameEvent).lastName,
+        ));
+        break;
+      case AddOwnerPictureEvent:
+        yield state.clone(
+            customer: state.customer.copyWith(
+          profilePicture: (event as AddOwnerPictureEvent).profilePicture,
+        ));
+        break;
+      case AddAddressEvent:
+        yield state.clone(
+          storeAddress: state.storeAddress.copyWith(
+            city: (event as AddAddressEvent).city,
+            street: (event as AddAddressEvent).street,
+            district: (event as AddAddressEvent).district,
+            latitude: (event as AddAddressEvent).lat,
+            longitude: (event as AddAddressEvent).lang,
+          ),
+          customer: state.customer.copyWith(address: state.storeAddress),
+        );
+        break;
     }
   }
 

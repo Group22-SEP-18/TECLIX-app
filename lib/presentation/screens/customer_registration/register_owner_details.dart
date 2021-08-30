@@ -15,6 +15,9 @@ import 'package:teclix/presentation/common/widgets/rounded_text_field.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class CustomerRegisterOwnerDetails extends StatelessWidget {
+  static final firstNameController = TextEditingController();
+  static final lastNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     File _image;
@@ -31,7 +34,9 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
       );
       if (croppedImage != null) {
         _image = croppedImage;
-        //:TODO add the photo to bloc
+        customerRegisterBloc.add(AddOwnerPictureEvent(
+          profilePicture: _image,
+        ));
       }
     }
 
@@ -57,8 +62,9 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
               children: [
                 BlocBuilder<CustomerRegistrationBloc,
                     CustomerRegistrationState>(
-                  //:TODO add a build when
-
+                  buildWhen: (prev, cur) =>
+                      prev.customer.profilePicture !=
+                      cur.customer.profilePicture,
                   builder: (context, state) {
                     return Stack(
                       children: [
@@ -67,15 +73,16 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: Colors.transparent,
                               radius: 90.0,
-                              backgroundImage: _image != null
-                                  ? Image.file(
-                                      _image,
-                                      fit: BoxFit.cover,
-                                    ).image
-                                  : Image.asset(
-                                      'static/images/profile_placeholder.png',
-                                      fit: BoxFit.contain,
-                                    ).image,
+                              backgroundImage:
+                                  state.customer.profilePicture != null
+                                      ? Image.file(
+                                          state.customer.profilePicture,
+                                          fit: BoxFit.cover,
+                                        ).image
+                                      : Image.asset(
+                                          'static/images/profile_placeholder.png',
+                                          fit: BoxFit.contain,
+                                        ).image,
                             ),
                             radius: 91.0,
                           ),
@@ -109,7 +116,10 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                 BlocBuilder<CustomerRegistrationBloc,
                     CustomerRegistrationState>(
                   builder: (context, state) {
+                    firstNameController.text = state.customer.ownerFistName;
+
                     return RoundedTextField(
+                      controller: firstNameController,
                       hint: 'Owner\'s First Name',
                     );
                   },
@@ -120,7 +130,10 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                 BlocBuilder<CustomerRegistrationBloc,
                     CustomerRegistrationState>(
                   builder: (context, state) {
+                    lastNameController.text = state.customer.ownerLastName;
+
                     return RoundedTextField(
+                      controller: lastNameController,
                       hint: 'Owner\'s Last Name',
                     );
                   },

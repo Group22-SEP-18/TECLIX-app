@@ -10,6 +10,10 @@ import 'package:teclix/presentation/common/widgets/rounded_text_field.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class CustomerRegisterStoreDetails extends StatelessWidget {
+  static final storeNameController = TextEditingController();
+  static final emailController = TextEditingController();
+  static final contactNoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final customerRegisterBloc =
@@ -37,7 +41,9 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                 BlocBuilder<CustomerRegistrationBloc,
                     CustomerRegistrationState>(
                   builder: (context, state) {
+                    storeNameController.text = state.customer.shopName;
                     return RoundedTextField(
+                      controller: storeNameController,
                       hint: 'Store Name',
                     );
                   },
@@ -48,7 +54,9 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                 BlocBuilder<CustomerRegistrationBloc,
                     CustomerRegistrationState>(
                   builder: (context, state) {
+                    emailController.text = state.customer.email;
                     return RoundedTextField(
+                      controller: emailController,
                       hint: 'Email',
                     );
                   },
@@ -59,7 +67,9 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                 BlocBuilder<CustomerRegistrationBloc,
                     CustomerRegistrationState>(
                   builder: (context, state) {
+                    contactNoController.text = state.customer.contactNo;
                     return RoundedTextField(
+                      controller: contactNoController,
                       hint: 'Contact Number',
                     );
                   },
@@ -78,7 +88,13 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                   title: 'Next',
                   titleColor: Colors.white,
                   colour: ColorPrimary,
-                  onPressed: () => {
+                  onPressed: () =>
+                  {
+                    customerRegisterBloc.add(AddStoreDetailsEvent(
+                      storeName: storeNameController.text,
+                      email: emailController.text,
+                      contactNo: contactNoController.text,
+                    )),
                     customerRegisterBloc.add(
                       NextStepEvent(currentStep: state.step),
                     ),
