@@ -33,14 +33,19 @@ dependencies:
 #  check network connectivity
   connectivity_plus: ^1.0.6
   flutter_barcode_scanner: ^2.0.0
-#  make the app responsive
+  #  make the app responsive
   responsive_framework: ^0.1.4
   shared_preferences: ^2.0.6
   flutter_map: ^0.13.1
   dots_indicator: ^2.0.0
-#  select images from gallery and open camera
+  #  select images from gallery and open camera
   image_picker: ^0.8.3+2
   image_cropper: ^1.4.1
+  #  get location information
+  geolocator: ^7.6.0
+  geocoding: ^2.0.1
+  #  loading spinners
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:

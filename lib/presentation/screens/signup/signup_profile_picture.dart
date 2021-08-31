@@ -8,6 +8,7 @@ import 'package:teclix/logic/bloc/signup/signup_bloc.dart';
 import 'package:teclix/logic/bloc/signup/signup_event.dart';
 import 'package:teclix/logic/bloc/signup/signup_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/constants/camera_cropper_settings.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/common/widgets/rounded_outline_button.dart';
@@ -26,21 +27,15 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
     final signupBloc = BlocProvider.of<SignupBloc>(context);
     _cropImage(filePath) async {
       File croppedImage = await ImageCropper.cropImage(
-          sourcePath: filePath,
-          maxWidth: 1080,
-          maxHeight: 1080,
-          cropStyle: CropStyle.circle,
-          androidUiSettings: AndroidUiSettings(
-            toolbarTitle: 'Crop image',
-            toolbarColor: ColorPrimary,
-            toolbarWidgetColor: Colors.white,
-            cropFrameColor: ColorPrimaryLight,
-            activeControlsWidgetColor: ColorPrimary,
-          ));
+        sourcePath: filePath,
+        maxWidth: 1080,
+        maxHeight: 1080,
+        cropStyle: CropStyle.circle,
+        androidUiSettings: cropperAndriodSettings,
+      );
       if (croppedImage != null) {
         _image = croppedImage;
         signupBloc.add(AddProfilePictureEvent(profilePicture: _image));
-        // setState(() {});
       }
     }
 
