@@ -9,7 +9,7 @@ class EmployeeProfilePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(200.0),
+          preferredSize: Size.fromHeight(210.0),
           child: Stack(
             children: [
               ClipPath(
@@ -19,7 +19,7 @@ class EmployeeProfilePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
