@@ -4,6 +4,7 @@ import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/routing/routes.dart';
+import 'package:teclix/presentation/screens/employee_profile/employee_profile_page.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -34,6 +35,13 @@ class WelcomePage extends StatelessWidget {
               onPressed: () => Navigator.of(context).push(
                 Routes.getMaterialPageRoute(
                     CustomerRegistrationProvider.id, context),
+              ),
+            ),
+            RoundedButton(
+              title: 'profile',
+              colour: ColorPrimary,
+              onPressed: () => Navigator.of(context).push(
+                Routes.getMaterialPageRoute(EmployeeProfilePage.id, context),
               ),
             ),
           ],
