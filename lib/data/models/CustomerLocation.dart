@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/toast_message.dart';
@@ -60,7 +61,7 @@ class CustomerLocation {
       if (permission == LocationPermission.denied) {
         showToast(
           context: context,
-          durationInSec: 3,
+          durationInSec: 5,
           color: ColorToastRed,
           text: 'Please enable location permissions from your settings.',
         );

@@ -5,8 +5,6 @@ showToast({
   String text,
   Color color,
   int durationInSec,
-  IconData icon,
-  double iconSize,
 }) async {
   OverlayState overlayState = Overlay.of(context);
   OverlayEntry overlayEntry = OverlayEntry(
@@ -28,8 +26,9 @@ showToast({
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Icon(
-                          icon,
-                          size: iconSize != null ? iconSize : 30.0,
+                          Icons.error_outline,
+                          color: Colors.white,
+                          size: 30.0,
                         ),
                       ),
                       Flexible(
