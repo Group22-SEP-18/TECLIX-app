@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:teclix/data/models/CustomerLocation.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_state.dart';
 
 @immutable
@@ -54,4 +55,15 @@ class AddAddressEvent extends CustomerRegistrationEvent {
   final String district;
 
   AddAddressEvent({this.street, this.city, this.lat, this.lang, this.district});
+}
+
+class AddCustomerFinalAddressEvent extends CustomerRegistrationEvent {
+  final CustomerLocation finalAddress;
+  AddCustomerFinalAddressEvent({this.finalAddress});
+}
+
+class ChangeFetchingLoadingEvent extends CustomerRegistrationEvent {
+  final bool isLoading;
+
+  ChangeFetchingLoadingEvent({this.isLoading});
 }

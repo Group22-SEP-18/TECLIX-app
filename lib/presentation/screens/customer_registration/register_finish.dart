@@ -50,13 +50,14 @@ class CustomerRegisterFinish extends StatelessWidget {
                 builder: (context, state) {
                   return CommonPadding(
                     child: RoundedButton(
-                      title: 'Finish',
-                      titleColor: Colors.white,
-                      colour: ColorPrimary,
-                      onPressed: () => customerRegisterBloc.add(
-                        NextStepEvent(currentStep: state.step),
-                      ),
-                    ),
+                        title: 'Finish',
+                        titleColor: Colors.white,
+                        colour: ColorPrimary,
+                        onPressed: () => {
+                              customerRegisterBloc.add(
+                                NextStepEvent(currentStep: state.step),
+                              ),
+                            }),
                   );
                 },
               ),

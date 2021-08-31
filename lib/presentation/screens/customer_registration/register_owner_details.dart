@@ -155,6 +155,10 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                   titleColor: Colors.white,
                   colour: ColorPrimary,
                   onPressed: () => {
+                    customerRegisterBloc.add(AddOwnerNameEvent(
+                      firstName: firstNameController.text,
+                      lastName: lastNameController.text,
+                    )),
                     customerRegisterBloc.add(
                       NextStepEvent(currentStep: state.step),
                     ),

@@ -82,8 +82,18 @@ class CustomerRegistrationBloc
             latitude: (event as AddAddressEvent).lat,
             longitude: (event as AddAddressEvent).lang,
           ),
-          customer: state.customer.copyWith(address: state.storeAddress),
         );
+        break;
+      case ChangeFetchingLoadingEvent:
+        yield state.clone(
+          fetchingLocation: (event as ChangeFetchingLoadingEvent).isLoading,
+        );
+        break;
+      case AddCustomerFinalAddressEvent:
+        yield state.clone(
+            customer: state.customer.copyWith(
+          address: (event as AddCustomerFinalAddressEvent).finalAddress,
+        ));
         break;
     }
   }

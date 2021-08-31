@@ -21,3 +21,9 @@ const MaterialColor PrimaryMaterialColor = MaterialColor(0xFF00AB55, {
 
 //font colors
 const ColorHeadingFont = Color.fromRGBO(81, 68, 82, 1);
+
+//toast colors
+const ColorToastBlue = Color.fromRGBO(178, 218, 244, 1);
+const ColorToastRed = Color.fromRGBO(194, 63, 81, 1);
+
+const ColorYellow = Color.fromRGBO(255, 231, 0, 1);

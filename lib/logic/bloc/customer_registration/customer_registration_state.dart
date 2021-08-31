@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/data/models/Customer.dart';
-import 'package:teclix/data/models/Location.dart';
+import 'package:teclix/data/models/CustomerLocation.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_bloc.dart';
 
 enum CustomerRegProcessSteps {
@@ -16,33 +16,39 @@ class CustomerRegistrationState {
   final String error;
   final CustomerRegProcessSteps step;
   final Customer customer;
-  final Location storeAddress;
+  final CustomerLocation storeAddress;
+  final bool fetchingLocation;
 
-  CustomerRegistrationState(
-      {@required this.error,
-      @required this.step,
-      @required this.customer,
-      @required this.storeAddress});
+  CustomerRegistrationState({
+    @required this.error,
+    @required this.step,
+    @required this.customer,
+    @required this.storeAddress,
+    @required this.fetchingLocation,
+  });
 
   static CustomerRegistrationState get initialState =>
       CustomerRegistrationState(
         error: '',
         step: CustomerRegistrationBloc.processOrder[0],
         customer: Customer(),
-        storeAddress: Location(),
+        storeAddress: CustomerLocation(),
+        fetchingLocation: false,
       );
 
   CustomerRegistrationState clone({
     String error,
     CustomerRegProcessSteps step,
     Customer customer,
-    Location storeAddress,
+    CustomerLocation storeAddress,
+    bool fetchingLocation,
   }) {
     return CustomerRegistrationState(
       error: error ?? this.error,
       step: step ?? this.step,
       customer: customer ?? this.customer,
       storeAddress: storeAddress ?? this.storeAddress,
+      fetchingLocation: fetchingLocation ?? this.fetchingLocation,
     );
   }
 }
