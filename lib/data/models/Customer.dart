@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:teclix/data/models/Location.dart';
+import 'package:teclix/data/models/CustomerLocation.dart';
 
 class Customer {
   String customerId;
@@ -12,7 +12,7 @@ class Customer {
   File profilePicture;
   double loyaltyPoints;
   double outstanding;
-  Location address;
+  CustomerLocation address;
 
   Customer({
     this.customerId,
@@ -37,7 +37,7 @@ class Customer {
     File profilePicture,
     double loyaltyPoints,
     double outstanding,
-    Location address,
+    CustomerLocation address,
   }) {
     return Customer(
       customerId: customerId ?? this.customerId,
