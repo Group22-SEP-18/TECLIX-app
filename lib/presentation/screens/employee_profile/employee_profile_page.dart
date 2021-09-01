@@ -69,8 +69,60 @@ class EmployeeProfilePage extends StatelessWidget {
               Center(
                 child: Text(
                   'Binoy Peries',
-                  style: TextStyle(color: ColorPrimary, fontSize: 30.0),
+                  style: TextStyle(color: ColorPrimary, fontSize: 28.0),
                 ),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.trophy,
+                        color: ColorGold,
+                        size: 40.0,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Text(
+                        '1580 pts.',
+                        style: TextStyle(color: ColorPrimary, fontSize: 30.0),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.medal,
+                        size: 40.0,
+                        color: ColorToastRed,
+
+                        // color: ColorGold,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Text(
+                        '3/21',
+                        style: TextStyle(
+                          color: ColorPrimary,
+                          fontSize: 30.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              Divider(
+                thickness: 1.0,
               ),
               SizedBox(
                 height: 25.0,
