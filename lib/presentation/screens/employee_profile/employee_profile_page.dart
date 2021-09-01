@@ -4,7 +4,6 @@ import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/expandable_card.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/header_clip_path.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/profile_attribute_text.dart';
-import 'package:teclix/presentation/screens/employee_profile/widgets/profile_attribute_value_text.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/sub_heading_text.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
@@ -85,32 +84,10 @@ class EmployeeProfilePage extends StatelessWidget {
                 expandedChild: Padding(
                   padding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ProfileInfoAttrText(
-                            attr: 'First Name',
-                          ),
-                          ProfileAttrValueText(
-                            attrValue: 'Binoy',
-                          ),
-                        ],
+                      ProfileInfoAttrText(
+                        attr: 'Binoy Peries',
                       ),
-                      Spacer(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ProfileInfoAttrText(
-                            attr: 'Last Name',
-                          ),
-                          ProfileAttrValueText(
-                            attrValue: 'Peries',
-                          ),
-                        ],
-                      ),
-                      Spacer()
                     ],
                   ),
                 ),
