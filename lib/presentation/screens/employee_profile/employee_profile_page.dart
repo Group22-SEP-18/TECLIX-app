@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/header_clip_path.dart';
+import 'package:teclix/presentation/screens/employee_profile/widgets/profile_attribute_text.dart';
+import 'package:teclix/presentation/screens/employee_profile/widgets/profile_attribute_value_text.dart';
+import 'package:teclix/presentation/screens/employee_profile/widgets/profile_info_card.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
   static const String id = '/employee-profile';
@@ -8,6 +11,7 @@ class EmployeeProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(210.0),
           child: Stack(
@@ -56,6 +60,7 @@ class EmployeeProfilePage extends StatelessWidget {
         body: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: 20.0,
@@ -64,6 +69,41 @@ class EmployeeProfilePage extends StatelessWidget {
                 child: Text(
                   'Binoy Peries',
                   style: TextStyle(color: ColorPrimary, fontSize: 30.0),
+                ),
+              ),
+              SizedBox(
+                height: 25.0,
+              ),
+              ProfileInfoCard(
+                headingText: 'Basic Info',
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ProfileInfoAttrText(
+                          attr: 'First Name',
+                        ),
+                        ProfileAttrValueText(
+                          attrValue: 'Binoy',
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ProfileInfoAttrText(
+                          attr: 'Last Name',
+                        ),
+                        ProfileAttrValueText(
+                          attrValue: 'Peries',
+                        ),
+                      ],
+                    ),
+                    Spacer()
+                  ],
                 ),
               )
             ],
