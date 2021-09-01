@@ -10,7 +10,7 @@ class ProfileAttrValueText extends StatelessWidget {
     return Text(
       attrValue,
       style: TextStyle(
-        fontSize: 18.0,
+        fontSize: 17.0,
         color: Colors.grey,
       ),
     );

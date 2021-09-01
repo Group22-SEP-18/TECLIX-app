@@ -11,8 +11,8 @@ class ProfileInfoAttrText extends StatelessWidget {
     return Text(
       attr,
       style: TextStyle(
-        fontSize: 20.0,
-        color: ColorDarkGreen,
+        fontSize: 18.0,
+        color: ColorPrimary,
         fontWeight: FontWeight.w600,
       ),
     );
