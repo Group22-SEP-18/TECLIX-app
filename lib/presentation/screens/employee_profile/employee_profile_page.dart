@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/expandable_card.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/header_clip_path.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/profile_attribute_text.dart';
+import 'package:teclix/presentation/screens/employee_profile/widgets/profile_option_card.dart';
 import 'package:teclix/presentation/screens/employee_profile/widgets/sub_heading_text.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
@@ -192,6 +194,32 @@ class EmployeeProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 25.0,
+              ),
+              CommonPadding(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ProfileOptionCard(
+                        coverColor: ColorBlue,
+                        image: 'static/images/profile_sales_card.png',
+                        optionText: 'Sales',
+                      ),
+                    ),
+                    Expanded(
+                      child: ProfileOptionCard(
+                        coverColor: ColorGold,
+                        image: 'static/images/winner.png',
+                        optionText: 'Leaderboard Scheme',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15.0,
+              )
             ],
           ),
         ),

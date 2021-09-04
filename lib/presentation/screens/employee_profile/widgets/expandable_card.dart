@@ -27,7 +27,7 @@ class ExpandableCard extends StatelessWidget {
                 shape: Border.symmetric(
                     horizontal:
                         BorderSide(color: Colors.grey.shade400, width: 0.4)),
-                color: Colors.grey.shade200,
+                color: Colors.grey.shade100,
                 borderOnForeground: true,
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
@@ -67,7 +67,7 @@ class ExpandableCard extends StatelessWidget {
                   margin: EdgeInsets.only(bottom: 0.0),
                   shape: Border.symmetric(
                       horizontal: BorderSide(color: Colors.grey, width: 0.4)),
-                  color: Colors.grey.shade200,
+                  color: Colors.grey.shade100,
                   borderOnForeground: true,
                   child: Column(
                     children: [
