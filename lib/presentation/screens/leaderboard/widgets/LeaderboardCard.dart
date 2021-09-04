@@ -8,8 +8,9 @@ class LeaderboardCard extends StatelessWidget {
   final String image;
   final String name;
   final String points;
-
-  const LeaderboardCard({this.rank, this.image, this.name, this.points});
+  final cardColor;
+  const LeaderboardCard(
+      {this.rank, this.image, this.name, this.points, this.cardColor});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class LeaderboardCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         elevation: 2,
-        color: ColorDarkGreen,
+        color: cardColor ?? ColorDarkGreen,
         child: Container(
           height: 80.0,
           child: Padding(

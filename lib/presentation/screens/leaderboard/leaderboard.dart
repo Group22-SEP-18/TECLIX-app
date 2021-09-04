@@ -147,6 +147,16 @@ class LeaderboardPage extends StatelessWidget {
                 height: 25.0,
               ),
               LeaderboardCard(
+                cardColor: ColorGold,
+                image: 'static/images/profile_dummy.jpg',
+                name: 'You',
+                points: '5202',
+                rank: '15',
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              LeaderboardCard(
                 image: 'static/images/profile_dummy.jpg',
                 name: 'Emma Stone',
                 points: '6850',
