@@ -27,3 +27,5 @@ const ColorToastBlue = Color.fromRGBO(178, 218, 244, 1);
 const ColorToastRed = Color.fromRGBO(194, 63, 81, 1);
 
 const ColorYellow = Color.fromRGBO(255, 231, 0, 1);
+const ColorGold = Color.fromRGBO(255, 193, 0, 1);
+const ColorBlue = Color.fromRGBO(24, 144, 255, 1);
