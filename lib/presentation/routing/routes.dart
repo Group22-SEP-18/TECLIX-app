@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/screens/employee_profile/employee_profile_page.dart';
+import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
 import 'package:teclix/presentation/screens/signin/welcome_page.dart';
 import 'package:teclix/presentation/screens/start_up.dart';
@@ -14,6 +15,7 @@ class Routes {
     SignInPage.id: SignInPage(),
     CustomerRegistrationProvider.id: CustomerRegistrationProvider(),
     EmployeeProfilePage.id: EmployeeProfilePage(),
+    LeaderboardPage.id: LeaderboardPage(),
   };
   //this is to call the material routes in pages
   static MaterialPageRoute getMaterialPageRoute(

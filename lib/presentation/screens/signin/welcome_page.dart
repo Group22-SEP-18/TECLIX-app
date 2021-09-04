@@ -5,6 +5,7 @@ import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/employee_profile/employee_profile_page.dart';
+import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -42,6 +43,13 @@ class WelcomePage extends StatelessWidget {
               colour: ColorPrimary,
               onPressed: () => Navigator.of(context).push(
                 Routes.getMaterialPageRoute(EmployeeProfilePage.id, context),
+              ),
+            ),
+            RoundedButton(
+              title: 'leaderboard',
+              colour: ColorPrimary,
+              onPressed: () => Navigator.of(context).push(
+                Routes.getMaterialPageRoute(LeaderboardPage.id, context),
               ),
             ),
           ],
