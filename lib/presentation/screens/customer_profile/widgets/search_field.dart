@@ -3,6 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 
 class SearchField extends StatelessWidget {
+  final Function onSubmit;
+
+  const SearchField({this.onSubmit});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,24 +40,23 @@ class SearchField extends StatelessWidget {
           ),
           Expanded(
             child: TextField(
-                onSubmitted: (String searchString) {
-                  // addSearchBloc.add(SearchEvent(searchString));
-                },
-                style: TextStyle(
+              onSubmitted: onSubmit,
+              style: TextStyle(
+                fontSize: 18.0,
+                color: ColorHeadingFont,
+              ),
+              // controller: searchController,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Enter Customer Name',
+                hintStyle: TextStyle(
                   fontSize: 18.0,
-                  color: ColorHeadingFont,
+                  color: ColorPrimary,
+                  fontWeight: FontWeight.w400,
                 ),
-                // controller: searchController,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Enter Customer Name',
-                  hintStyle: TextStyle(
-                    fontSize: 18.0,
-                    color: ColorPrimary,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                onTap: () {}),
+              ),
+              onTap: () {},
+            ),
           ),
           // Container(
           //   padding: EdgeInsets.all(10.0),
