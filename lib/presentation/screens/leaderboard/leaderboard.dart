@@ -21,7 +21,7 @@ class LeaderboardPage extends StatelessWidget {
               ClipPath(
                 clipper: LeaderboardHeaderClipPath(),
                 child: Container(
-                  color: ColorDarkGreen,
+                  color: ColorPrimary,
                 ),
               ),
               Align(

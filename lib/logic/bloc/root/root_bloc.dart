@@ -16,7 +16,7 @@ class RootBloc extends Bloc<RootEvent, RootState> {
     // Get email and password from shared prefs?
     // final auth = locator<AuthService>();
     // User user = await auth.createUserWithEmailAndPassword(email, password);
-    add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_OUT));
+    add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
   }
 
   @override
