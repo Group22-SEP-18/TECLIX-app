@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/screens/customer/customer_main.dart';
+import 'package:teclix/presentation/screens/employee/employee_profile/employee_profile_page.dart';
+import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/bottom_navbar.dart';
 import 'package:teclix/presentation/screens/navbar/nav_tab_item.dart';
-import 'package:teclix/presentation/screens/signin/welcome_page.dart';
 
 class NavbarController extends StatefulWidget {
   static const String id = '/logged-in-main';
@@ -20,17 +22,17 @@ class NavbarControllerState extends State<NavbarController> {
   final List<NavbarTabItem> tabs = [
     NavbarTabItem(
       icon: Icons.home,
-      page: WelcomePage(),
+      page: CustomerMain(),
       tabName: 'Customer',
     ),
     NavbarTabItem(
       icon: Icons.leaderboard,
-      page: WelcomePage(),
+      page: LeaderboardPage(),
       tabName: 'Leaderboard',
     ),
     NavbarTabItem(
       icon: Icons.account_circle,
-      page: WelcomePage(),
+      page: EmployeeProfilePage(),
       tabName: 'Profile',
     ),
   ];
