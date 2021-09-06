@@ -14,7 +14,8 @@ class BottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      elevation: 10.0,
+      backgroundColor: Colors.white,
+      elevation: 20.0,
       //to remove the bottom padding
       selectedFontSize: 0.0,
 
@@ -44,7 +45,7 @@ class BottomNavbar extends StatelessWidget {
           border: Border(
             top: BorderSide(
               color: _containeTopBorderColor(index: index),
-              width: 2.0,
+              width: 2.5,
             ),
           ),
         ),
@@ -57,7 +58,7 @@ class BottomNavbar extends StatelessWidget {
             Icon(
               icon,
               color: _tabColor(index: index),
-              size: 30.0,
+              size: 32.0,
             ),
             Text(
               tabName,
@@ -86,7 +87,7 @@ class BottomNavbar extends StatelessWidget {
 
   Color _containeColor({int index}) {
     return NavbarControllerState.currentTab == index
-        ? ColorLightGreen
+        ? ColorLightGreen.withOpacity(0.2)
         : Colors.transparent;
   }
 }

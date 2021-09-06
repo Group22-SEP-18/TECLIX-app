@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/screens/navbar/bottom_navbar.dart';
 import 'package:teclix/presentation/screens/navbar/nav_tab_item.dart';
 import 'package:teclix/presentation/screens/signin/welcome_page.dart';
@@ -20,17 +21,17 @@ class NavbarControllerState extends State<NavbarController> {
     NavbarTabItem(
       icon: Icons.home,
       page: WelcomePage(),
-      tabName: 'profile',
+      tabName: 'Customer',
     ),
     NavbarTabItem(
       icon: Icons.leaderboard,
       page: WelcomePage(),
-      tabName: 'profile',
+      tabName: 'Leaderboard',
     ),
     NavbarTabItem(
       icon: Icons.account_circle,
       page: WelcomePage(),
-      tabName: 'profile',
+      tabName: 'Profile',
     ),
   ];
 
@@ -81,6 +82,7 @@ class NavbarControllerState extends State<NavbarController> {
       // eventually breaking the app
       child: Scaffold(
         // indexed stack shows only one child
+        backgroundColor: ColorPrimary,
         body: IndexedStack(
           index: currentTab,
           children: tabs.map((e) => e.page).toList(),
