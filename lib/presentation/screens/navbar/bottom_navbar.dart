@@ -75,7 +75,7 @@ class BottomNavbar extends StatelessWidget {
 
   Color _tabColor({int index}) {
     return NavbarControllerState.currentTab == index
-        ? Colors.green
+        ? ColorPrimary
         : Colors.grey;
   }
 
