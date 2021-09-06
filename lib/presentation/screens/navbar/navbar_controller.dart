@@ -1,0 +1,96 @@
+import 'package:flutter/material.dart';
+import 'package:teclix/presentation/screens/navbar/bottom_navbar.dart';
+import 'package:teclix/presentation/screens/navbar/nav_tab_item.dart';
+import 'package:teclix/presentation/screens/signin/welcome_page.dart';
+
+class NavbarController extends StatefulWidget {
+  static const String id = '/logged-in-main';
+
+  @override
+  State<StatefulWidget> createState() => NavbarControllerState();
+}
+
+class NavbarControllerState extends State<NavbarController> {
+  // this is static property so other widget throughout the app
+  // can access it simply by AppState.currentTab
+  static int currentTab = 0;
+
+  // list tabs here
+  final List<NavbarTabItem> tabs = [
+    NavbarTabItem(
+      icon: Icons.home,
+      page: WelcomePage(),
+      tabName: 'profile',
+    ),
+    NavbarTabItem(
+      icon: Icons.leaderboard,
+      page: WelcomePage(),
+      tabName: 'profile',
+    ),
+    NavbarTabItem(
+      icon: Icons.account_circle,
+      page: WelcomePage(),
+      tabName: 'profile',
+    ),
+  ];
+
+  NavbarControllerState() {
+    // indexing is necessary for proper funcationality
+    // of determining which tab is active
+    tabs.asMap().forEach((index, details) {
+      details.setIndex(index);
+    });
+  }
+
+  // sets current tab index
+  // and update state
+  void _selectTab(int index) {
+    if (index == currentTab) {
+      // pop to first route
+      // if the user taps on the active tab
+      tabs[index].key.currentState.popUntil((route) => route.isFirst);
+    } else {
+      // update the state
+      // in order to repaint
+      setState(() => currentTab = index);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // WillPopScope handle android back btn
+    return WillPopScope(
+      onWillPop: () async {
+        final isFirstRouteInCurrentTab =
+            !await tabs[currentTab].key.currentState.maybePop();
+        if (isFirstRouteInCurrentTab) {
+          // if not on the 'main' tab
+          if (currentTab != 0) {
+            // select 'main' tab
+            _selectTab(0);
+            // back button handled by app
+            return false;
+          }
+        }
+        // let system handle back button if we're on the first route
+        return isFirstRouteInCurrentTab;
+      },
+      // this is the base scaffold
+      // don't put appbar in here otherwise you might end up
+      // with multiple appbars on one screen
+      // eventually breaking the app
+      child: Scaffold(
+        // indexed stack shows only one child
+        body: IndexedStack(
+          index: currentTab,
+          children: tabs.map((e) => e.page).toList(),
+        ),
+        // Bottom navigation
+        bottomNavigationBar: BottomNavbar(
+          onSelectTab: _selectTab,
+          tabs: tabs,
+        ),
+      ),
+    );
+  }
+}
