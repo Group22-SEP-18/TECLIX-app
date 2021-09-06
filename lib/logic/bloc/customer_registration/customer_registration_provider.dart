@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/presentation/screens/customer_registration/register_scaffold.dart';
+import 'package:teclix/presentation/screens/customer/customer_registration/register_scaffold.dart';
 
 import 'customer_registration_bloc.dart';
 import 'customer_registration_state.dart';

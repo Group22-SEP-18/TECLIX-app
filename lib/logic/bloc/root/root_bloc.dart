@@ -28,11 +28,16 @@ class RootBloc extends Bloc<RootEvent, RootState> {
         yield state.clone(error: error);
         break;
 
+      case ChangeUerLoginStateEvent:
+        UserLoginState userLoginState =
+            (event as ChangeUerLoginStateEvent).userLoginState;
+        yield state.clone(userLoginState: userLoginState);
+        break;
+
       case LogInUserEvent:
         final email = (event as LogInUserEvent).email;
         final password = (event as LogInUserEvent).password;
 
-        print(email);
         //:TODO call the login function
         // if sucessful do this
         yield state.clone(
@@ -40,10 +45,6 @@ class RootBloc extends Bloc<RootEvent, RootState> {
           // :TODO clone the user obj as well
         );
         break;
-      case ChangeUerLoginStateEvent:
-        UserLoginState userLoginState =
-            (event as ChangeUerLoginStateEvent).userLoginState;
-        yield state.clone(userLoginState: userLoginState);
     }
   }
 

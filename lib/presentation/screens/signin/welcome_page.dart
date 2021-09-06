@@ -5,7 +5,7 @@ import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/routing/routes.dart';
-import 'package:teclix/presentation/screens/employee_profile/employee_profile_page.dart';
+import 'package:teclix/presentation/screens/employee/employee_profile/employee_profile_page.dart';
 import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
 

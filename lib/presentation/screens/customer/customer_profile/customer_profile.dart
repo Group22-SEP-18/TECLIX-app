@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
-import 'package:teclix/presentation/screens/customer_profile/widgets/customer_profile_card.dart';
-import 'package:teclix/presentation/screens/customer_profile/widgets/customer_profile_clip_path.dart';
+import 'package:teclix/presentation/screens/customer/customer_profile/widgets/customer_profile_card.dart';
+import 'package:teclix/presentation/screens/customer/customer_profile/widgets/customer_profile_clip_path.dart';
+
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
 
 class CustomerProfile extends StatelessWidget {
