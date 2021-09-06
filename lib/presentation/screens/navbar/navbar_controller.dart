@@ -21,7 +21,7 @@ class NavbarControllerState extends State<NavbarController> {
   // list tabs here
   final List<NavbarTabItem> tabs = [
     NavbarTabItem(
-      icon: Icons.home,
+      icon: Icons.supervised_user_circle,
       page: CustomerMain(),
       tabName: 'Customer',
     ),
