@@ -51,17 +51,20 @@ class CustomerMain extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: 25.0,
+                  height: 30.0,
                 ),
-                Text(
-                  'Welcome Back, Binoy Peries',
-                  style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w400,
-                      color: ColorDarkGreen),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Text(
+                    'Welcome Back, Binoy Peries',
+                    style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.w400,
+                        color: ColorDarkGreen),
+                  ),
                 ),
                 SizedBox(
-                  height: 30.0,
+                  height: 15.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
