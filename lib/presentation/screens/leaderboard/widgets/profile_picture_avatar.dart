@@ -19,7 +19,7 @@ class ProfilePicAvatar extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             blurRadius: blurRad,
-            color: ColorPrimary,
+            color: ColorDarkGreen,
             spreadRadius: spreadRad,
           )
         ],
