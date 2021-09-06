@@ -3,11 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
-import 'package:teclix/presentation/screens/employee_profile/widgets/expandable_card.dart';
-import 'package:teclix/presentation/screens/employee_profile/widgets/header_clip_path.dart';
-import 'package:teclix/presentation/screens/employee_profile/widgets/profile_attribute_text.dart';
-import 'package:teclix/presentation/screens/employee_profile/widgets/profile_option_card.dart';
-import 'package:teclix/presentation/screens/employee_profile/widgets/sub_heading_text.dart';
+import 'package:teclix/presentation/screens/employee/employee_profile/widgets/expandable_card.dart';
+import 'package:teclix/presentation/screens/employee/employee_profile/widgets/header_clip_path.dart';
+import 'package:teclix/presentation/screens/employee/employee_profile/widgets/profile_attribute_text.dart';
+import 'package:teclix/presentation/screens/employee/employee_profile/widgets/profile_option_card.dart';
+import 'package:teclix/presentation/screens/employee/employee_profile/widgets/sub_heading_text.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
   static const String id = '/employee-profile';

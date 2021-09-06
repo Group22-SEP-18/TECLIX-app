@@ -6,11 +6,11 @@ import 'package:teclix/logic/bloc/customer_registration/customer_registration_st
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
-import 'package:teclix/presentation/screens/customer_registration/register_address.dart';
-import 'package:teclix/presentation/screens/customer_registration/register_finish.dart';
-import 'package:teclix/presentation/screens/customer_registration/register_owner_details.dart';
-import 'package:teclix/presentation/screens/customer_registration/register_store_details.dart';
-import 'package:teclix/presentation/screens/customer_registration/register_start.dart';
+import 'package:teclix/presentation/screens/customer/customer_registration/register_address.dart';
+import 'package:teclix/presentation/screens/customer/customer_registration/register_finish.dart';
+import 'package:teclix/presentation/screens/customer/customer_registration/register_owner_details.dart';
+import 'package:teclix/presentation/screens/customer/customer_registration/register_start.dart';
+import 'package:teclix/presentation/screens/customer/customer_registration/register_store_details.dart';
 
 class CustomerRegisterScaffold extends StatelessWidget {
   @override

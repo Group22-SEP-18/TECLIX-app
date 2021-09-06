@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/routing/routes.dart';
-import 'package:teclix/presentation/screens/customer_profile/customer_profile.dart';
+import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
 
 class SearchResultCard extends StatelessWidget {
