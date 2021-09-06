@@ -5,6 +5,7 @@ import 'package:teclix/logic/bloc/root/root_event.dart';
 import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/common/widgets/rounded_text_field.dart';
@@ -27,11 +28,8 @@ class SignInPage extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Center(
-            child: Text(
-              'Login',
-              style: TextStyle(
-                fontSize: 25.0,
-              ),
+            child: AppbarHeadingText(
+              title: 'Login',
             ),
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:teclix/logic/bloc/signup/signup_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
+import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/screens/signup/signup_employee_Details.dart';
 import 'package:teclix/presentation/screens/signup/signup_finish.dart';
 import 'package:teclix/presentation/screens/signup/signup_name.dart';
@@ -46,11 +47,8 @@ class SignupScaffold extends StatelessWidget {
                       ),
                     ),
                     Align(
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                          fontSize: 25.0,
-                        ),
+                      child: AppbarHeadingText(
+                        title: 'Register',
                       ),
                     ),
                   ],
