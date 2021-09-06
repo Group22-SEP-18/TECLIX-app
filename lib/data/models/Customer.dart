@@ -13,6 +13,14 @@ class Customer {
   double loyaltyPoints;
   double outstanding;
   CustomerLocation address;
+  String profilePicUrl;
+
+  Customer.searchResult({
+    this.shopName,
+    this.ownerFistName,
+    this.ownerLastName,
+    this.profilePicUrl,
+  });
 
   Customer({
     this.customerId,

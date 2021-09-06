@@ -5,6 +5,7 @@ import 'package:teclix/logic/bloc/customer_registration/customer_registration_ev
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_state.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
+import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/screens/customer_registration/register_address.dart';
 import 'package:teclix/presentation/screens/customer_registration/register_finish.dart';
 import 'package:teclix/presentation/screens/customer_registration/register_owner_details.dart';
@@ -44,11 +45,8 @@ class CustomerRegisterScaffold extends StatelessWidget {
                       ),
                     ),
                     Align(
-                      child: Text(
-                        'Register Customer',
-                        style: TextStyle(
-                          fontSize: 25.0,
-                        ),
+                      child: AppbarHeadingText(
+                        title: 'Register Customer',
                       ),
                     ),
                   ],

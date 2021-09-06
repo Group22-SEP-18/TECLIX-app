@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/screens/leaderboard/widgets/LeaderboardCard.dart';
 import 'package:teclix/presentation/screens/leaderboard/widgets/leaderboard_header.dart';
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
@@ -27,12 +28,9 @@ class LeaderboardPage extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child: Text(
-                    'Leaderboard',
-                    style: TextStyle(
-                      fontSize: 28.0,
-                      color: Colors.white,
-                    ),
+                  child: AppbarHeadingText(
+                    title: 'Leaderboard',
+                    fontSize: 28.0,
                   ),
                 ),
               ),

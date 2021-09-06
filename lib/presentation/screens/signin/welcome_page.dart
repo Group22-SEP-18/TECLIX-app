@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
+import 'package:teclix/logic/bloc/search_customer/search_customer_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
@@ -50,6 +51,13 @@ class WelcomePage extends StatelessWidget {
               colour: ColorPrimary,
               onPressed: () => Navigator.of(context).push(
                 Routes.getMaterialPageRoute(LeaderboardPage.id, context),
+              ),
+            ),
+            RoundedButton(
+              title: 'search',
+              colour: ColorPrimary,
+              onPressed: () => Navigator.of(context).push(
+                Routes.getMaterialPageRoute(SearchCustomerProvider.id, context),
               ),
             ),
           ],

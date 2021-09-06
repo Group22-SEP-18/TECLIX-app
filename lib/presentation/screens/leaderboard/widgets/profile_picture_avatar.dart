@@ -25,7 +25,8 @@ class ProfilePicAvatar extends StatelessWidget {
         ],
       ),
       child: CircleAvatar(
-        radius: circleRadius,
+        radius: circleRadius + 2,
+        backgroundColor: Colors.white,
         child: CircleAvatar(
           radius: circleRadius,
           backgroundImage: Image.asset(
