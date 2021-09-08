@@ -25,6 +25,7 @@ class TeclixApp extends StatelessWidget {
       ],
       child: MaterialApp(
         builder: (context, widget) => ResponsiveWrapper.builder(
+            //this is to make the screen responsive
             BouncingScrollWrapper.builder(context, widget),
             maxWidth: 1200,
             minWidth: 450,
