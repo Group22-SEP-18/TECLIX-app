@@ -10,6 +10,8 @@ import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
+import 'package:teclix/presentation/routing/routes.dart';
+import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_field.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_result_card.dart';
 import 'package:teclix/presentation/common/widgets/searchbar_preview.dart';
@@ -94,6 +96,10 @@ class CustomerViewSearchPage extends StatelessWidget {
                                 itemCount: searchResults.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return SearchResultCard(
+                                    directTo: () => Navigator.of(context).push(
+                                      Routes.getMaterialPageRoute(
+                                          CustomerProfile.id, context),
+                                    ),
                                     shopName: searchResults[index].shopName,
                                     ownerLastName:
                                         searchResults[index].ownerLastName,

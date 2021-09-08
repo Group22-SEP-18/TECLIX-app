@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
-import 'package:teclix/presentation/routing/routes.dart';
-import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
 
 class SearchResultCard extends StatelessWidget {
@@ -9,20 +7,19 @@ class SearchResultCard extends StatelessWidget {
   final String ownerFistName;
   final String ownerLastName;
   final String profilePicUrl;
-
+  final Function directTo;
   const SearchResultCard({
     this.shopName,
     this.ownerFistName,
     this.ownerLastName,
     this.profilePicUrl,
+    this.directTo,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(
-        Routes.getMaterialPageRoute(CustomerProfile.id, context),
-      ),
+      onTap: directTo,
       child: Card(
         color: Colors.grey.shade200,
         margin: EdgeInsets.zero,
