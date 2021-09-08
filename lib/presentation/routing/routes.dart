@@ -10,6 +10,7 @@ import 'package:teclix/presentation/screens/navbar/navbar_controller.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
 import 'package:teclix/presentation/screens/signin/welcome_page.dart';
 import 'package:teclix/presentation/screens/start_up.dart';
+import 'package:teclix/presentation/screens/vehicle/vehicle_main.dart';
 
 class Routes {
   static final Map<String, Widget> routes = {
@@ -24,6 +25,7 @@ class Routes {
     CustomerProfile.id: CustomerProfile(),
     NavbarController.id: NavbarController(),
     CustomerMain.id: CustomerMain(),
+    VehicleMain.id: VehicleMain(),
   };
   //this is to call the material routes in pages
   static MaterialPageRoute getMaterialPageRoute(
