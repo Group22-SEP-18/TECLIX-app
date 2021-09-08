@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/data/models/Customer.dart';
 import 'package:teclix/data/temporary/customer_search_results.dart';
+import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_event.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
+import 'package:teclix/presentation/common/widgets/searchbar_preview.dart';
+import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_field.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_result_card.dart';
-import 'package:teclix/presentation/common/widgets/searchbar_preview.dart';
 
 class CustomerLatePaymentSearchPage extends StatelessWidget {
   static const String id = '/customer-latepayment--search';
@@ -96,6 +98,10 @@ class CustomerLatePaymentSearchPage extends StatelessWidget {
                                 itemCount: searchResults.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return SearchResultCard(
+                                    directTo: () => Navigator.of(context).push(
+                                      Routes.getMaterialPageRoute(
+                                          CustomerLatePayProvider.id, context),
+                                    ),
                                     shopName: searchResults[index].shopName,
                                     ownerLastName:
                                         searchResults[index].ownerLastName,
