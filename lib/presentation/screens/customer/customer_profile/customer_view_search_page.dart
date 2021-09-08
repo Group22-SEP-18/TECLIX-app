@@ -12,9 +12,9 @@ import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_field.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_result_card.dart';
-import 'package:teclix/presentation/screens/customer/customer_profile/widgets/searchbar_preview.dart';
+import 'package:teclix/presentation/common/widgets/searchbar_preview.dart';
 
-class SearchBarPage extends StatelessWidget {
+class CustomerViewSearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Customer> searchResults = [];
@@ -68,7 +68,9 @@ class SearchBarPage extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )
                 : searchResults.length == 0
-                    ? SearchbarPreview()
+                    ? SearchbarPreview(
+                        previewImage: 'static/images/customer_search.png',
+                      )
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [

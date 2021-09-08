@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/presentation/screens/customer/customer_profile/search_bar_page.dart';
+import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
 
 import 'search_customer_bloc.dart';
 import 'search_customer_state.dart';
@@ -30,7 +30,7 @@ class SearchCustomerView extends StatelessWidget {
           },
         ),
       ],
-      child: SearchBarPage(),
+      child: CustomerViewSearchPage(),
     );
   }
 }
