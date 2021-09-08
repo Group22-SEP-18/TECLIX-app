@@ -6,6 +6,7 @@ import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/screens/customer/widgets/customer_main_clip_path.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 import 'package:teclix/presentation/screens/vehicle/widgets/item_detail_card.dart';
+import 'package:teclix/presentation/screens/vehicle/widgets/product_info_card.dart';
 import 'package:teclix/presentation/screens/vehicle/widgets/vehicle_stat_card.dart';
 
 class VehicleMain extends StatelessWidget {
@@ -177,6 +178,40 @@ class VehicleMain extends StatelessWidget {
                     )
                   ],
                 ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Text(
+                    'Products',
+                    style: TextStyle(
+                      fontSize: 23.0,
+                      color: ColorPrimary,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                ProductInfoCard(
+                  productImage: 'static/images/dummy.jpeg',
+                  productName: 'Munchee Biscuit Hawaian Cookies',
+                  productWeight: '200g',
+                  productPrice: '130.00',
+                  productQuantity: '25',
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                ProductInfoCard(
+                  productImage: 'static/images/dummy2.jpeg',
+                  productName: 'Munchee Biscuit Milk Short Cake',
+                  productWeight: '200g',
+                  productPrice: '120.00',
+                  productQuantity: '45',
+                )
               ],
             ),
           ),

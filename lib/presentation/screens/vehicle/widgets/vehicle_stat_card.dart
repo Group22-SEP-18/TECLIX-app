@@ -5,7 +5,9 @@ class VehicleStatCard extends StatelessWidget {
   final Widget child;
   final Color cardColor;
   final Color borderColor;
-  const VehicleStatCard({this.cardColor, this.child, this.borderColor});
+  final double cardHeight;
+  const VehicleStatCard(
+      {this.cardColor, this.child, this.borderColor, this.cardHeight});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,6 @@ class VehicleStatCard extends StatelessWidget {
           side: BorderSide(color: borderColor ?? ColorPrimary),
         ),
         elevation: 3,
-        child: child);
+        child: Container(height: cardHeight ?? 130.0, child: child));
   }
 }
