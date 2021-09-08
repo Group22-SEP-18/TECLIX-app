@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
-import 'package:teclix/logic/bloc/search_customer/search_customer_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
+import 'package:teclix/presentation/screens/customer/customer_late_payment/customer_late_payment_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_main.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
+import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/employee_profile_page.dart';
 import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/navbar_controller.dart';
@@ -21,7 +22,8 @@ class Routes {
     CustomerRegistrationProvider.id: CustomerRegistrationProvider(),
     EmployeeProfilePage.id: EmployeeProfilePage(),
     LeaderboardPage.id: LeaderboardPage(),
-    SearchCustomerProvider.id: SearchCustomerProvider(),
+    CustomerViewSearchPage.id: CustomerViewSearchPage(),
+    CustomerLatePaymentSearchPage.id: CustomerLatePaymentSearchPage(),
     CustomerProfile.id: CustomerProfile(),
     NavbarController.id: NavbarController(),
     CustomerMain.id: CustomerMain(),
