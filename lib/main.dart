@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
+import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/start_up.dart';
@@ -21,6 +22,9 @@ class TeclixApp extends StatelessWidget {
       providers: [
         BlocProvider<RootBloc>(
           create: (context) => RootBloc(context),
+        ),
+        BlocProvider<SearchCustomerBloc>(
+          create: (context) => SearchCustomerBloc(context),
         ),
       ],
       child: MaterialApp(

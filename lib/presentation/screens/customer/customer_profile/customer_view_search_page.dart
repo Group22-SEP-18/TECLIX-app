@@ -17,6 +17,8 @@ import 'package:teclix/presentation/screens/customer/customer_profile/widgets/se
 import 'package:teclix/presentation/common/widgets/searchbar_preview.dart';
 
 class CustomerViewSearchPage extends StatelessWidget {
+  static const String id = '/customer-view-search';
+
   @override
   Widget build(BuildContext context) {
     List<Customer> searchResults = [];
