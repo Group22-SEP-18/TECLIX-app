@@ -5,6 +5,7 @@ import 'package:teclix/presentation/screens/employee/employee_profile/employee_p
 import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/bottom_navbar.dart';
 import 'package:teclix/presentation/screens/navbar/nav_tab_item.dart';
+import 'package:teclix/presentation/screens/vehicle/vehicle_main.dart';
 
 class NavbarController extends StatefulWidget {
   static const String id = '/logged-in-main';
@@ -24,6 +25,11 @@ class NavbarControllerState extends State<NavbarController> {
       icon: Icons.supervised_user_circle,
       page: CustomerMain(),
       tabName: 'Customer',
+    ),
+    NavbarTabItem(
+      icon: Icons.local_shipping,
+      page: VehicleMain(),
+      tabName: 'Vehicle',
     ),
     NavbarTabItem(
       icon: Icons.leaderboard,
