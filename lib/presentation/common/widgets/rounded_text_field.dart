@@ -21,7 +21,7 @@ class RoundedTextField extends StatelessWidget {
     this.fontColor,
     this.focusedBorderColor = ColorPrimaryLight,
     this.enabledBorderColor = ColorLightGreen,
-    this.errorBorderColor = Colors.red,
+    this.errorBorderColor = ColorToastRed,
     this.filColor,
     this.onPressed,
     this.onTapped,
