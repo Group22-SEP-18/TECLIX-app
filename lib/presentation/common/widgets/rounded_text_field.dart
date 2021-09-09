@@ -15,13 +15,14 @@ class RoundedTextField extends StatelessWidget {
   final Function validation;
   final TextEditingController controller;
   final TextInputType keyboardType;
+  final bool isEnabled;
 
   RoundedTextField({
     this.hint,
     this.fontColor,
     this.focusedBorderColor = ColorPrimaryLight,
     this.enabledBorderColor = ColorLightGreen,
-    this.errorBorderColor = Colors.red,
+    this.errorBorderColor = ColorToastRed,
     this.filColor,
     this.onPressed,
     this.onTapped,
@@ -30,12 +31,14 @@ class RoundedTextField extends StatelessWidget {
     this.hideText = false,
     this.validation,
     this.keyboardType = TextInputType.text,
+    this.isEnabled,
   });
 
   @override
   Widget build(BuildContext context) {
     final node = FocusScope.of(context);
     return TextFormField(
+      enabled: isEnabled,
       validator: validation,
       initialValue: fieldValue,
       onTap: onTapped,

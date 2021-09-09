@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SearchbarPreview extends StatelessWidget {
+  final String previewImage;
+
+  const SearchbarPreview({this.previewImage});
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Image.asset(
-        'static/images/customer_search.png',
+        previewImage,
         fit: BoxFit.fitHeight,
       ),
     );

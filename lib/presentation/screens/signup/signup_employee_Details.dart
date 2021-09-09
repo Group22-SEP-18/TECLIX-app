@@ -66,6 +66,7 @@ class SignupEmpDetails extends StatelessWidget {
                   builder: (context, state) {
                     contactNoController.text = state.salesperson.contactNo;
                     return RoundedTextField(
+                      keyboardType: TextInputType.number,
                       controller: contactNoController,
                       hint: 'Contact Number',
                     );

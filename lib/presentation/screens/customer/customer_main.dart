@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
-import 'package:teclix/logic/bloc/search_customer/search_customer_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/routing/routes.dart';
+import 'package:teclix/presentation/screens/customer/customer_late_payment/customer_late_payment_search_page.dart';
+import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
 import 'package:teclix/presentation/screens/customer/widgets/customer_main_clip_path.dart';
 import 'package:teclix/presentation/screens/customer/widgets/option_card.dart';
 import 'package:teclix/presentation/screens/customer/widgets/stat_row_card.dart';
@@ -141,7 +142,7 @@ class CustomerMain extends StatelessWidget {
                         optionText: 'View Account',
                         onClick: () => Navigator.of(context).push(
                           Routes.getMaterialPageRoute(
-                              SearchCustomerProvider.id, context),
+                              CustomerViewSearchPage.id, context),
                         ),
                       ),
                     ),
@@ -164,6 +165,10 @@ class CustomerMain extends StatelessWidget {
                         coverColor: ColorToastRed,
                         image: 'static/images/late_pay.png',
                         optionText: 'Late Payment',
+                        onClick: () => Navigator.of(context).push(
+                          Routes.getMaterialPageRoute(
+                              CustomerLatePaymentSearchPage.id, context),
+                        ),
                       ),
                     ),
                   ],

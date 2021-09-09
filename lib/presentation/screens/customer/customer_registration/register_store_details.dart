@@ -69,6 +69,8 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                   builder: (context, state) {
                     contactNoController.text = state.customer.contactNo;
                     return RoundedTextField(
+                      keyboardType: TextInputType.numberWithOptions(
+                          decimal: false, signed: false),
                       controller: contactNoController,
                       hint: 'Contact Number',
                     );
