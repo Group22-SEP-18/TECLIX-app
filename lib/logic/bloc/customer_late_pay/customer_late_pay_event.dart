@@ -8,3 +8,15 @@ class ErrorEvent extends CustomerLatePayEvent {
 
   ErrorEvent(this.error);
 }
+
+class SetDebtAmountEvent extends CustomerLatePayEvent {
+  final double amount;
+
+  SetDebtAmountEvent({this.amount});
+}
+
+class ToggleCheckBoxEvent extends CustomerLatePayEvent {
+  final bool isSelected;
+
+  ToggleCheckBoxEvent({this.isSelected});
+}

@@ -6,16 +6,29 @@ import 'package:flutter/material.dart';
 import 'customer_late_pay_event.dart';
 import 'customer_late_pay_state.dart';
 
-class CustomerLatePayBloc extends Bloc<CustomerLatePayEvent, CustomerLatePayState> {
-  CustomerLatePayBloc(BuildContext context) : super(CustomerLatePayState.initialState);
+class CustomerLatePayBloc
+    extends Bloc<CustomerLatePayEvent, CustomerLatePayState> {
+  CustomerLatePayBloc(BuildContext context)
+      : super(CustomerLatePayState.initialState);
 
   @override
-  Stream<CustomerLatePayState> mapEventToState(CustomerLatePayEvent event) async* {
+  Stream<CustomerLatePayState> mapEventToState(
+      CustomerLatePayEvent event) async* {
     switch (event.runtimeType) {
       case ErrorEvent:
         final error = (event as ErrorEvent).error;
         yield state.clone(error: "");
         yield state.clone(error: error);
+        break;
+      case ToggleCheckBoxEvent:
+        yield state.clone(
+          checkBoxValue: (event as ToggleCheckBoxEvent).isSelected,
+        );
+        break;
+      case SetDebtAmountEvent:
+        yield state.clone(
+          amount: (event as SetDebtAmountEvent).amount,
+        );
         break;
     }
   }
@@ -34,7 +47,9 @@ class CustomerLatePayBloc extends Bloc<CustomerLatePayEvent, CustomerLatePayStat
   void _addErr(e) {
     if (e is StateError) return;
     try {
-      add(ErrorEvent((e is String) ? e : (e.message ?? "Something went wrong. Please try again!")));
+      add(ErrorEvent((e is String)
+          ? e
+          : (e.message ?? "Something went wrong. Please try again!")));
     } catch (e) {
       add(ErrorEvent("Something went wrong. Please try again!"));
     }

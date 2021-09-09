@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_bloc.dart';
+import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_event.dart';
+import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
-import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
@@ -12,6 +15,8 @@ import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 class CustomerDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final customerLatePayBloc = BlocProvider.of<CustomerLatePayBloc>(context);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -157,13 +162,26 @@ class CustomerDetails extends StatelessWidget {
                 SizedBox(
                   height: 20.0,
                 ),
-                RoundedButton(
-                  title: 'Pay',
-                  titleColor: Colors.white,
-                  colour: ColorPrimary,
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      Routes.getMaterialPageRoute(PaymentDetail.id, context),
+                BlocBuilder<CustomerLatePayBloc, CustomerLatePayState>(
+                  builder: (context, state) {
+                    return RoundedButton(
+                      title: 'Pay',
+                      titleColor: Colors.white,
+                      colour: ColorPrimary,
+                      onPressed: () {
+                        //:TODO make the value dynamic
+                        customerLatePayBloc.add(
+                          SetDebtAmountEvent(amount: 25000.00),
+                        );
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value: customerLatePayBloc,
+                              child: PaymentDetail(),
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
