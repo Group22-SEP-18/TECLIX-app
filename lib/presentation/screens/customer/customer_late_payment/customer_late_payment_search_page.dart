@@ -26,6 +26,7 @@ class CustomerLatePaymentSearchPage extends StatelessWidget {
     final serachCustomerBloc = BlocProvider.of<SearchCustomerBloc>(context);
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(200.0),
           child: Container(
