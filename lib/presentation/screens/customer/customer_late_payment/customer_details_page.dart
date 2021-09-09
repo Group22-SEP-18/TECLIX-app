@@ -4,6 +4,8 @@ import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
+import 'package:teclix/presentation/routing/routes.dart';
+import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
@@ -158,7 +160,11 @@ class CustomerDetails extends StatelessWidget {
                   title: 'Pay',
                   titleColor: Colors.white,
                   colour: ColorPrimary,
-                  onPressed: () => {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      Routes.getMaterialPageRoute(PaymentDetail.id, context),
+                    );
+                  },
                 ),
               ],
             ),

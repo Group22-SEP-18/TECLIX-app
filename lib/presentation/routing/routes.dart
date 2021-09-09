@@ -3,6 +3,7 @@ import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.d
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/customer_late_payment_search_page.dart';
+import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
 import 'package:teclix/presentation/screens/customer/customer_main.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
@@ -30,6 +31,7 @@ class Routes {
     NavbarController.id: NavbarController(),
     CustomerMain.id: CustomerMain(),
     VehicleMain.id: VehicleMain(),
+    PaymentDetail.id: PaymentDetail(),
   };
   //this is to call the material routes in pages
   static MaterialPageRoute getMaterialPageRoute(
