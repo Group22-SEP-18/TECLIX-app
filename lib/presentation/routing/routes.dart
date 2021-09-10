@@ -7,6 +7,7 @@ import 'package:teclix/presentation/screens/customer/customer_late_payment/payme
 import 'package:teclix/presentation/screens/customer/customer_main.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
+import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_search_page.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/employee_profile_page.dart';
 import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/navbar_controller.dart';
@@ -26,6 +27,7 @@ class Routes {
     LeaderboardPage.id: LeaderboardPage(),
     CustomerViewSearchPage.id: CustomerViewSearchPage(),
     CustomerLatePaymentSearchPage.id: CustomerLatePaymentSearchPage(),
+    CustomerSoSearchPage.id: CustomerSoSearchPage(),
     CustomerLatePayProvider.id: CustomerLatePayProvider(),
     CustomerProfile.id: CustomerProfile(),
     NavbarController.id: NavbarController(),
