@@ -49,6 +49,8 @@ dependencies:
 #  expanable widget
   expandable: ^5.0.1
   font_awesome_flutter: ^9.1.0
+#  add badges
+  badges: ^2.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,11 @@
+import 'package:badges/badges.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_event.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
+import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
@@ -41,10 +44,40 @@ class CustomerSoScaffold extends StatelessWidget {
                       ),
                     ),
                     Align(
+                      alignment: Alignment.center,
                       child: AppbarHeadingText(
                         title: 'Service Order',
                       ),
                     ),
+                    BlocBuilder<CustomerSoBloc, CustomerSoState>(
+                      buildWhen: (prev, cur) => prev.itemCount != cur.itemCount,
+                      builder: (context, state) {
+                        return Positioned(
+                          right: 20.0,
+                          top: 0.0,
+                          bottom: 0.0,
+                          child: Badge(
+                            shape: BadgeShape.circle,
+                            position: BadgePosition.topStart(
+                              top: 5,
+                            ),
+                            animationType: BadgeAnimationType.scale,
+                            badgeColor: ColorBlue,
+                            badgeContent: Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Text(
+                                state.itemCount.toString(),
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.shopping_cart,
+                              size: 37.0,
+                            ),
+                          ),
+                        );
+                      },
+                    )
                   ],
                 ),
               ),
