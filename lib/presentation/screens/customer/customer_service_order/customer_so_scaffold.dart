@@ -9,6 +9,7 @@ import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
+import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_add_item.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_customer_details.dart';
 
 class CustomerSoScaffold extends StatelessWidget {
@@ -90,7 +91,9 @@ class CustomerSoScaffold extends StatelessWidget {
                       child: getAnimatedPageSwitcher(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [],
+                          children: [
+                            pageSwitcher(state.step),
+                          ],
                         ),
                       ),
                     ),
@@ -111,7 +114,7 @@ Widget pageSwitcher(CustomerSOProcessSteps step) {
       return SOCustomerDetails();
       break;
     case CustomerSOProcessSteps.SO_ADD_ITEMS:
-      // TODO: Handle this case.
+      return SoAddItem();
       break;
     case CustomerSOProcessSteps.SO_CART:
       // TODO: Handle this case.

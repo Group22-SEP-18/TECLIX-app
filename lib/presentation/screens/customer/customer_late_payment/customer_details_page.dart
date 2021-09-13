@@ -9,7 +9,7 @@ import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
-import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
+import 'package:teclix/presentation/screens/customer/widgets/customer_details_card.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class CustomerDetails extends StatelessWidget {
@@ -50,79 +50,13 @@ class CustomerDetails extends StatelessWidget {
                 SizedBox(
                   height: 20.0,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: ColorPrimary),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        ColorPrimary,
-                        ColorMintGreen,
-                      ],
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ProfilePicAvatar(
-                          spreadRad: 0.0,
-                          blurRad: 0.0,
-                          circleRadius: 50.0,
-                          picture: 'static/images/profile_dummy.jpg',
-                        ),
-                        SizedBox(
-                          height: 8.0,
-                        ),
-                        Divider(
-                          height: 0.0,
-                          thickness: 1.0,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 8.0,
-                        ),
-                        MainHeading(
-                          text: 'Gamini Stores (Pvt) Ltd',
-                          color: Colors.white,
-                          fontSize: 25.0,
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        MainHeading(
-                          text: 'Owner Name',
-                          fontSize: 20.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        SizedBox(
-                          height: 8.0,
-                        ),
-                        MainHeading(
-                          color: Colors.white,
-                          fontSize: 19.0,
-                          text: '4A, Hilda lane',
-                          fontWeight: FontWeight.w400,
-                        ),
-                        MainHeading(
-                          color: Colors.white,
-                          fontSize: 19.0,
-                          text: 'Dehiwala',
-                          fontWeight: FontWeight.w400,
-                        ),
-                        MainHeading(
-                          color: Colors.white,
-                          fontSize: 19.0,
-                          text: 'Colombo',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ],
-                    ),
-                  ),
+                CustomerDetailsCard(
+                  profilePic: 'static/images/profile_dummy.jpg',
+                  shop: 'Gamini Stores (Pvt) Ltd',
+                  owner: 'Owner Name',
+                  street: '4A , hilda lane',
+                  city: 'Dehiwala',
+                  district: 'Colombo',
                 ),
                 SizedBox(
                   height: 20.0,
