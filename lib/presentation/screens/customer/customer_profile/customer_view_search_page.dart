@@ -47,6 +47,7 @@ class CustomerViewSearchPage extends StatelessWidget {
                   child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
                     builder: (context, state) {
                       return SearchField(
+                        hintText: 'Enter Store Name',
                         onSubmit: (String searchString) => {
                           serachCustomerBloc
                               .add(ToggleLoadingEvent(isLoading: true)),
