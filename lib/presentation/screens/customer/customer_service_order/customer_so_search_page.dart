@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/data/models/Customer.dart';
 import 'package:teclix/data/temporary/customer_search_results.dart';
-import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.dart';
+import 'package:teclix/logic/bloc/customer_so/customer_so_provider.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_event.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
@@ -102,7 +102,7 @@ class CustomerSoSearchPage extends StatelessWidget {
                                   return SearchResultCard(
                                     directTo: () => Navigator.of(context).push(
                                       Routes.getMaterialPageRoute(
-                                          CustomerLatePayProvider.id, context),
+                                          CustomerSoProvider.id, context),
                                     ),
                                     shopName: searchResults[index].shopName,
                                     ownerLastName:

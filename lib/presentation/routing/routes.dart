@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
+import 'package:teclix/logic/bloc/customer_so/customer_so_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/customer_late_payment_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
@@ -34,6 +35,7 @@ class Routes {
     CustomerMain.id: CustomerMain(),
     VehicleMain.id: VehicleMain(),
     PaymentDetail.id: PaymentDetail(),
+    CustomerSoProvider.id: CustomerSoProvider(),
   };
   //this is to call the material routes in pages
   static MaterialPageRoute getMaterialPageRoute(
