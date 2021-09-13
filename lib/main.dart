@@ -28,6 +28,8 @@ class TeclixApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        // to remove the debugger banner
+        debugShowCheckedModeBanner: false,
         builder: (context, widget) => ResponsiveWrapper.builder(
             BouncingScrollWrapper.builder(context, widget),
             maxWidth: 1200,
