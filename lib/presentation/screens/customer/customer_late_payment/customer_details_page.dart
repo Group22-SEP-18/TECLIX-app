@@ -42,61 +42,59 @@ class CustomerDetails extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
-          child: CommonPadding(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 20.0,
-                ),
-                CustomerDetailsCard(
-                  profilePic: 'static/images/profile_dummy.jpg',
-                  shop: 'Gamini Stores (Pvt) Ltd',
-                  owner: 'Owner Name',
-                  street: '4A , hilda lane',
-                  city: 'Dehiwala',
-                  district: 'Colombo',
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                MainHeading(
-                  text: 'Current Outstanding',
-                  fontSize: 25.0,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w400,
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Stack(
-                  children: [
-                    Center(
-                      child: Container(
-                        height: 250,
-                        child: Image.asset(
-                          'static/images/coins.png',
-                          fit: BoxFit.fill,
-                        ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CustomerDetailsCard(
+                borderTop: 0.0,
+                profilePic: 'static/images/profile_dummy.jpg',
+                shop: 'Gamini Stores (Pvt) Ltd',
+                owner: 'Owner Name',
+                street: '4A , hilda lane',
+                city: 'Dehiwala',
+                district: 'Colombo',
+              ),
+              SizedBox(
+                height: 40.0,
+              ),
+              MainHeading(
+                text: 'Current Outstanding',
+                fontSize: 25.0,
+                color: Colors.grey,
+                fontWeight: FontWeight.w400,
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Stack(
+                children: [
+                  Center(
+                    child: Container(
+                      height: 250,
+                      child: Image.asset(
+                        'static/images/coins.png',
+                        fit: BoxFit.fill,
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(
-                        'Rs 25,600',
-                        style: TextStyle(
-                            fontSize: 45.0,
-                            color: ColorPrimary,
-                            fontWeight: FontWeight.w500),
-                      ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      'Rs 25,600',
+                      style: TextStyle(
+                          fontSize: 45.0,
+                          color: ColorPrimary,
+                          fontWeight: FontWeight.w500),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                BlocBuilder<CustomerLatePayBloc, CustomerLatePayState>(
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              CommonPadding(
+                child: BlocBuilder<CustomerLatePayBloc, CustomerLatePayState>(
                   builder: (context, state) {
                     return RoundedButton(
                       title: 'Pay',
@@ -119,8 +117,8 @@ class CustomerDetails extends StatelessWidget {
                     );
                   },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
