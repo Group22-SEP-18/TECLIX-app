@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:teclix/data/temporary/data.dart';
 
 import 'customer_so_event.dart';
 import 'customer_so_state.dart';
@@ -47,6 +48,21 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
         } else {
           Navigator.pop(context);
         }
+        break;
+      case ChangeFetchingVehicleItemEvent:
+        yield state.clone(
+          fetchingVehicleProducts:
+              (event as ChangeFetchingVehicleItemEvent).isLoading,
+        );
+        break;
+      case FetchVehicleItemsEvent:
+        yield state.clone(fetchingVehicleProducts: true);
+        // place hlder for backend call
+
+        yield state.clone(
+          fetchingVehicleProducts: false,
+          vehicleItems: vehicleProd,
+        );
         break;
     }
   }

@@ -20,3 +20,11 @@ class PreviousStepEvent extends CustomerSoEvent {
   final CustomerSOProcessSteps currentStep;
   PreviousStepEvent({this.currentStep, this.context});
 }
+
+class ChangeFetchingVehicleItemEvent extends CustomerSoEvent {
+  final bool isLoading;
+
+  ChangeFetchingVehicleItemEvent({this.isLoading});
+}
+
+class FetchVehicleItemsEvent extends CustomerSoEvent {}

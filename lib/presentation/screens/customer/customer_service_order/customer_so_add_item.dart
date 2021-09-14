@@ -1,12 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
+import 'package:teclix/logic/bloc/customer_so/customer_so_event.dart';
+import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_field.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/widgets/elevated_btn.dart';
+import 'package:teclix/presentation/screens/customer/customer_service_order/widgets/item_card.dart';
 
 class SoAddItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final customerSoBloc = BlocProvider.of<CustomerSoBloc>(context);
+    customerSoBloc.add(FetchVehicleItemsEvent());
+
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -62,6 +71,63 @@ class SoAddItem extends StatelessWidget {
               ],
             ),
           ),
+          CommonPadding(
+            child: BlocBuilder<CustomerSoBloc, CustomerSoState>(
+              buildWhen: (prev, cur) =>
+                  prev.fetchingVehicleProducts != cur.fetchingVehicleProducts,
+              builder: (context, state) {
+                return state.fetchingVehicleProducts
+                    ? Center(child: CircularProgressIndicator())
+                    : Column(
+                        children: [
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          for (var i = 0; i < state.vehicleItems.length; i += 2)
+                            Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ItemCard(
+                                      imageUrl:
+                                          state.vehicleItems[i].productImageUrl,
+                                      itemName:
+                                          state.vehicleItems[i].productName,
+                                      price: state.vehicleItems[i].price,
+                                    ),
+                                    SizedBox(
+                                      width: 4.0,
+                                    ),
+                                    i + 1 < state.vehicleItems.length
+                                        ? ItemCard(
+                                            imageUrl: state.vehicleItems[i + 1]
+                                                .productImageUrl,
+                                            itemName: state.vehicleItems[i + 1]
+                                                .productName,
+                                            price:
+                                                state.vehicleItems[i + 1].price,
+                                          )
+                                        : Container(
+                                            height: 0.0,
+                                            width: 0.0,
+                                          ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                              ],
+                            ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                        ],
+                      );
+              },
+            ),
+          )
         ],
       ),
     );
