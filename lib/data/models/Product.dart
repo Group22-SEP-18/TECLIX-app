@@ -5,11 +5,11 @@ class Product {
   String productImageUrl;
   int quantity;
 
-  Product(
+  Product({
     this.productId,
     this.productName,
     this.price,
     this.productImageUrl,
     this.quantity,
-  );
+  });
 }
