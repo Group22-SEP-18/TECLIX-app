@@ -31,28 +31,28 @@ Customer selectedCustomer = Customer.selectedCustomer(
 
 List<Product> vehicleProd = [
   Product(
-    productId: '1234',
+    productId: 'ab1',
     productImageUrl: 'static/images/dummy.jpeg',
     price: 125.00,
     productName: 'Hawian Cookies',
     quantity: 250,
   ),
   Product(
-    productId: '1234',
+    productId: 'ab2',
     productImageUrl: 'static/images/dummy2.jpeg',
     price: 125.00,
     productName: 'Hawian Cookies',
     quantity: 250,
   ),
   Product(
-    productId: '1234',
+    productId: 'ab3',
     productImageUrl: 'static/images/dummy2.jpeg',
     price: 400.00,
     productName: 'Salt Cookies',
     quantity: 100,
   ),
   Product(
-    productId: '1234',
+    productId: 'ab4',
     productImageUrl: 'static/images/dummy.jpeg',
     price: 300.00,
     productName: 'Sweet Cookies',

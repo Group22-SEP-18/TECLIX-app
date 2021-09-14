@@ -96,6 +96,14 @@ class SoAddItem extends StatelessWidget {
                                       itemName:
                                           state.vehicleItems[i].productName,
                                       price: state.vehicleItems[i].price,
+                                      addFunc: () => customerSoBloc.add(
+                                        AddToCartEvent(
+                                            product: state.vehicleItems[i]),
+                                      ),
+                                      removeFunc: () => customerSoBloc.add(
+                                        RemoveFromCartEvent(
+                                            product: state.vehicleItems[i]),
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 4.0,
@@ -108,6 +116,17 @@ class SoAddItem extends StatelessWidget {
                                                 .productName,
                                             price:
                                                 state.vehicleItems[i + 1].price,
+                                            addFunc: () => customerSoBloc.add(
+                                              AddToCartEvent(
+                                                  product: state
+                                                      .vehicleItems[i + 1]),
+                                            ),
+                                            removeFunc: () =>
+                                                customerSoBloc.add(
+                                              RemoveFromCartEvent(
+                                                  product: state
+                                                      .vehicleItems[i + 1]),
+                                            ),
                                           )
                                         : Container(
                                             height: 0.0,

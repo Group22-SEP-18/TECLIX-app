@@ -58,11 +58,12 @@ class CustomerSoScaffold extends StatelessWidget {
                           top: 0.0,
                           bottom: 0.0,
                           child: Badge(
+                            showBadge: state.itemCount != 0,
                             shape: BadgeShape.circle,
                             position: BadgePosition.topStart(
                               top: 5,
                             ),
-                            animationType: BadgeAnimationType.scale,
+                            animationType: BadgeAnimationType.slide,
                             badgeColor: ColorBlue,
                             badgeContent: Padding(
                               padding: const EdgeInsets.all(3.0),

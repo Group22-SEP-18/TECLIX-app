@@ -5,8 +5,15 @@ class ItemCard extends StatelessWidget {
   final String imageUrl;
   final String itemName;
   final double price;
+  final Function addFunc;
+  final Function removeFunc;
 
-  const ItemCard({this.imageUrl, this.itemName, this.price});
+  const ItemCard(
+      {this.imageUrl,
+      this.itemName,
+      this.price,
+      this.addFunc,
+      this.removeFunc});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +55,7 @@ class ItemCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: removeFunc,
                   child: Icon(
                     Icons.remove,
                     color: Colors.white,
@@ -59,7 +66,7 @@ class ItemCard extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: addFunc,
                   child: Icon(
                     Icons.add,
                     color: Colors.white,
