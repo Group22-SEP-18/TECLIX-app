@@ -9,7 +9,10 @@ import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
+import 'package:teclix/presentation/common/widgets/common_padding.dart';
+import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_add_item.dart';
+import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_cart.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_customer_details.dart';
 
 class CustomerSoScaffold extends StatelessWidget {
@@ -101,6 +104,36 @@ class CustomerSoScaffold extends StatelessWidget {
                   )
                 ],
               ),
+              bottomNavigationBar: Visibility(
+                visible: state.step == CustomerSOProcessSteps.SO_ADD_ITEMS,
+                child: Container(
+                  height: 70.0,
+                  child: BlocBuilder<CustomerSoBloc, CustomerSoState>(
+                    builder: (context, state) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          CommonPadding(
+                            child: RoundedButton(
+                              buttonW: 300.0,
+                              padding: 8.0,
+                              title: 'View Cart',
+                              titleColor: Colors.white,
+                              colour: ColorPrimary,
+                              onPressed: () => {
+                                print(state.step),
+                                customerSoBloc.add(
+                                  NextStepEvent(currentStep: state.step),
+                                ),
+                              },
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
             ),
           ),
         );
@@ -118,7 +151,7 @@ Widget pageSwitcher(CustomerSOProcessSteps step) {
       return SoAddItem();
       break;
     case CustomerSOProcessSteps.SO_CART:
-      // TODO: Handle this case.
+      return CustomerSoCart();
       break;
     case CustomerSOProcessSteps.SO_INVOICE:
       // TODO: Handle this case.
