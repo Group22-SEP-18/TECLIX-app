@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:teclix/data/models/Product.dart';
 import 'package:teclix/data/temporary/data.dart';
 
 import 'customer_so_event.dart';
@@ -16,6 +17,30 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
     CustomerSOProcessSteps.SO_PAY,
   ];
   CustomerSoBloc(BuildContext context) : super(CustomerSoState.initialState);
+
+  Map<String, int> addToMap(Product product) {
+    if (state.cart.containsKey(product.productId)) {
+      state.cart.update(
+          product.productId, (int) => state.cart[product.productId] + 1);
+      return state.cart;
+    }
+    state.cart[product.productId] = 1;
+    return state.cart;
+  }
+
+  Map<String, int> removeFromMap(Product product) {
+    if (state.cart.containsKey(product.productId) &&
+        state.cart[product.productId] >= 1) {
+      state.cart.update(
+          product.productId, (int) => state.cart[product.productId] - 1);
+    }
+
+    return state.cart;
+  }
+
+  int getItemCount() {
+    return state.cart.values.reduce((sum, element) => sum + element);
+  }
 
   @override
   Stream<CustomerSoState> mapEventToState(CustomerSoEvent event) async* {
@@ -63,6 +88,25 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
           fetchingVehicleProducts: false,
           vehicleItems: vehicleProd,
         );
+        break;
+      case AddToCartEvent:
+        Product _product = (event as AddToCartEvent).product;
+        print(_product.productId);
+        print(state.cart[_product.productId]);
+        yield state.clone(
+          cart: addToMap(_product),
+          itemCount: getItemCount(),
+        );
+
+        break;
+      case RemoveFromCartEvent:
+        Product _product = (event as RemoveFromCartEvent).product;
+
+        yield state.clone(
+          cart: removeFromMap(_product),
+          itemCount: getItemCount(),
+        );
+
         break;
     }
   }

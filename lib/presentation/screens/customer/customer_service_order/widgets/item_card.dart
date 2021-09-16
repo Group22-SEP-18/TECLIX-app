@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 
@@ -7,13 +8,16 @@ class ItemCard extends StatelessWidget {
   final double price;
   final Function addFunc;
   final Function removeFunc;
+  final int selectedAmount;
 
-  const ItemCard(
-      {this.imageUrl,
-      this.itemName,
-      this.price,
-      this.addFunc,
-      this.removeFunc});
+  const ItemCard({
+    this.imageUrl,
+    this.itemName,
+    this.price,
+    this.addFunc,
+    this.removeFunc,
+    this.selectedAmount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +67,24 @@ class ItemCard extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     shape: CircleBorder(),
                     elevation: 3.0,
+                  ),
+                ),
+                Container(
+                  height: 35.0,
+                  width: 38.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.grey.shade200,
+                  ),
+                  child: Center(
+                    child: Text(
+                      selectedAmount.toString(),
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        fontWeight: FontWeight.w600,
+                        color: ColorMintGreen,
+                      ),
+                    ),
                   ),
                 ),
                 ElevatedButton(

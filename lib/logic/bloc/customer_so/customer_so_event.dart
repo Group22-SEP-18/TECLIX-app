@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teclix/data/models/Product.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
 
 @immutable
@@ -28,3 +29,15 @@ class ChangeFetchingVehicleItemEvent extends CustomerSoEvent {
 }
 
 class FetchVehicleItemsEvent extends CustomerSoEvent {}
+
+class AddToCartEvent extends CustomerSoEvent {
+  final Product product;
+
+  AddToCartEvent({this.product});
+}
+
+class RemoveFromCartEvent extends CustomerSoEvent {
+  final Product product;
+
+  RemoveFromCartEvent({this.product});
+}

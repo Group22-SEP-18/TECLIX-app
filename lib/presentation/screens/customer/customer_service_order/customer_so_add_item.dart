@@ -90,43 +90,67 @@ class SoAddItem extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    ItemCard(
-                                      imageUrl:
-                                          state.vehicleItems[i].productImageUrl,
-                                      itemName:
-                                          state.vehicleItems[i].productName,
-                                      price: state.vehicleItems[i].price,
-                                      addFunc: () => customerSoBloc.add(
-                                        AddToCartEvent(
-                                            product: state.vehicleItems[i]),
-                                      ),
-                                      removeFunc: () => customerSoBloc.add(
-                                        RemoveFromCartEvent(
-                                            product: state.vehicleItems[i]),
-                                      ),
+                                    BlocBuilder<CustomerSoBloc,
+                                        CustomerSoState>(
+                                      buildWhen: (prev, cur) =>
+                                          prev.itemCount != cur.itemCount,
+                                      builder: (context, state) {
+                                        return ItemCard(
+                                          imageUrl: state
+                                              .vehicleItems[i].productImageUrl,
+                                          itemName:
+                                              state.vehicleItems[i].productName,
+                                          price: state.vehicleItems[i].price,
+                                          addFunc: () => customerSoBloc.add(
+                                            AddToCartEvent(
+                                                product: state.vehicleItems[i]),
+                                          ),
+                                          removeFunc: () => customerSoBloc.add(
+                                            RemoveFromCartEvent(
+                                                product: state.vehicleItems[i]),
+                                          ),
+                                          selectedAmount: state.cart[state
+                                                  .vehicleItems[i].productId] ??
+                                              0,
+                                        );
+                                      },
                                     ),
                                     SizedBox(
                                       width: 4.0,
                                     ),
                                     i + 1 < state.vehicleItems.length
-                                        ? ItemCard(
-                                            imageUrl: state.vehicleItems[i + 1]
-                                                .productImageUrl,
-                                            itemName: state.vehicleItems[i + 1]
-                                                .productName,
-                                            price:
-                                                state.vehicleItems[i + 1].price,
-                                            addFunc: () => customerSoBloc.add(
-                                              AddToCartEvent(
-                                                  product: state
-                                                      .vehicleItems[i + 1]),
-                                            ),
-                                            removeFunc: () =>
-                                                customerSoBloc.add(
-                                              RemoveFromCartEvent(
-                                                  product: state
-                                                      .vehicleItems[i + 1]),
-                                            ),
+                                        ? BlocBuilder<CustomerSoBloc,
+                                            CustomerSoState>(
+                                            buildWhen: (prev, cur) =>
+                                                prev.itemCount != cur.itemCount,
+                                            builder: (context, state) {
+                                              return ItemCard(
+                                                imageUrl: state
+                                                    .vehicleItems[i + 1]
+                                                    .productImageUrl,
+                                                itemName: state
+                                                    .vehicleItems[i + 1]
+                                                    .productName,
+                                                price: state
+                                                    .vehicleItems[i + 1].price,
+                                                addFunc: () =>
+                                                    customerSoBloc.add(
+                                                  AddToCartEvent(
+                                                      product: state
+                                                          .vehicleItems[i + 1]),
+                                                ),
+                                                removeFunc: () =>
+                                                    customerSoBloc.add(
+                                                  RemoveFromCartEvent(
+                                                      product: state
+                                                          .vehicleItems[i + 1]),
+                                                ),
+                                                selectedAmount: state.cart[state
+                                                        .vehicleItems[i + 1]
+                                                        .productId] ??
+                                                    0,
+                                              );
+                                            },
                                           )
                                         : Container(
                                             height: 0.0,

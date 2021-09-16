@@ -16,7 +16,7 @@ class CustomerSoState {
   final CustomerSOProcessSteps step;
   final int itemCount;
   final List<Product> vehicleItems;
-  final List<Product> cart;
+  final Map<String, int> cart;
   final bool fetchingVehicleProducts;
 
   CustomerSoState({
@@ -33,7 +33,7 @@ class CustomerSoState {
         step: CustomerSoBloc.soProcessOrder[0],
         itemCount: 0,
         vehicleItems: [],
-        cart: [],
+        cart: Map(),
         fetchingVehicleProducts: false,
       );
 
@@ -42,7 +42,7 @@ class CustomerSoState {
     CustomerSOProcessSteps step,
     int itemCount,
     List<Product> vehicleItems,
-    List<Product> cart,
+    Map<String, int> cart,
     bool fetchingVehicleProducts,
   }) {
     return CustomerSoState(
