@@ -16,15 +16,16 @@ class CustomerSoCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             color: ColorPrimary,
-            height: 100.0,
+            height: 80.0,
             width: double.infinity,
             child: CommonPadding(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Checkout',
@@ -37,20 +38,29 @@ class CustomerSoCart extends StatelessWidget {
                   SizedBox(
                     height: 5.0,
                   ),
-                  Text(
-                    'Current Order',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
                 ],
               ),
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
+          ),
+          CommonPadding(
+            child: Text(
+              'Current Order',
+              style: TextStyle(
+                color: ColorPrimary,
+                fontSize: 25.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Divider(
+            height: 5.0,
+            color: ColorPrimary,
+          ),
+          SizedBox(
+            height: 10.0,
           ),
           CommonPadding(
             child: BlocBuilder<CustomerSoBloc, CustomerSoState>(
