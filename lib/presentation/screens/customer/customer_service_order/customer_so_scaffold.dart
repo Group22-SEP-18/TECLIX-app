@@ -14,6 +14,7 @@ import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_add_item.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_cart.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_customer_details.dart';
+import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_invoice.dart';
 
 class CustomerSoScaffold extends StatelessWidget {
   @override
@@ -53,35 +54,41 @@ class CustomerSoScaffold extends StatelessWidget {
                         title: 'Service Order',
                       ),
                     ),
-                    BlocBuilder<CustomerSoBloc, CustomerSoState>(
-                      buildWhen: (prev, cur) => prev.itemCount != cur.itemCount,
-                      builder: (context, state) {
-                        return Positioned(
-                          right: 20.0,
-                          top: 0.0,
-                          bottom: 0.0,
-                          child: Badge(
-                            showBadge: state.itemCount != 0,
-                            shape: BadgeShape.circle,
-                            position: BadgePosition.topStart(
-                              top: 5,
-                            ),
-                            animationType: BadgeAnimationType.slide,
-                            badgeColor: ColorBlue,
-                            badgeContent: Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: Text(
-                                state.itemCount.toString(),
-                                style: TextStyle(color: Colors.white),
+                    Visibility(
+                      visible:
+                          state.step == CustomerSOProcessSteps.SO_ADD_ITEMS ||
+                              state.step == CustomerSOProcessSteps.SO_CART,
+                      child: BlocBuilder<CustomerSoBloc, CustomerSoState>(
+                        buildWhen: (prev, cur) =>
+                            prev.itemCount != cur.itemCount,
+                        builder: (context, state) {
+                          return Positioned(
+                            right: 20.0,
+                            top: 0.0,
+                            bottom: 0.0,
+                            child: Badge(
+                              showBadge: state.itemCount != 0,
+                              shape: BadgeShape.circle,
+                              position: BadgePosition.topStart(
+                                top: 5,
+                              ),
+                              animationType: BadgeAnimationType.slide,
+                              badgeColor: ColorBlue,
+                              badgeContent: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Text(
+                                  state.itemCount.toString(),
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.shopping_cart,
+                                size: 37.0,
                               ),
                             ),
-                            child: Icon(
-                              Icons.shopping_cart,
-                              size: 37.0,
-                            ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -105,7 +112,8 @@ class CustomerSoScaffold extends StatelessWidget {
                 ],
               ),
               bottomNavigationBar: Visibility(
-                visible: state.step == CustomerSOProcessSteps.SO_ADD_ITEMS,
+                visible: state.step == CustomerSOProcessSteps.SO_ADD_ITEMS ||
+                    state.step == CustomerSOProcessSteps.SO_CART,
                 child: Container(
                   height: 70.0,
                   child: BlocBuilder<CustomerSoBloc, CustomerSoState>(
@@ -115,9 +123,11 @@ class CustomerSoScaffold extends StatelessWidget {
                         children: [
                           CommonPadding(
                             child: RoundedButton(
-                              buttonW: 300.0,
                               padding: 8.0,
-                              title: 'View Cart',
+                              title: state.step ==
+                                      CustomerSOProcessSteps.SO_ADD_ITEMS
+                                  ? 'View Cart'
+                                  : 'Confirm Order',
                               titleColor: Colors.white,
                               colour: ColorPrimary,
                               onPressed: () => {
@@ -154,7 +164,7 @@ Widget pageSwitcher(CustomerSOProcessSteps step) {
       return CustomerSoCart();
       break;
     case CustomerSOProcessSteps.SO_INVOICE:
-      // TODO: Handle this case.
+      return CustomerSoInvoice();
       break;
     case CustomerSOProcessSteps.SO_PAY:
       // TODO: Handle this case.

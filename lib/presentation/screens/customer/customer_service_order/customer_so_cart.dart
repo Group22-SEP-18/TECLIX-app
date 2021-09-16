@@ -72,7 +72,7 @@ class CustomerSoCart extends StatelessWidget {
                       visible: entry.value != 0,
                       child: OrderListCard(
                         quntity: entry.value,
-                        itemName: p.productName,
+                        itemName: p.shortName,
                         price: p.price,
                         image: p.productImageUrl,
                       ),

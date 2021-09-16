@@ -1,13 +1,15 @@
 class Product {
   String productId;
-  String productName;
+  String shortName;
+  String longName;
   double price;
   String productImageUrl;
   int quantity;
 
   Product({
     this.productId,
-    this.productName,
+    this.shortName,
+    this.longName,
     this.price,
     this.productImageUrl,
     this.quantity,

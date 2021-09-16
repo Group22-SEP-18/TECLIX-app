@@ -99,7 +99,7 @@ class SoAddItem extends StatelessWidget {
                                           imageUrl: state
                                               .vehicleItems[i].productImageUrl,
                                           itemName:
-                                              state.vehicleItems[i].productName,
+                                              state.vehicleItems[i].shortName,
                                           price: state.vehicleItems[i].price,
                                           addFunc: () => customerSoBloc.add(
                                             AddToCartEvent(
@@ -130,7 +130,7 @@ class SoAddItem extends StatelessWidget {
                                                     .productImageUrl,
                                                 itemName: state
                                                     .vehicleItems[i + 1]
-                                                    .productName,
+                                                    .shortName,
                                                 price: state
                                                     .vehicleItems[i + 1].price,
                                                 addFunc: () =>
