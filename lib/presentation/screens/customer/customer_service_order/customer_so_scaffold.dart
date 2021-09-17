@@ -15,6 +15,7 @@ import 'package:teclix/presentation/screens/customer/customer_service_order/cust
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_cart.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_customer_details.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_invoice.dart';
+import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_pay.dart';
 
 class CustomerSoScaffold extends StatelessWidget {
   @override
@@ -131,7 +132,6 @@ class CustomerSoScaffold extends StatelessWidget {
                               titleColor: Colors.white,
                               colour: ColorPrimary,
                               onPressed: () => {
-                                print(state.step),
                                 customerSoBloc.add(
                                   NextStepEvent(currentStep: state.step),
                                 ),
@@ -167,9 +167,9 @@ Widget pageSwitcher(CustomerSOProcessSteps step) {
       return CustomerSoInvoice();
       break;
     case CustomerSOProcessSteps.SO_PAY:
-      // TODO: Handle this case.
+      return CustomerSoPay();
       break;
     default:
-      break;
+      return SOCustomerDetails();
   }
 }

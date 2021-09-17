@@ -94,7 +94,6 @@ class CustomerSoInvoice extends StatelessWidget {
                 titleColor: Colors.white,
                 colour: ColorPrimary,
                 onPressed: () => {
-                  print(state.step),
                   customerSoBloc.add(
                     NextStepEvent(currentStep: state.step),
                   ),

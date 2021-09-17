@@ -91,8 +91,7 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
         break;
       case AddToCartEvent:
         Product _product = (event as AddToCartEvent).product;
-        print(_product.productId);
-        print(state.cart[_product.productId]);
+
         yield state.clone(
           cart: addToMap(_product),
           itemCount: getItemCount(),
