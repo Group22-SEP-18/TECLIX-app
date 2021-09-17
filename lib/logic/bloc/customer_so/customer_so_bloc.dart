@@ -107,6 +107,21 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
         );
 
         break;
+      case ToggleCheckBoxEvent:
+        yield state.clone(
+          checkBoxValue: (event as ToggleCheckBoxEvent).isSelected,
+        );
+        break;
+      case SetLoyaltyPointsEvent:
+        yield state.clone(
+          loyaltyPoints: (event as SetLoyaltyPointsEvent).amount,
+        );
+        break;
+      case ToggleredeemEvent:
+        yield state.clone(
+          redeem: (event as ToggleredeemEvent).isSelected,
+        );
+        break;
     }
   }
 

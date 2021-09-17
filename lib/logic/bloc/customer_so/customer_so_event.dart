@@ -41,3 +41,21 @@ class RemoveFromCartEvent extends CustomerSoEvent {
 
   RemoveFromCartEvent({this.product});
 }
+
+class SetLoyaltyPointsEvent extends CustomerSoEvent {
+  final double amount;
+
+  SetLoyaltyPointsEvent({this.amount});
+}
+
+class ToggleCheckBoxEvent extends CustomerSoEvent {
+  final bool isSelected;
+
+  ToggleCheckBoxEvent({this.isSelected});
+}
+
+class ToggleredeemEvent extends CustomerSoEvent {
+  final bool isSelected;
+
+  ToggleredeemEvent({this.isSelected});
+}

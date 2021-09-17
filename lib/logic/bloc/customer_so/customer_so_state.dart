@@ -18,6 +18,9 @@ class CustomerSoState {
   final List<Product> vehicleItems;
   final Map<String, int> cart;
   final bool fetchingVehicleProducts;
+  final double loyaltyPoints;
+  final bool checkBoxValue;
+  final bool redeem;
 
   CustomerSoState({
     @required this.error,
@@ -26,6 +29,9 @@ class CustomerSoState {
     @required this.vehicleItems,
     @required this.cart,
     @required this.fetchingVehicleProducts,
+    @required this.loyaltyPoints,
+    @required this.checkBoxValue,
+    @required this.redeem,
   });
 
   static CustomerSoState get initialState => CustomerSoState(
@@ -35,6 +41,10 @@ class CustomerSoState {
         vehicleItems: [],
         cart: Map(),
         fetchingVehicleProducts: false,
+        //: TODO change the value to zero later
+        loyaltyPoints: 150.00,
+        checkBoxValue: true,
+        redeem: false,
       );
 
   CustomerSoState clone({
@@ -44,6 +54,9 @@ class CustomerSoState {
     List<Product> vehicleItems,
     Map<String, int> cart,
     bool fetchingVehicleProducts,
+    double loyaltyPoints,
+    bool checkBoxValue,
+    bool redeem,
   }) {
     return CustomerSoState(
       error: error ?? this.error,
@@ -53,6 +66,9 @@ class CustomerSoState {
       cart: cart ?? this.cart,
       fetchingVehicleProducts:
           fetchingVehicleProducts ?? this.fetchingVehicleProducts,
+      checkBoxValue: checkBoxValue ?? this.checkBoxValue,
+      loyaltyPoints: loyaltyPoints ?? this.loyaltyPoints,
+      redeem: redeem ?? this.redeem,
     );
   }
 }

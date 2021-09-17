@@ -8,6 +8,7 @@ import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
+import 'package:teclix/presentation/common/widgets/rounded_outline_button.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/widgets/invoice_card.dart';
 
 class CustomerSoInvoice extends StatelessWidget {
@@ -17,6 +18,7 @@ class CustomerSoInvoice extends StatelessWidget {
 
     return Expanded(
         child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(
           height: 20.0,
@@ -85,12 +87,22 @@ class CustomerSoInvoice extends StatelessWidget {
           ),
         ),
         Spacer(),
+        CommonPadding(
+          child: RoundedOutlineButton(
+            title: 'Pay Later',
+            borderColor: ColorLightGreen,
+            fillColor: Colors.white,
+            titleColor: ColorPrimary,
+            //:TODO go to the main page fix
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
         BlocBuilder<CustomerSoBloc, CustomerSoState>(
           builder: (context, state) {
             return CommonPadding(
               child: RoundedButton(
                 padding: 8.0,
-                title: 'Collect Payment',
+                title: 'Pay Now',
                 titleColor: Colors.white,
                 colour: ColorPrimary,
                 onPressed: () => {
