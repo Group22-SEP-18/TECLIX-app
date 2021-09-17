@@ -19,7 +19,16 @@ class CustomerLocation {
     this.district,
   });
 
-  CustomerLocation.latLng({this.latitude, this.longitude});
+  CustomerLocation.address({
+    this.street,
+    this.city,
+    this.district,
+  });
+
+  CustomerLocation.latLng({
+    this.latitude,
+    this.longitude,
+  });
 
   CustomerLocation copyWith({
     double latitude,

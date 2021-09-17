@@ -22,6 +22,14 @@ class Customer {
     this.profilePicUrl,
   });
 
+  Customer.selectedCustomer({
+    this.shopName,
+    this.ownerFistName,
+    this.ownerLastName,
+    this.loyaltyPoints,
+    this.address,
+  });
+
   Customer({
     this.customerId,
     this.shopName,

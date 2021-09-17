@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/data/models/Customer.dart';
-import 'package:teclix/data/temporary/customer_search_results.dart';
+import 'package:teclix/data/temporary/data.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_event.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
@@ -47,6 +47,7 @@ class CustomerViewSearchPage extends StatelessWidget {
                   child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
                     builder: (context, state) {
                       return SearchField(
+                        hintText: 'Enter Store Name',
                         onSubmit: (String searchString) => {
                           serachCustomerBloc
                               .add(ToggleLoadingEvent(isLoading: true)),

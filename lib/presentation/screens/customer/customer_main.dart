@@ -7,6 +7,7 @@ import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/customer_late_payment_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
+import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_search_page.dart';
 import 'package:teclix/presentation/screens/customer/widgets/customer_main_clip_path.dart';
 import 'package:teclix/presentation/screens/customer/widgets/option_card.dart';
 import 'package:teclix/presentation/screens/customer/widgets/stat_row_card.dart';
@@ -158,6 +159,10 @@ class CustomerMain extends StatelessWidget {
                         coverColor: ColorBlue,
                         image: 'static/images/so.png',
                         optionText: 'Create SO',
+                        onClick: () => Navigator.of(context).push(
+                          Routes.getMaterialPageRoute(
+                              CustomerSoSearchPage.id, context),
+                        ),
                       ),
                     ),
                     Expanded(

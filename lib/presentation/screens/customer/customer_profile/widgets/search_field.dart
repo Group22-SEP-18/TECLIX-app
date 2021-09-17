@@ -4,8 +4,9 @@ import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 
 class SearchField extends StatelessWidget {
   final Function onSubmit;
+  final String hintText;
 
-  const SearchField({this.onSubmit});
+  const SearchField({this.onSubmit, this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class SearchField extends StatelessWidget {
               // controller: searchController,
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Enter Customer Name',
+                hintText: hintText,
                 hintStyle: TextStyle(
                   fontSize: 18.0,
                   color: ColorPrimary,
@@ -58,20 +59,6 @@ class SearchField extends StatelessWidget {
               onTap: () {},
             ),
           ),
-          // Container(
-          //   padding: EdgeInsets.all(10.0),
-          //   decoration: BoxDecoration(
-          //       color: Colors.grey.shade300,
-          //       borderRadius: BorderRadius.only(
-          //         topRight: Radius.circular(30.0),
-          //         bottomRight: Radius.circular(30.0),
-          //       )),
-          //   child: Center(
-          //     child: Text(
-          //       'Search',
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/data/models/Customer.dart';
 import 'package:teclix/data/temporary/data.dart';
-import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.dart';
+import 'package:teclix/logic/bloc/customer_so/customer_so_provider.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_event.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
@@ -16,8 +16,8 @@ import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_field.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_result_card.dart';
 
-class CustomerLatePaymentSearchPage extends StatelessWidget {
-  static const String id = '/customer-latepayment--search';
+class CustomerSoSearchPage extends StatelessWidget {
+  static const String id = '/customer-so-search';
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,8 @@ class CustomerLatePaymentSearchPage extends StatelessWidget {
                   )
                 : searchResults.length == 0
                     ? SearchbarPreview(
-                        previewImage: 'static/images/late_payment_search.png',
+                        previewImage: 'static/images/customer_so_search.png',
+                        size: 350.0,
                       )
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -102,7 +103,7 @@ class CustomerLatePaymentSearchPage extends StatelessWidget {
                                   return SearchResultCard(
                                     directTo: () => Navigator.of(context).push(
                                       Routes.getMaterialPageRoute(
-                                          CustomerLatePayProvider.id, context),
+                                          CustomerSoProvider.id, context),
                                     ),
                                     shopName: searchResults[index].shopName,
                                     ownerLastName:
