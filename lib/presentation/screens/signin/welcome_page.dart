@@ -48,9 +48,8 @@ class WelcomePage extends StatelessWidget {
                   child: RoundedButton(
                     title: 'Login',
                     colour: ColorPrimary,
-                    onPressed: () => Navigator.of(context).push(
-                      Routes.getMaterialPageRoute(SignInPage.id, context),
-                    ),
+                    onPressed: () =>
+                        Navigator.pushReplacementNamed(context, SignInPage.id),
                     titleColor: Colors.white,
                     fontSize: 20.0,
                   ),
