@@ -10,7 +10,6 @@ import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/common/widgets/rounded_text_field.dart';
 import 'package:teclix/presentation/common/widgets/text_button.dart';
-import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/signup/widgets/infoText.dart';
 
 class SignInPage extends StatelessWidget {
@@ -111,10 +110,7 @@ class SignInPage extends StatelessWidget {
                           fontSize: 19.0,
                           onClick: () {
                             Future.delayed(Duration(milliseconds: 250), () {
-                              Navigator.of(context).push(
-                                Routes.getMaterialPageRoute(
-                                    SignupProvider.id, context),
-                              );
+                              Navigator.pushNamed(context, SignupProvider.id);
                             });
                           }),
                     ],
