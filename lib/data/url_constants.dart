@@ -3,14 +3,14 @@ abstract class UrlConstants {
 
 //  user system related  urls
 
-  static final String userBasicUrl = baseURL + 'staff-api/';
+  static final String userBasicURL = baseURL + 'staff-api/';
 
-  static final String userRegitserURL = userBasicUrl + 'register/';
-  static final String userLoginURL = userBasicUrl + 'login/salesperson/';
-  static final String userLogoutURL = userBasicUrl + 'logout/';
-  static final String autoLoginUrl = userBasicUrl + 'logged-in-user/';
+  static final String userRegitserURL = userBasicURL + 'register/';
+  static final String userLoginURL = userBasicURL + 'login/salesperson/';
+  static final String userLogoutURL = userBasicURL + 'logout/';
+  static final String autoLoginURL = userBasicURL + 'logged-in-user/';
 
 //  customer sub system related urls
 
-  static final String customerBasicurl = baseURL + 'customer-api/';
+  static final String customerBasicURL = baseURL + 'customer-api/';
 }
