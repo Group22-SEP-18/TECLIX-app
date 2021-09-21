@@ -2,6 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:teclix/data/models/Salesperson.dart';
+import 'package:teclix/data/services/auth_service.dart';
+import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/widgets/toast_message.dart';
 
 import 'root_event.dart';
 import 'root_state.dart';
@@ -35,15 +40,40 @@ class RootBloc extends Bloc<RootEvent, RootState> {
         break;
 
       case LogInUserEvent:
-        final email = (event as LogInUserEvent).email;
-        final password = (event as LogInUserEvent).password;
-
-        //:TODO call the login function
-        // if sucessful do this
         yield state.clone(
-          userLoginState: UserLoginState.LOGGED_IN, loading: false,
-          // :TODO clone the user obj as well
+          loading: true,
         );
+        final cred = (event as LogInUserEvent).credentials;
+        final response = await AuthService.loginUser(cred);
+
+        if (response.containsKey('data')) {
+          var prefs = await SharedPreferences.getInstance();
+          await prefs.setString('token', response['data']['token']);
+
+          yield state.clone(
+            loggedUser: Salesperson.fromJson(response['data']),
+            loginFailed: false,
+            userLoginState: UserLoginState.LOGGED_IN,
+            loading: false,
+          );
+        } else if (response.containsKey('error')) {
+          yield state.clone(
+            loginFailed: true,
+            loading: false,
+          );
+          showToast(
+            isError: true,
+            iconSize: 40,
+            height: 60.0,
+            color: ColorToastRed,
+            text: response['error']['detail'],
+            context: (event as LogInUserEvent).buildContext,
+            durationInSec: 5,
+          );
+        }
+
+        // if sucessful do this
+
         break;
     }
   }

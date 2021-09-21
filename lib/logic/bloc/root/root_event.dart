@@ -11,10 +11,10 @@ class ErrorEvent extends RootEvent {
 }
 
 class LogInUserEvent extends RootEvent {
-  final String email;
-  final String password;
+  final Map<String, String> credentials;
+  final BuildContext buildContext;
 
-  LogInUserEvent({this.email, this.password});
+  LogInUserEvent({this.credentials, this.buildContext});
 }
 
 class ChangeUerLoginStateEvent extends RootEvent {

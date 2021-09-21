@@ -87,6 +87,18 @@ class SignInPage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: 25.0,
+                    ),
+                    BlocBuilder<RootBloc, RootState>(
+                      buildWhen: (prev, cur) => prev.loading != cur.loading,
+                      builder: (context, state) {
+                        return Visibility(
+                          visible: state.loading,
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    ),
                     Spacer(),
                     SizedBox(
                       height: 30.0,
@@ -98,8 +110,11 @@ class SignInPage extends StatelessWidget {
                         colour: ColorPrimary,
                         onPressed: () => rootBloc.add(
                           LogInUserEvent(
-                            email: emailController.text,
-                            password: passwordController.text,
+                            credentials: {
+                              'email': emailController.text,
+                              'password': passwordController.text,
+                            },
+                            buildContext: context,
                           ),
                         ),
                       ),

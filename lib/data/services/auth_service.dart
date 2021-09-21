@@ -27,4 +27,20 @@ class AuthService {
       return e.response.toString();
     }
   }
+
+  static Future<Map<String, dynamic>> loginUser(
+      Map<String, String> credentials) async {
+    var dio = Dio();
+
+    try {
+      var response = await dio.post(UrlConstants.userLoginURL, data: {
+        'email': credentials['email'],
+        'password': credentials['password']
+      });
+
+      return {'data': response.data['data']};
+    } on DioError catch (e) {
+      return {'error': e.response.data['error']};
+    }
+  }
 }

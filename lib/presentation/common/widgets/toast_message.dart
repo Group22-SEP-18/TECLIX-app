@@ -7,6 +7,7 @@ showToast({
   int durationInSec,
   double height,
   double iconSize,
+  bool isError = false,
 }) async {
   OverlayState overlayState = Overlay.of(context);
   OverlayEntry overlayEntry = OverlayEntry(
@@ -28,7 +29,7 @@ showToast({
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Icon(
-                          Icons.check_circle,
+                          isError ? Icons.info : Icons.check_circle,
                           color: Colors.white,
                           size: iconSize ?? 30.0,
                         ),

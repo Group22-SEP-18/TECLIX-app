@@ -9,6 +9,7 @@ class Salesperson {
   String password;
   File profilePicture;
   String userRole;
+  String profilePictureUrl;
 
   Salesperson({
     this.employeeNo,
@@ -45,11 +46,10 @@ class Salesperson {
     email = json['email'];
     employeeNo = json['employee_no'];
     password = json['password'];
-    userRole = json['user_role'];
     firstName = json['first_name'];
     lastName = json['last_name'];
     contactNo = json['contact_no'];
-    profilePicture = json['profile_picture'];
+    profilePictureUrl = json['profile_picture'];
   }
 
   Map<String, dynamic> toJson() {

@@ -12,6 +12,7 @@ class RootState {
   final String error;
   final UserLoginState userLoginState;
   final Salesperson loggedUser;
+  final bool loginFailed;
   final bool loading;
 
   RootState({
@@ -19,6 +20,7 @@ class RootState {
     @required this.userLoginState,
     @required this.loggedUser,
     @required this.loading,
+    @required this.loginFailed,
   });
 
   static RootState get initialState => RootState(
@@ -26,6 +28,7 @@ class RootState {
         userLoginState: UserLoginState.CHECKING,
         loggedUser: null,
         loading: false,
+        loginFailed: false,
       );
 
   RootState clone({
@@ -33,12 +36,14 @@ class RootState {
     Salesperson loggedUser,
     UserLoginState userLoginState,
     bool loading,
+    bool loginFailed,
   }) {
     return RootState(
       error: error ?? this.error,
       loggedUser: loggedUser ?? this.loggedUser,
       userLoginState: userLoginState ?? this.userLoginState,
       loading: loading ?? this.loading,
+      loginFailed: loginFailed ?? this.loginFailed,
     );
   }
 }
