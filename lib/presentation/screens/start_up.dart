@@ -14,9 +14,6 @@ class StartUpPage extends StatelessWidget {
       body: BlocConsumer<RootBloc, RootState>(
         listenWhen: (prev, cur) => prev.userLoginState != cur.userLoginState,
         listener: (context, state) {
-          print('state');
-          print(state.userLoginState);
-
           switch (state.userLoginState) {
             case UserLoginState.LOGGED_IN:
               Navigator.pushReplacementNamed(context, NavbarController.id);
