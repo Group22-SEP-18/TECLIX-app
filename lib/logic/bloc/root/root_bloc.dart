@@ -2,21 +2,54 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:teclix/data/models/Salesperson.dart';
+import 'package:teclix/data/services/auth_service.dart';
+import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/widgets/toast_message.dart';
 
 import 'root_event.dart';
 import 'root_state.dart';
 
 class RootBloc extends Bloc<RootEvent, RootState> {
   RootBloc(BuildContext context) : super(RootState.initialState) {
-    _initialize();
+    _initialize(context);
   }
 
-  Future<void> _initialize() async {
-    //TODO: init sign in automatically when app starts
-    // Get email and password from shared prefs?
-    // final auth = locator<AuthService>();
-    // User user = await auth.createUserWithEmailAndPassword(email, password);
-    add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
+  Future<void> _initialize(context) async {
+    var prefs = await SharedPreferences.getInstance();
+    final token = (prefs.getString('token') ?? '');
+    final email = (prefs.getString('email') ?? '');
+    final password = (prefs.getString('pw') ?? '');
+    print(email);
+    print(token);
+    if (email != '' && password != '') {
+      add(
+        LogInUserEvent(
+          credentials: {
+            'email': email,
+            'password': password,
+          },
+          buildContext: context,
+          showToast: false,
+        ),
+      );
+
+      // if (response == '200') {
+      //   add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
+      // // } else if (email != null && password != null) {
+      //   add(LogInUserEvent(credentials: {
+      //     'email': email,
+      //     'password': password,
+      //   }));
+      //   add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
+      // } else {
+      //   add(ChangeUerLoginStateEvent(
+      //       userLoginState: UserLoginState.LOGGED_OUT));
+      // }
+    } else {
+      add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_OUT));
+    }
   }
 
   @override
@@ -35,15 +68,81 @@ class RootBloc extends Bloc<RootEvent, RootState> {
         break;
 
       case LogInUserEvent:
-        final email = (event as LogInUserEvent).email;
-        final password = (event as LogInUserEvent).password;
-
-        //:TODO call the login function
-        // if sucessful do this
         yield state.clone(
-          userLoginState: UserLoginState.LOGGED_IN, loading: false,
-          // :TODO clone the user obj as well
+          loading: true,
         );
+        final cred = (event as LogInUserEvent).credentials;
+        final show = (event as LogInUserEvent).showToast ?? true;
+
+        final response = await AuthService.loginUser(cred);
+
+        if (response.containsKey('data')) {
+          var prefs = await SharedPreferences.getInstance();
+
+          await prefs.setString('email', cred['email']);
+          await prefs.setString('pw', cred['password']);
+          await prefs.setString('token', response['data']['token']);
+
+          yield state.clone(
+            loggedUser: Salesperson.fromJson(response['data']),
+            loginFailed: false,
+            userLoginState: UserLoginState.LOGGED_IN,
+            loading: false,
+          );
+        } else if (response.containsKey('error')) {
+          yield state.clone(
+            loginFailed: true,
+            loading: false,
+          );
+          show
+              ? showToast(
+                  isError: true,
+                  iconSize: 40,
+                  height: 60.0,
+                  color: ColorToastRed,
+                  text: response['error']['detail'],
+                  context: (event as LogInUserEvent).buildContext,
+                  durationInSec: 5,
+                )
+              : null;
+        }
+        break;
+      case LogoutEvent:
+        yield state.clone(
+          loading: true,
+          logoutFailed: false,
+        );
+        var prefs = await SharedPreferences.getInstance();
+        String token = (prefs.getString('token') ?? '');
+
+        var response = await AuthService.logOutUser(token: token);
+        print(response);
+        if (response == '204') {
+          await prefs.setString('token', '');
+          await prefs.setString('email', '');
+          await prefs.setString('pw', '');
+
+          yield state.clone(
+            userLoginState: UserLoginState.LOGGED_OUT,
+            loading: false,
+            logoutFailed: false,
+          );
+        } else {
+          yield state.clone(
+            loading: false,
+            logoutFailed: true,
+          );
+          showToast(
+            isError: true,
+            iconSize: 40,
+            height: 60.0,
+            color: ColorToastRed,
+            text: response,
+            context: (event as LogoutEvent).buildContext,
+            durationInSec: 5,
+          );
+        }
+
         break;
     }
   }

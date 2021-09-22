@@ -17,12 +17,16 @@ class SignupState {
   final SignupProcessSteps step;
   final Salesperson salesperson;
   final double flowPosition;
+  final bool loading;
+  final bool registeredSucessfully;
 
   SignupState({
     @required this.error,
     @required this.salesperson,
     @required this.step,
     @required this.flowPosition,
+    @required this.loading,
+    @required this.registeredSucessfully,
   });
 
   static SignupState get initialState => SignupState(
@@ -30,6 +34,8 @@ class SignupState {
         step: SignupBloc.processOrder[0],
         salesperson: Salesperson(),
         flowPosition: 0,
+        loading: false,
+        registeredSucessfully: false,
       );
 
   SignupState clone({
@@ -37,12 +43,17 @@ class SignupState {
     SignupProcessSteps step,
     Salesperson salesperson,
     double flowPosition,
+    bool loading,
+    bool registeredSucessfully,
   }) {
     return SignupState(
       error: error ?? this.error,
       step: step ?? this.step,
       salesperson: salesperson ?? this.salesperson,
       flowPosition: flowPosition ?? this.flowPosition,
+      loading: loading ?? this.loading,
+      registeredSucessfully:
+          registeredSucessfully ?? this.registeredSucessfully,
     );
   }
 }

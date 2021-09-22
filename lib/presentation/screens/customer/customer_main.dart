@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
+import 'package:teclix/logic/bloc/root/root_bloc.dart';
+import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
@@ -55,15 +58,22 @@ class CustomerMain extends StatelessWidget {
                 SizedBox(
                   height: 30.0,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: Text(
-                    'Welcome Back, Binoy Peries',
-                    style: TextStyle(
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.w400,
-                        color: ColorDarkGreen),
-                  ),
+                BlocBuilder<RootBloc, RootState>(
+                  builder: (context, state) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 5.0),
+                      child: Text(
+                        'Welcome Back, ' +
+                            state.loggedUser.firstName +
+                            ' ' +
+                            state.loggedUser.lastName,
+                        style: TextStyle(
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w400,
+                            color: ColorDarkGreen),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 15.0,

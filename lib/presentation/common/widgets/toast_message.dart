@@ -5,6 +5,9 @@ showToast({
   String text,
   Color color,
   int durationInSec,
+  double height,
+  double iconSize,
+  bool isError = false,
 }) async {
   OverlayState overlayState = Overlay.of(context);
   OverlayEntry overlayEntry = OverlayEntry(
@@ -15,7 +18,7 @@ showToast({
             child: Material(
               color: Color(0x00000000),
               child: Container(
-                height: 55.0,
+                height: height ?? 55.0,
                 width: MediaQuery.of(context).size.width * 0.8,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0), color: color),
@@ -26,15 +29,15 @@ showToast({
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Icon(
-                          Icons.error_outline,
+                          isError ? Icons.info : Icons.check_circle,
                           color: Colors.white,
-                          size: 30.0,
+                          size: iconSize ?? 30.0,
                         ),
                       ),
                       Flexible(
                         child: Text(
                           text,
-                          style: TextStyle(color: Colors.white, fontSize: 16.0),
+                          style: TextStyle(color: Colors.white, fontSize: 18.0),
                         ),
                       ),
                     ],
