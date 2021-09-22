@@ -41,6 +41,10 @@ class SearchCustomerBloc
         } else {
           print(response);
         }
+        break;
+      case AddSelectedCustomer:
+        yield state.clone(selectedCus: (event as AddSelectedCustomer).selected);
+        break;
     }
   }
 

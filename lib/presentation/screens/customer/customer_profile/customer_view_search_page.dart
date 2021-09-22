@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
@@ -91,10 +93,19 @@ class CustomerViewSearchPage extends StatelessWidget {
                                 itemCount: state.searchResult.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return SearchResultCard(
-                                    directTo: () => Navigator.of(context).push(
-                                      Routes.getMaterialPageRoute(
-                                          CustomerProfile.id, context),
-                                    ),
+                                    directTo: () => {
+                                      serachCustomerBloc.add(
+                                          AddSelectedCustomer(
+                                              selected:
+                                                  state.searchResult[index])),
+                                      new Timer(new Duration(milliseconds: 500),
+                                          () {
+                                        Navigator.of(context).push(
+                                          Routes.getMaterialPageRoute(
+                                              CustomerProfile.id, context),
+                                        );
+                                      }),
+                                    },
                                     shopName:
                                         state.searchResult[index].shopName,
                                     ownerLastName:

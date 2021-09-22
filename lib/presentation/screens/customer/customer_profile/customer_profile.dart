@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
+import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/customer_profile_card.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/customer_profile_clip_path.dart';
-
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
 
 class CustomerProfile extends StatelessWidget {
   static const String id = '/customer-profile';
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,11 +46,18 @@ class CustomerProfile extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.center,
-                child: ProfilePicAvatar(
-                  spreadRad: 0.0,
-                  blurRad: 0.0,
-                  circleRadius: 80.0,
-                  picture: 'static/images/profile_dummy.jpg',
+                child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+                  buildWhen: (pre, cur) =>
+                      pre.selectedCus.profilePicture !=
+                      cur.selectedCus.profilePicture,
+                  builder: (context, state) {
+                    return ProfilePicAvatar(
+                      spreadRad: 0.0,
+                      blurRad: 0.0,
+                      circleRadius: 80.0,
+                      picture: state.selectedCus.profilePicture,
+                    );
+                  },
                 ),
               ),
               Positioned(
@@ -56,9 +66,15 @@ class CustomerProfile extends StatelessWidget {
                 right: 0.0,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text(
-                    'Store Name',
-                    style: TextStyle(fontSize: 28.0, color: Colors.white),
+                  child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+                    buildWhen: (pre, cur) =>
+                        pre.selectedCus.shopName != cur.selectedCus.shopName,
+                    builder: (context, state) {
+                      return Text(
+                        state.selectedCus.shopName,
+                        style: TextStyle(fontSize: 28.0, color: Colors.white),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -68,9 +84,15 @@ class CustomerProfile extends StatelessWidget {
                 right: 0.0,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text(
-                    'owner Name',
-                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+                    builder: (context, state) {
+                      return Text(
+                        state.selectedCus.ownerFirstName +
+                            ' ' +
+                            state.selectedCus.ownerLastName,
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -79,40 +101,47 @@ class CustomerProfile extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(
-                height: 25.0,
-              ),
-              CustomerProfileCard(
-                icon: Icons.email,
-                infoText: 'Email',
-                infoValue: 'b@gmail.com',
-              ),
-              CustomerProfileCard(
-                icon: Icons.phone_iphone,
-                infoText: 'Mobile',
-                infoValue: '+94 77 123 4567',
-              ),
-              CustomerProfileCard(
-                icon: Icons.location_on,
-                infoText: 'Address',
-                infoValue:
-                    '4A, Hilda lane' + '\n' + 'Dehiwala' + '\n' + 'Colombo',
-              ),
-              CustomerProfileCard(
-                icon: Icons.loyalty,
-                infoText: 'Loyalty Points',
-                infoValue: '560.0',
-              ),
-              CustomerProfileCard(
-                icon: Icons.credit_card,
-                infoText: 'Current Outstanding',
-                infoValue: 'Rs. 2500',
-              ),
-            ],
+          child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+            builder: (context, state) {
+              return Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  CustomerProfileCard(
+                    icon: Icons.email,
+                    infoText: 'Email',
+                    infoValue: state.selectedCus.email,
+                  ),
+                  CustomerProfileCard(
+                    icon: Icons.phone_iphone,
+                    infoText: 'Mobile',
+                    infoValue: state.selectedCus.contactNo,
+                  ),
+                  CustomerProfileCard(
+                    icon: Icons.location_on,
+                    infoText: 'Address',
+                    infoValue: state.selectedCus.street +
+                        '\n' +
+                        state.selectedCus.city +
+                        '\n' +
+                        state.selectedCus.district,
+                  ),
+                  CustomerProfileCard(
+                    icon: Icons.loyalty,
+                    infoText: 'Loyalty Points',
+                    infoValue: state.selectedCus.loyaltyPoints,
+                  ),
+                  CustomerProfileCard(
+                    icon: Icons.credit_card,
+                    infoText: 'Current Outstanding',
+                    infoValue: 'Rs. ' + state.selectedCus.outstanding,
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),

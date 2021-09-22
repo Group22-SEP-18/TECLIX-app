@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teclix/data/models/CustomerSearch.dart';
 
 @immutable
 abstract class SearchCustomerEvent {}
@@ -19,4 +20,10 @@ class SubmitSearchEvent extends SearchCustomerEvent {
   final String value;
 
   SubmitSearchEvent({this.value});
+}
+
+class AddSelectedCustomer extends SearchCustomerEvent {
+  final CustomerSearch selected;
+
+  AddSelectedCustomer({this.selected});
 }
