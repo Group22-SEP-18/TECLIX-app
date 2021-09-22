@@ -43,7 +43,7 @@ class CustomerViewSearchPage extends StatelessWidget {
                   child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
                     builder: (context, state) {
                       return SearchField(
-                        hintText: 'Enter Store Name',
+                        hintText: 'Enter Store Name,customer name',
                         onSubmit: (String searchString) => {
                           serachCustomerBloc
                               .add(SubmitSearchEvent(value: searchString)),

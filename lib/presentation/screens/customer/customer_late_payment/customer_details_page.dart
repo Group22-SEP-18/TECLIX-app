@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_bloc.dart';
 import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_event.dart';
 import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_state.dart';
+import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
+import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
@@ -16,6 +18,8 @@ class CustomerDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final customerLatePayBloc = BlocProvider.of<CustomerLatePayBloc>(context);
+    String amount = '0.00';
+    int cusId = 0;
 
     return SafeArea(
       child: Scaffold(
@@ -46,14 +50,21 @@ class CustomerDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CustomerDetailsCard(
-                borderTop: 0.0,
-                profilePic: 'static/images/profile_dummy.jpg',
-                shop: 'Gamini Stores (Pvt) Ltd',
-                owner: 'Owner Name',
-                street: '4A , hilda lane',
-                city: 'Dehiwala',
-                district: 'Colombo',
+              BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+                buildWhen: (prev, cur) => prev.selectedCus != cur.selectedCus,
+                builder: (context, state) {
+                  return CustomerDetailsCard(
+                    borderTop: 0.0,
+                    profilePic: state.selectedCus.profilePicture,
+                    shop: state.selectedCus.shopName,
+                    owner: state.selectedCus.ownerFirstName +
+                        ' ' +
+                        state.selectedCus.ownerLastName,
+                    street: state.selectedCus.street,
+                    city: state.selectedCus.city,
+                    district: state.selectedCus.district,
+                  );
+                },
               ),
               SizedBox(
                 height: 40.0,
@@ -80,12 +91,21 @@ class CustomerDetails extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Text(
-                      'Rs 25,600',
-                      style: TextStyle(
-                          fontSize: 45.0,
-                          color: ColorPrimary,
-                          fontWeight: FontWeight.w500),
+                    child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+                      buildWhen: (prev, cur) =>
+                          prev.selectedCus.outstanding !=
+                          cur.selectedCus.outstanding,
+                      builder: (context, state) {
+                        amount = state.selectedCus.outstanding;
+                        cusId = state.selectedCus.id;
+                        return Text(
+                          'Rs ' + state.selectedCus.outstanding,
+                          style: TextStyle(
+                              fontSize: 45.0,
+                              color: ColorPrimary,
+                              fontWeight: FontWeight.w500),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -101,9 +121,9 @@ class CustomerDetails extends StatelessWidget {
                       titleColor: Colors.white,
                       colour: ColorPrimary,
                       onPressed: () {
-                        //:TODO make the value dynamic
                         customerLatePayBloc.add(
-                          SetDebtAmountEvent(amount: 25000.00),
+                          SetSelctedCustomerEvent(
+                              amount: amount, customerId: cusId),
                         );
                         Navigator.of(context).push(
                           MaterialPageRoute(

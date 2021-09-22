@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:teclix/data/services/search_customer_service.dart';
+import 'package:teclix/data/services/customer_search_service.dart';
 
 import 'search_customer_event.dart';
 import 'search_customer_state.dart';
@@ -32,7 +32,7 @@ class SearchCustomerBloc
         final value = (event as SubmitSearchEvent).value;
         var prefs = await SharedPreferences.getInstance();
         String token = (prefs.getString('token') ?? '');
-        final response = await SearchCustomerService.searchCustomer(
+        final response = await CustomerSearchService.searchCustomer(
             token: token, value: value);
         yield state.clone(loading: false);
 
