@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/logic/bloc/root/root_bloc.dart';
+import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/screens/customer/customer_main.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/employee_profile_page.dart';
 import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/bottom_navbar.dart';
 import 'package:teclix/presentation/screens/navbar/nav_tab_item.dart';
+import 'package:teclix/presentation/screens/signin/welcome_page.dart';
 import 'package:teclix/presentation/screens/vehicle/vehicle_main.dart';
 
 class NavbarController extends StatefulWidget {
@@ -88,17 +92,25 @@ class NavbarControllerState extends State<NavbarController> {
       // don't put appbar in here otherwise you might end up
       // with multiple appbars on one screen
       // eventually breaking the app
-      child: Scaffold(
-        // indexed stack shows only one child
-        backgroundColor: ColorPrimary,
-        body: IndexedStack(
-          index: currentTab,
-          children: tabs.map((e) => e.page).toList(),
-        ),
-        // Bottom navigation
-        bottomNavigationBar: BottomNavbar(
-          onSelectTab: _selectTab,
-          tabs: tabs,
+      child: BlocListener<RootBloc, RootState>(
+        listener: (context, state) {
+          if (state.userLoginState == UserLoginState.LOGGED_OUT) {
+            Navigator.pushReplacementNamed(context, WelcomePage.id);
+            currentTab = 0;
+          }
+        },
+        child: Scaffold(
+          // indexed stack shows only one child
+          backgroundColor: ColorPrimary,
+          body: IndexedStack(
+            index: currentTab,
+            children: tabs.map((e) => e.page).toList(),
+          ),
+          // Bottom navigation
+          bottomNavigationBar: BottomNavbar(
+            onSelectTab: _selectTab,
+            tabs: tabs,
+          ),
         ),
       ),
     );

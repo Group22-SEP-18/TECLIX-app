@@ -22,3 +22,9 @@ class ChangeUerLoginStateEvent extends RootEvent {
 
   ChangeUerLoginStateEvent({this.userLoginState});
 }
+
+class LogoutEvent extends RootEvent {
+  final BuildContext buildContext;
+
+  LogoutEvent({this.buildContext});
+}

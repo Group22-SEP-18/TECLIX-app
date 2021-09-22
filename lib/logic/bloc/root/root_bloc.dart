@@ -71,8 +71,39 @@ class RootBloc extends Bloc<RootEvent, RootState> {
             durationInSec: 5,
           );
         }
+        break;
+      case LogoutEvent:
+        yield state.clone(
+          loading: true,
+          logoutFailed: false,
+        );
+        var prefs = await SharedPreferences.getInstance();
+        String token = (prefs.getString('token') ?? '');
 
-        // if sucessful do this
+        var response = await AuthService.logOutUser(token: token);
+        print(response);
+        if (response == '204') {
+          await prefs.setString('token', '');
+          yield state.clone(
+            userLoginState: UserLoginState.LOGGED_OUT,
+            loading: false,
+            logoutFailed: false,
+          );
+        } else {
+          yield state.clone(
+            loading: false,
+            logoutFailed: true,
+          );
+          showToast(
+            isError: true,
+            iconSize: 40,
+            height: 60.0,
+            color: ColorToastRed,
+            text: response,
+            context: (event as LogoutEvent).buildContext,
+            durationInSec: 5,
+          );
+        }
 
         break;
     }
