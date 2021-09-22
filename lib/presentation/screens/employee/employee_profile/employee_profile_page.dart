@@ -67,24 +67,31 @@ class EmployeeProfilePage extends StatelessWidget {
                   );
                 },
               ),
-              Positioned(
-                left: 0.0,
-                right: 0.0,
-                bottom: 0.0,
-                child: Material(
-                  shape: CircleBorder(),
-                  elevation: 1.0,
-                  child: CircleAvatar(
-                    radius: 70.0,
-                    child: CircleAvatar(
-                      radius: 70.0,
-                      backgroundImage: Image.asset(
-                        'static/images/profile_dummy.jpg',
-                        fit: BoxFit.cover,
-                      ).image,
+              BlocBuilder<RootBloc, RootState>(
+                buildWhen: (prev, cur) =>
+                    prev.loggedUser.profilePictureUrl !=
+                    cur.loggedUser.profilePictureUrl,
+                builder: (context, state) {
+                  return Positioned(
+                    left: 0.0,
+                    right: 0.0,
+                    bottom: 0.0,
+                    child: Material(
+                      shape: CircleBorder(),
+                      elevation: 1.0,
+                      child: CircleAvatar(
+                        radius: 70.0,
+                        child: CircleAvatar(
+                          radius: 70.0,
+                          backgroundImage: Image.network(
+                            state.loggedUser.profilePictureUrl,
+                            fit: BoxFit.cover,
+                          ).image,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               )
             ],
           ),
@@ -135,12 +142,21 @@ class EmployeeProfilePage extends StatelessWidget {
                         SizedBox(
                           height: 20.0,
                         ),
-                        Center(
-                          child: Text(
-                            'Binoy Peries',
-                            style:
-                                TextStyle(color: ColorPrimary, fontSize: 28.0),
-                          ),
+                        BlocBuilder<RootBloc, RootState>(
+                          buildWhen: (pre, cur) =>
+                              pre.loggedUser.firstName !=
+                              cur.loggedUser.firstName,
+                          builder: (context, state) {
+                            return Center(
+                              child: Text(
+                                state.loggedUser.firstName +
+                                    ' ' +
+                                    state.loggedUser.lastName,
+                                style: TextStyle(
+                                    color: ColorPrimary, fontSize: 28.0),
+                              ),
+                            );
+                          },
                         ),
                         SizedBox(
                           height: 15.0,
@@ -206,8 +222,17 @@ class EmployeeProfilePage extends StatelessWidget {
                                 const EdgeInsets.only(left: 20.0, bottom: 10.0),
                             child: Row(
                               children: [
-                                ProfileInfoAttrText(
-                                  attr: 'Binoy Peries',
+                                BlocBuilder<RootBloc, RootState>(
+                                  buildWhen: (pre, cur) =>
+                                      pre.loggedUser.firstName !=
+                                      cur.loggedUser.firstName,
+                                  builder: (context, state) {
+                                    return ProfileInfoAttrText(
+                                      attr: state.loggedUser.firstName +
+                                          ' ' +
+                                          state.loggedUser.lastName,
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -221,8 +246,15 @@ class EmployeeProfilePage extends StatelessWidget {
                                 const EdgeInsets.only(left: 20.0, bottom: 10.0),
                             child: Row(
                               children: [
-                                ProfileInfoAttrText(
-                                  attr: 'EMP202323',
+                                BlocBuilder<RootBloc, RootState>(
+                                  buildWhen: (pre, cur) =>
+                                      pre.loggedUser.employeeNo !=
+                                      cur.loggedUser.employeeNo,
+                                  builder: (context, state) {
+                                    return ProfileInfoAttrText(
+                                      attr: state.loggedUser.employeeNo,
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -242,8 +274,15 @@ class EmployeeProfilePage extends StatelessWidget {
                                 const EdgeInsets.only(left: 20.0, bottom: 10.0),
                             child: Row(
                               children: [
-                                ProfileInfoAttrText(
-                                  attr: 'johndoe@gmail.com',
+                                BlocBuilder<RootBloc, RootState>(
+                                  buildWhen: (pre, cur) =>
+                                      pre.loggedUser.email !=
+                                      cur.loggedUser.email,
+                                  builder: (context, state) {
+                                    return ProfileInfoAttrText(
+                                      attr: state.loggedUser.email,
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -257,8 +296,15 @@ class EmployeeProfilePage extends StatelessWidget {
                                 const EdgeInsets.only(left: 20.0, bottom: 10.0),
                             child: Row(
                               children: [
-                                ProfileInfoAttrText(
-                                  attr: '+94 77 123 4567',
+                                BlocBuilder<RootBloc, RootState>(
+                                  buildWhen: (pre, cur) =>
+                                      pre.loggedUser.contactNo !=
+                                      cur.loggedUser.contactNo,
+                                  builder: (context, state) {
+                                    return ProfileInfoAttrText(
+                                      attr: state.loggedUser.contactNo,
+                                    );
+                                  },
                                 ),
                               ],
                             ),
