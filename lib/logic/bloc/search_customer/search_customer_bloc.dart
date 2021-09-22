@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:teclix/data/services/search_customer_service.dart';
 
 import 'search_customer_event.dart';
 import 'search_customer_state.dart';
@@ -24,6 +26,21 @@ class SearchCustomerBloc
         yield state.clone(
           loading: (event as ToggleLoadingEvent).isLoading,
         );
+        break;
+      case SubmitSearchEvent:
+        yield state.clone(loading: true);
+        final value = (event as SubmitSearchEvent).value;
+        var prefs = await SharedPreferences.getInstance();
+        String token = (prefs.getString('token') ?? '');
+        final response = await SearchCustomerService.searchCustomer(
+            token: token, value: value);
+        yield state.clone(loading: false);
+
+        if (response[1].toString() == '200') {
+          yield state.clone(searchResult: response[0]);
+        } else {
+          print(response);
+        }
     }
   }
 

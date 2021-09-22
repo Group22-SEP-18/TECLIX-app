@@ -13,4 +13,5 @@ abstract class UrlConstants {
 //  customer sub system related urls
 
   static final String customerBasicURL = baseURL + 'customer-api/';
+  static final String customerSearchURL = customerBasicURL + 'search/';
 }

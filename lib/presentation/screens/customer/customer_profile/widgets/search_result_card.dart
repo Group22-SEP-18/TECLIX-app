@@ -45,6 +45,7 @@ class SearchResultCard extends StatelessWidget {
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       shopName,

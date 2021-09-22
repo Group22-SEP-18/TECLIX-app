@@ -14,3 +14,9 @@ class ToggleLoadingEvent extends SearchCustomerEvent {
 
   ToggleLoadingEvent({this.isLoading});
 }
+
+class SubmitSearchEvent extends SearchCustomerEvent {
+  final String value;
+
+  SubmitSearchEvent({this.value});
+}

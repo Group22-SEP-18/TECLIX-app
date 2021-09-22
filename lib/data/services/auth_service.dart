@@ -48,7 +48,6 @@ class AuthService {
   static Future<String> logOutUser({token}) async {
     var dio = Dio();
     try {
-      print(token);
       dio.options.headers['Authorization'] = 'Token ' + token;
       var response = await dio.post(UrlConstants.userLogoutURL);
       return response.statusCode.toString();
