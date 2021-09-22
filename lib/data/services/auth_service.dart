@@ -40,6 +40,7 @@ class AuthService {
 
       return {'data': response.data['data']};
     } on DioError catch (e) {
+      print(e.response.data['error']);
       return {'error': e.response.data['error']};
     }
   }
@@ -50,6 +51,18 @@ class AuthService {
       print(token);
       dio.options.headers['Authorization'] = 'Token ' + token;
       var response = await dio.post(UrlConstants.userLogoutURL);
+      return response.statusCode.toString();
+    } on DioError catch (e) {
+      print(e.response.data);
+      return e.response.data['detail'].toString();
+    }
+  }
+
+  static Future<String> logInAuto({token}) async {
+    var dio = Dio();
+    try {
+      dio.options.headers['Authorization'] = 'Token ' + token;
+      var response = await dio.get(UrlConstants.autoLoginURL);
       return response.statusCode.toString();
     } on DioError catch (e) {
       print(e.response.data);

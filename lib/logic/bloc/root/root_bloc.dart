@@ -13,15 +13,43 @@ import 'root_state.dart';
 
 class RootBloc extends Bloc<RootEvent, RootState> {
   RootBloc(BuildContext context) : super(RootState.initialState) {
-    _initialize();
+    _initialize(context);
   }
 
-  Future<void> _initialize() async {
-    //TODO: init sign in automatically when app starts
-    // Get email and password from shared prefs?
-    // final auth = locator<AuthService>();
-    // User user = await auth.createUserWithEmailAndPassword(email, password);
-    add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_OUT));
+  Future<void> _initialize(context) async {
+    var prefs = await SharedPreferences.getInstance();
+    final token = (prefs.getString('token') ?? '');
+    final email = (prefs.getString('email') ?? '');
+    final password = (prefs.getString('pw') ?? '');
+    print(email);
+    print(token);
+    if (email != '' && password != '') {
+      add(
+        LogInUserEvent(
+          credentials: {
+            'email': email,
+            'password': password,
+          },
+          buildContext: context,
+          showToast: false,
+        ),
+      );
+
+      // if (response == '200') {
+      //   add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
+      // // } else if (email != null && password != null) {
+      //   add(LogInUserEvent(credentials: {
+      //     'email': email,
+      //     'password': password,
+      //   }));
+      //   add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
+      // } else {
+      //   add(ChangeUerLoginStateEvent(
+      //       userLoginState: UserLoginState.LOGGED_OUT));
+      // }
+    } else {
+      add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_OUT));
+    }
   }
 
   @override
@@ -44,10 +72,15 @@ class RootBloc extends Bloc<RootEvent, RootState> {
           loading: true,
         );
         final cred = (event as LogInUserEvent).credentials;
+        final show = (event as LogInUserEvent).showToast ?? true;
+
         final response = await AuthService.loginUser(cred);
 
         if (response.containsKey('data')) {
           var prefs = await SharedPreferences.getInstance();
+
+          await prefs.setString('email', cred['email']);
+          await prefs.setString('pw', cred['password']);
           await prefs.setString('token', response['data']['token']);
 
           yield state.clone(
@@ -61,15 +94,17 @@ class RootBloc extends Bloc<RootEvent, RootState> {
             loginFailed: true,
             loading: false,
           );
-          showToast(
-            isError: true,
-            iconSize: 40,
-            height: 60.0,
-            color: ColorToastRed,
-            text: response['error']['detail'],
-            context: (event as LogInUserEvent).buildContext,
-            durationInSec: 5,
-          );
+          show
+              ? showToast(
+                  isError: true,
+                  iconSize: 40,
+                  height: 60.0,
+                  color: ColorToastRed,
+                  text: response['error']['detail'],
+                  context: (event as LogInUserEvent).buildContext,
+                  durationInSec: 5,
+                )
+              : null;
         }
         break;
       case LogoutEvent:
@@ -84,6 +119,9 @@ class RootBloc extends Bloc<RootEvent, RootState> {
         print(response);
         if (response == '204') {
           await prefs.setString('token', '');
+          await prefs.setString('email', '');
+          await prefs.setString('pw', '');
+
           yield state.clone(
             userLoginState: UserLoginState.LOGGED_OUT,
             loading: false,
