@@ -2,27 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/data/models/Customer.dart';
-import 'package:teclix/data/temporary/data.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_event.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
+import 'package:teclix/presentation/common/widgets/searchbar_preview.dart';
 import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_field.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_result_card.dart';
-import 'package:teclix/presentation/common/widgets/searchbar_preview.dart';
 
 class CustomerViewSearchPage extends StatelessWidget {
   static const String id = '/customer-view-search';
 
   @override
   Widget build(BuildContext context) {
-    List<Customer> searchResults = [];
-
     final serachCustomerBloc = BlocProvider.of<SearchCustomerBloc>(context);
     return SafeArea(
       child: Scaffold(
@@ -50,12 +46,7 @@ class CustomerViewSearchPage extends StatelessWidget {
                         hintText: 'Enter Store Name',
                         onSubmit: (String searchString) => {
                           serachCustomerBloc
-                              .add(ToggleLoadingEvent(isLoading: true)),
-                          new Timer(new Duration(seconds: 2), () {
-                            searchResults = customerResults;
-                            serachCustomerBloc
-                                .add(ToggleLoadingEvent(isLoading: false));
-                          }),
+                              .add(SubmitSearchEvent(value: searchString)),
                         },
                       );
                     },
@@ -67,12 +58,15 @@ class CustomerViewSearchPage extends StatelessWidget {
           ),
         ),
         body: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+          buildWhen: (prev, cur) =>
+              prev.searchResult != cur.searchResult ||
+              prev.loading != cur.loading,
           builder: (context, state) {
             return state.loading
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
-                : searchResults.length == 0
+                : state.searchResult.length == 0
                     ? SearchbarPreview(
                         previewImage: 'static/images/customer_search.png',
                       )
@@ -96,20 +90,30 @@ class CustomerViewSearchPage extends StatelessWidget {
                           Expanded(
                             child: ListView.builder(
                                 physics: ClampingScrollPhysics(),
-                                itemCount: searchResults.length,
+                                itemCount: state.searchResult.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return SearchResultCard(
-                                    directTo: () => Navigator.of(context).push(
-                                      Routes.getMaterialPageRoute(
-                                          CustomerProfile.id, context),
-                                    ),
-                                    shopName: searchResults[index].shopName,
+                                    directTo: () => {
+                                      serachCustomerBloc.add(
+                                          AddSelectedCustomer(
+                                              selected:
+                                                  state.searchResult[index])),
+                                      new Timer(new Duration(milliseconds: 500),
+                                          () {
+                                        Navigator.of(context).push(
+                                          Routes.getMaterialPageRoute(
+                                              CustomerProfile.id, context),
+                                        );
+                                      }),
+                                    },
+                                    shopName:
+                                        state.searchResult[index].shopName,
                                     ownerLastName:
-                                        searchResults[index].ownerLastName,
-                                    ownerFistName:
-                                        searchResults[index].ownerFistName,
-                                    profilePicUrl:
-                                        searchResults[index].profilePicUrl,
+                                        state.searchResult[index].ownerLastName,
+                                    ownerFistName: state
+                                        .searchResult[index].ownerFirstName,
+                                    profilePicUrl: state
+                                        .searchResult[index].profilePicture,
                                   );
                                 }),
                           ),

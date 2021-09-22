@@ -29,8 +29,27 @@ class ProfilePicAvatar extends StatelessWidget {
         backgroundColor: Colors.white,
         child: CircleAvatar(
           radius: circleRadius,
-          backgroundImage: Image.asset(
+          backgroundImage: Image.network(
             picture,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              }
+              return Center(
+                child: SizedBox(
+                  height: 25.0,
+                  width: 25.0,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes
+                        : null,
+                  ),
+                ),
+              );
+            },
           ).image,
         ),
       ),
