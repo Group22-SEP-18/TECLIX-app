@@ -7,11 +7,13 @@ import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
+import 'package:teclix/presentation/routing/routes.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/expandable_card.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/header_clip_path.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/profile_attribute_text.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/profile_option_card.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/sub_heading_text.dart';
+import 'package:teclix/presentation/screens/employee/leaderboard_Schema/leaderboard_schema_page.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
   static const String id = '/employee-profile';
@@ -328,6 +330,10 @@ class EmployeeProfilePage extends StatelessWidget {
                                   coverColor: ColorGold,
                                   image: 'static/images/winner.png',
                                   optionText: 'Leaderboard Scheme',
+                                  onSelect: () => Navigator.of(context).push(
+                                    Routes.getMaterialPageRoute(
+                                        LeaderboardSchemaPage.id, context),
+                                  ),
                                 ),
                               ),
                             ],
