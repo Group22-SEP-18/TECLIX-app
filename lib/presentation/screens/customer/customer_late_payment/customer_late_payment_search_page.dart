@@ -107,7 +107,9 @@ class CustomerLatePaymentSearchPage extends StatelessWidget {
                                         state.searchResult[index].shopName,
                                     ownerLastName:
                                         state.searchResult[index].ownerLastName,
-                                    ownerFistName: state.searchResult[index]
+                                    ownerFistName: state
+                                        .searchResult[index].ownerFirstName,
+                                    profilePicUrl: state.searchResult[index]
                                                 .profilePicture ==
                                             null
                                         ? ''
