@@ -173,6 +173,7 @@ class CustomerRegisterAddress extends StatelessWidget {
                       latitude: _currentLocation.latitude,
                       longitude: _currentLocation.longitude,
                     ))),
+                    print(_currentLocation.latitude),
                     customerRegisterBloc.add(
                       NextStepEvent(currentStep: state.step),
                     ),

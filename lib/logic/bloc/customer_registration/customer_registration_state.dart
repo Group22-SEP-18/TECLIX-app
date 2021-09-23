@@ -18,6 +18,9 @@ class CustomerRegistrationState {
   final Customer customer;
   final CustomerLocation storeAddress;
   final bool fetchingLocation;
+  final bool loading;
+  final String registerErr;
+  final bool registerDone;
 
   CustomerRegistrationState({
     @required this.error,
@@ -25,6 +28,9 @@ class CustomerRegistrationState {
     @required this.customer,
     @required this.storeAddress,
     @required this.fetchingLocation,
+    @required this.loading,
+    @required this.registerErr,
+    @required this.registerDone,
   });
 
   static CustomerRegistrationState get initialState =>
@@ -34,6 +40,9 @@ class CustomerRegistrationState {
         customer: Customer(),
         storeAddress: CustomerLocation(),
         fetchingLocation: false,
+        loading: false,
+        registerErr: '',
+        registerDone: false,
       );
 
   CustomerRegistrationState clone({
@@ -42,6 +51,9 @@ class CustomerRegistrationState {
     Customer customer,
     CustomerLocation storeAddress,
     bool fetchingLocation,
+    bool loading,
+    String registerErr,
+    bool registerDone,
   }) {
     return CustomerRegistrationState(
       error: error ?? this.error,
@@ -49,6 +61,9 @@ class CustomerRegistrationState {
       customer: customer ?? this.customer,
       storeAddress: storeAddress ?? this.storeAddress,
       fetchingLocation: fetchingLocation ?? this.fetchingLocation,
+      loading: loading ?? this.loading,
+      registerErr: registerErr ?? this.registerErr,
+      registerDone: registerDone ?? this.registerDone,
     );
   }
 }
