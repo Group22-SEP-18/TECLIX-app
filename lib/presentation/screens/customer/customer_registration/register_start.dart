@@ -28,7 +28,7 @@ class CustomerRegisterStart extends StatelessWidget {
                 child: Image.asset('static/images/customer_reg.png'),
               ),
               MainHeading(
-                text: "Register A Customer",
+                text: "Register Customer",
                 fontSize: 30.0,
               ),
               SizedBox(

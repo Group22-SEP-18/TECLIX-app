@@ -66,6 +66,8 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                 ),
                 BlocBuilder<CustomerRegistrationBloc,
                     CustomerRegistrationState>(
+                  buildWhen: (prev, cur) =>
+                      prev.customer.contactNo != cur.customer.contactNo,
                   builder: (context, state) {
                     contactNoController.text = state.customer.contactNo;
                     return RoundedTextField(

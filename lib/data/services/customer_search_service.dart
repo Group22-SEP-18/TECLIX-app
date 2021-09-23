@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:teclix/data/models/CustomerSearch.dart';
 import 'package:teclix/data/url_constants.dart';
 
-class SearchCustomerService {
+class CustomerSearchService {
   static Future<dynamic> searchCustomer({String token, String value}) async {
     var dio = Dio();
     dio.options.headers['Authorization'] = 'Token ' + token;

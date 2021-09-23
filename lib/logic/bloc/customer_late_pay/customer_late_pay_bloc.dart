@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:teclix/data/services/customer_late_pay_service.dart';
 
 import 'customer_late_pay_event.dart';
 import 'customer_late_pay_state.dart';
@@ -30,6 +32,31 @@ class CustomerLatePayBloc
           amount: (event as SetDebtAmountEvent).amount,
         );
         break;
+      case SetSelctedCustomerEvent:
+        yield state.clone(
+          customerId: (event as SetSelctedCustomerEvent).customerId,
+          amount: (event as SetSelctedCustomerEvent).amount,
+        );
+        break;
+      case SubmitLatePayEvent:
+        yield state.clone(loading: true);
+        final data = (event as SubmitLatePayEvent).data;
+        var prefs = await SharedPreferences.getInstance();
+        String token = (prefs.getString('token') ?? '');
+        final response =
+            await CustomerLatePayService.addLatePay(data: data, token: token);
+        yield state.clone(loading: false);
+        if (response == '201') {
+          yield state.clone(
+            paymentFailed: false,
+            paymentDone: true,
+          );
+        } else {
+          yield state.clone(
+            paymentFailed: true,
+            paymentDone: false,
+          );
+        }
     }
   }
 

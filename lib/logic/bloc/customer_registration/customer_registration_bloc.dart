@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:teclix/data/models/Customer.dart';
+import 'package:teclix/data/services/customer_register_service.dart';
 
 import 'customer_registration_event.dart';
 import 'customer_registration_state.dart';
@@ -94,6 +97,30 @@ class CustomerRegistrationBloc
             customer: state.customer.copyWith(
           address: (event as AddCustomerFinalAddressEvent).finalAddress,
         ));
+        break;
+      case SubmitRegisterEvent:
+        yield state.clone(
+          loading: true,
+          registerErr: '',
+        );
+        var prefs = await SharedPreferences.getInstance();
+        String token = (prefs.getString('token') ?? '');
+        final cus = (event as SubmitRegisterEvent).customer;
+        final response = await CustomerRegisterService.registerCustomer(
+            customer: cus, token: token);
+        yield state.clone(
+          loading: false,
+        );
+        if (response == '201') {
+          yield state.clone(
+              registerDone: true, registerErr: '', customer: Customer());
+        } else {
+          yield state.clone(
+            registerDone: false,
+            registerErr: response,
+          );
+        }
+
         break;
     }
   }

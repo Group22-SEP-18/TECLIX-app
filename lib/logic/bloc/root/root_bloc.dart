@@ -34,19 +34,6 @@ class RootBloc extends Bloc<RootEvent, RootState> {
           showToast: false,
         ),
       );
-
-      // if (response == '200') {
-      //   add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
-      // // } else if (email != null && password != null) {
-      //   add(LogInUserEvent(credentials: {
-      //     'email': email,
-      //     'password': password,
-      //   }));
-      //   add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_IN));
-      // } else {
-      //   add(ChangeUerLoginStateEvent(
-      //       userLoginState: UserLoginState.LOGGED_OUT));
-      // }
     } else {
       add(ChangeUerLoginStateEvent(userLoginState: UserLoginState.LOGGED_OUT));
     }

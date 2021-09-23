@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 
-Future<void> showPayConfirmDialog(context) async {
+showPayConfirmDialog(context) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -29,7 +29,7 @@ Future<void> showPayConfirmDialog(context) async {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(true);
                 },
                 style: ButtonStyle(),
               ),
@@ -41,7 +41,7 @@ Future<void> showPayConfirmDialog(context) async {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(false);
                 },
                 style: ButtonStyle(
                   foregroundColor:

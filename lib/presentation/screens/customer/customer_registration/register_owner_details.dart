@@ -12,6 +12,7 @@ import 'package:teclix/presentation/common/constants/camera_cropper_settings.dar
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/common/widgets/rounded_text_field.dart';
+import 'package:teclix/presentation/screens/signup/widgets/infoText.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class CustomerRegisterOwnerDetails extends StatelessWidget {
@@ -143,6 +144,10 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                 SizedBox(
                   height: 30.0,
                 ),
+                InfoText(
+                  text:
+                      'Customer Picture is not required, you can skip it if required.',
+                )
               ],
             ),
           ),
@@ -155,6 +160,7 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                   titleColor: Colors.white,
                   colour: ColorPrimary,
                   onPressed: () => {
+                    print(state.customer.profilePicture),
                     customerRegisterBloc.add(AddOwnerNameEvent(
                       firstName: firstNameController.text,
                       lastName: lastNameController.text,
