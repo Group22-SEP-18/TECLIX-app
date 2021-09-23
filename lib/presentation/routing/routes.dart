@@ -11,6 +11,7 @@ import 'package:teclix/presentation/screens/customer/customer_profile/customer_p
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_search_page.dart';
 import 'package:teclix/presentation/screens/employee/leaderboard_Schema/leaderboard_schema_page.dart';
+import 'package:teclix/presentation/screens/employee/sales_reports/sales_main_page.dart';
 import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/navbar_controller.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
@@ -38,6 +39,7 @@ class Routes {
     PaymentDetail.id: PaymentDetail(),
     CustomerSoProvider.id: CustomerSoProvider(),
     LeaderboardSchemaPage.id: LeaderboardSchemaPage(),
+    SalesMainPage.id: SalesMainPage(),
   };
   //this is to call the material routes in pages
   static MaterialPageRoute getMaterialPageRoute(

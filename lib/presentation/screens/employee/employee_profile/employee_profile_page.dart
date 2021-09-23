@@ -14,6 +14,7 @@ import 'package:teclix/presentation/screens/employee/employee_profile/widgets/pr
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/profile_option_card.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/sub_heading_text.dart';
 import 'package:teclix/presentation/screens/employee/leaderboard_Schema/leaderboard_schema_page.dart';
+import 'package:teclix/presentation/screens/employee/sales_reports/sales_main_page.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
   static const String id = '/employee-profile';
@@ -323,6 +324,10 @@ class EmployeeProfilePage extends StatelessWidget {
                                   coverColor: ColorBlue,
                                   image: 'static/images/profile_sales_card.png',
                                   optionText: 'Sales',
+                                  onSelect: () => Navigator.of(context).push(
+                                    Routes.getMaterialPageRoute(
+                                        SalesMainPage.id, context),
+                                  ),
                                 ),
                               ),
                               Expanded(
