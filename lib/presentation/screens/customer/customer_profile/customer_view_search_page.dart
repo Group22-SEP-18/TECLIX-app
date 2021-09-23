@@ -112,8 +112,12 @@ class CustomerViewSearchPage extends StatelessWidget {
                                         state.searchResult[index].ownerLastName,
                                     ownerFistName: state
                                         .searchResult[index].ownerFirstName,
-                                    profilePicUrl: state
-                                        .searchResult[index].profilePicture,
+                                    profilePicUrl: state.searchResult[index]
+                                                .profilePicture ==
+                                            null
+                                        ? ''
+                                        : state
+                                            .searchResult[index].profilePicture,
                                   );
                                 }),
                           ),
