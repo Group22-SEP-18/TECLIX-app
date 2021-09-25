@@ -19,20 +19,17 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
   CustomerSoBloc(BuildContext context) : super(CustomerSoState.initialState);
 
   Map<String, int> addToMap(Product product) {
-    if (state.cart.containsKey(product.productId)) {
-      state.cart.update(
-          product.productId, (int) => state.cart[product.productId] + 1);
+    if (state.cart.containsKey(product.id)) {
+      state.cart.update(product.id, (int) => state.cart[product.id] + 1);
       return state.cart;
     }
-    state.cart[product.productId] = 1;
+    state.cart[product.id] = 1;
     return state.cart;
   }
 
   Map<String, int> removeFromMap(Product product) {
-    if (state.cart.containsKey(product.productId) &&
-        state.cart[product.productId] >= 1) {
-      state.cart.update(
-          product.productId, (int) => state.cart[product.productId] - 1);
+    if (state.cart.containsKey(product.id) && state.cart[product.id] >= 1) {
+      state.cart.update(product.id, (int) => state.cart[product.id] - 1);
     }
 
     return state.cart;

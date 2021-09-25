@@ -3,6 +3,7 @@ import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.d
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_provider.dart';
 import 'package:teclix/logic/bloc/salesperson_profile/salesperson_profile_provider.dart';
+import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/customer_late_payment_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
@@ -17,7 +18,6 @@ import 'package:teclix/presentation/screens/navbar/navbar_controller.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
 import 'package:teclix/presentation/screens/signin/welcome_page.dart';
 import 'package:teclix/presentation/screens/start_up.dart';
-import 'package:teclix/presentation/screens/vehicle/vehicle_main.dart';
 
 class Routes {
   static final Map<String, Widget> routes = {
@@ -35,7 +35,7 @@ class Routes {
     CustomerProfile.id: CustomerProfile(),
     NavbarController.id: NavbarController(),
     CustomerMain.id: CustomerMain(),
-    VehicleMain.id: VehicleMain(),
+    SalespersonVehicleProvider.id: SalespersonVehicleProvider(),
     PaymentDetail.id: PaymentDetail(),
     CustomerSoProvider.id: CustomerSoProvider(),
     LeaderboardSchemaPage.id: LeaderboardSchemaPage(),

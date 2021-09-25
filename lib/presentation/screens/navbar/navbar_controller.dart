@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_state.dart';
+import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/screens/customer/customer_main.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/employee_profile_page.dart';
@@ -9,7 +10,6 @@ import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/bottom_navbar.dart';
 import 'package:teclix/presentation/screens/navbar/nav_tab_item.dart';
 import 'package:teclix/presentation/screens/signin/welcome_page.dart';
-import 'package:teclix/presentation/screens/vehicle/vehicle_main.dart';
 
 class NavbarController extends StatefulWidget {
   static const String id = '/logged-in-main';
@@ -32,7 +32,7 @@ class NavbarControllerState extends State<NavbarController> {
     ),
     NavbarTabItem(
       icon: Icons.local_shipping,
-      page: VehicleMain(),
+      page: SalespersonVehicleProvider(),
       tabName: 'Vehicle',
     ),
     NavbarTabItem(
