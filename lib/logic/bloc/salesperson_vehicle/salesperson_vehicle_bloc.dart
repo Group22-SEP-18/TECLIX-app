@@ -19,6 +19,14 @@ class SalespersonVehicleBloc
     add(FetchVehicleDataEvent());
   }
 
+  int getItemCount() {
+    int count = 0;
+    state.salespersonVehicle.assignedVehicle.forEach((element) {
+      count += element.quantity;
+    });
+    return count;
+  }
+
   @override
   Stream<SalespersonVehicleState> mapEventToState(
       SalespersonVehicleEvent event) async* {
@@ -33,7 +41,13 @@ class SalespersonVehicleBloc
         var prefs = await SharedPreferences.getInstance();
         final token = (prefs.getString('token') ?? '');
         var response = await AssetVehicleService.fetchVehicleData(token: token);
-        yield state.clone(loadingData: false, salespersonVehicle: response);
+        yield state.clone(
+          loadingData: false,
+          salespersonVehicle: response,
+        );
+        yield state.clone(
+          totalItems: getItemCount(),
+        );
         break;
     }
   }

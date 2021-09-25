@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/data/models/AssignedVehicle.dart';
 import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_bloc.dart';
@@ -150,29 +151,65 @@ class VehicleMain extends StatelessWidget {
                                                 ? state.salespersonVehicle
                                                     .vehicle.vehicleNumber
                                                 : 'loading',
-                                            fontSize: 25.0,
+                                            fontSize: 28.0,
                                           ),
                                           SizedBox(
                                             height: 5.0,
                                           ),
-                                          MainHeading(
-                                            text: state.salespersonVehicle
-                                                        .vehicle.vehicleModel !=
-                                                    null
-                                                ? state.salespersonVehicle
-                                                    .vehicle.vehicleModel
-                                                : 'loading',
+                                          Row(
+                                            children: [
+                                              MainHeading(
+                                                text: 'Model/Make:',
+                                                fontSize: 20.0,
+                                                color: ColorPrimary,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              SizedBox(
+                                                width: 15.0,
+                                              ),
+                                              MainHeading(
+                                                text: state
+                                                            .salespersonVehicle
+                                                            .vehicle
+                                                            .vehicleType !=
+                                                        null
+                                                    ? state.salespersonVehicle
+                                                        .vehicle.vehicleModel
+                                                        .toUpperCase()
+                                                    : 'loading',
+                                              ),
+                                            ],
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                           ),
                                           SizedBox(
                                             height: 5.0,
                                           ),
-                                          MainHeading(
-                                            text: state.salespersonVehicle
-                                                        .vehicle.vehicleType !=
-                                                    null
-                                                ? state.salespersonVehicle
-                                                    .vehicle.vehicleType
-                                                : 'loading',
+                                          Row(
+                                            children: [
+                                              MainHeading(
+                                                text: 'Type:',
+                                                fontSize: 20.0,
+                                                color: ColorPrimary,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              SizedBox(
+                                                width: 15.0,
+                                              ),
+                                              MainHeading(
+                                                text: state
+                                                            .salespersonVehicle
+                                                            .vehicle
+                                                            .vehicleType !=
+                                                        null
+                                                    ? state.salespersonVehicle
+                                                        .vehicle.vehicleType
+                                                        .toLowerCase()
+                                                    : 'loading',
+                                              ),
+                                            ],
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                           ),
                                         ],
                                       ),
@@ -188,7 +225,7 @@ class VehicleMain extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 5.0),
                             child: Text(
-                              'Stock Status',
+                              'Remaining Stock Status',
                               style: TextStyle(
                                 fontSize: 23.0,
                                 color: ColorPrimary,
@@ -208,16 +245,24 @@ class VehicleMain extends StatelessWidget {
                                   children: [
                                     MainHeading(
                                       color: Colors.white,
-                                      text: 'Sold',
+                                      text: 'Products',
                                       fontSize: 20.0,
                                     ),
                                     SizedBox(
                                       height: 20.0,
                                     ),
-                                    MainHeading(
-                                      color: Colors.white,
-                                      text: '25',
-                                      fontSize: 45.0,
+                                    BlocBuilder<SalespersonVehicleBloc,
+                                        SalespersonVehicleState>(
+                                      builder: (context, state) {
+                                        return MainHeading(
+                                          color: Colors.white,
+                                          text: state.salespersonVehicle
+                                              .assignedVehicle.length
+                                              .toString()
+                                              .padLeft(2, '0'),
+                                          fontSize: 45.0,
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
@@ -231,16 +276,25 @@ class VehicleMain extends StatelessWidget {
                                   children: [
                                     MainHeading(
                                       color: Colors.white,
-                                      text: 'Remaining',
+                                      text: 'Items',
                                       fontSize: 20.0,
                                     ),
                                     SizedBox(
                                       height: 20.0,
                                     ),
-                                    MainHeading(
-                                      color: Colors.white,
-                                      text: '115',
-                                      fontSize: 45.0,
+                                    BlocBuilder<SalespersonVehicleBloc,
+                                        SalespersonVehicleState>(
+                                      buildWhen: (prev, cur) =>
+                                          prev.totalItems != cur.totalItems,
+                                      builder: (context, state) {
+                                        return MainHeading(
+                                          color: Colors.white,
+                                          text: state.totalItems
+                                              .toString()
+                                              .padLeft(2, '0'),
+                                          fontSize: 45.0,
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
