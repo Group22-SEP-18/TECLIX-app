@@ -10,7 +10,6 @@ import 'package:teclix/presentation/screens/vehicle/widgets/product_info_card.da
 import 'package:teclix/presentation/screens/vehicle/widgets/vehicle_stat_card.dart';
 
 class VehicleMain extends StatelessWidget {
-  static const String id = '/vehicle-main';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
