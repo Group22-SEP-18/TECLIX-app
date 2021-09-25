@@ -7,8 +7,6 @@ import 'package:teclix/presentation/screens/leaderboard/widgets/leaderboard_head
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
 
 class LeaderboardPage extends StatelessWidget {
-  static const String id = '/leaderboard';
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
