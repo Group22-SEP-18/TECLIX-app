@@ -74,7 +74,7 @@ class CustomerSoCart extends StatelessWidget {
                         quntity: entry.value,
                         itemName: p.shortName,
                         price: p.price,
-                        image: p.productImageUrl,
+                        image: p.productImage,
                       ),
                     );
                   }).toList(),

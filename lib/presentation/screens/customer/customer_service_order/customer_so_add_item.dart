@@ -97,7 +97,7 @@ class SoAddItem extends StatelessWidget {
                                       builder: (context, state) {
                                         return ItemCard(
                                           imageUrl: state
-                                              .vehicleItems[i].productImageUrl,
+                                              .vehicleItems[i].productImage,
                                           itemName:
                                               state.vehicleItems[i].shortName,
                                           price: state.vehicleItems[i].price,
@@ -109,8 +109,8 @@ class SoAddItem extends StatelessWidget {
                                             RemoveFromCartEvent(
                                                 product: state.vehicleItems[i]),
                                           ),
-                                          selectedAmount: state.cart[state
-                                                  .vehicleItems[i].productId] ??
+                                          selectedAmount: state.cart[
+                                                  state.vehicleItems[i].id] ??
                                               0,
                                         );
                                       },
@@ -127,7 +127,7 @@ class SoAddItem extends StatelessWidget {
                                               return ItemCard(
                                                 imageUrl: state
                                                     .vehicleItems[i + 1]
-                                                    .productImageUrl,
+                                                    .productImage,
                                                 itemName: state
                                                     .vehicleItems[i + 1]
                                                     .shortName,
@@ -147,7 +147,7 @@ class SoAddItem extends StatelessWidget {
                                                 ),
                                                 selectedAmount: state.cart[state
                                                         .vehicleItems[i + 1]
-                                                        .productId] ??
+                                                        .id] ??
                                                     0,
                                               );
                                             },
