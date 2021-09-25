@@ -17,7 +17,7 @@ class LeaderboardCard extends StatelessWidget {
     return CommonPadding(
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(25),
         ),
         elevation: 2,
         color: cardColor ?? ColorDarkGreen,
@@ -43,13 +43,10 @@ class LeaderboardCard extends StatelessWidget {
                   name,
                   style: TextStyle(fontSize: 20.0, color: Colors.white),
                 ),
-                SizedBox(
-                  width: 25.0,
-                ),
                 Spacer(),
                 Text(
                   points,
-                  style: TextStyle(fontSize: 25.0, color: Colors.white),
+                  style: TextStyle(fontSize: 23.0, color: Colors.white),
                 ),
               ],
             ),

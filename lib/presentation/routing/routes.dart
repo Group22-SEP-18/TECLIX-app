@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_provider.dart';
+import 'package:teclix/logic/bloc/leaderboard/leaderboard_provider.dart';
 import 'package:teclix/logic/bloc/salesperson_profile/salesperson_profile_provider.dart';
 import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
@@ -13,7 +14,6 @@ import 'package:teclix/presentation/screens/customer/customer_profile/customer_v
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_search_page.dart';
 import 'package:teclix/presentation/screens/employee/leaderboard_Schema/leaderboard_schema_page.dart';
 import 'package:teclix/presentation/screens/employee/sales_reports/sales_main_page.dart';
-import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/navbar_controller.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
 import 'package:teclix/presentation/screens/signin/welcome_page.dart';
@@ -27,7 +27,7 @@ class Routes {
     SignInPage.id: SignInPage(),
     CustomerRegistrationProvider.id: CustomerRegistrationProvider(),
     SalespersonProfileProvider.id: SalespersonProfileProvider(),
-    LeaderboardPage.id: LeaderboardPage(),
+    LeaderboardProvider.id: LeaderboardProvider(),
     CustomerViewSearchPage.id: CustomerViewSearchPage(),
     CustomerLatePaymentSearchPage.id: CustomerLatePaymentSearchPage(),
     CustomerSoSearchPage.id: CustomerSoSearchPage(),

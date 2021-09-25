@@ -15,6 +15,7 @@ import 'package:teclix/presentation/screens/employee/employee_profile/widgets/pr
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/sub_heading_text.dart';
 import 'package:teclix/presentation/screens/employee/leaderboard_Schema/leaderboard_schema_page.dart';
 import 'package:teclix/presentation/screens/employee/sales_reports/sales_main_page.dart';
+import 'package:intl/intl.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
   static const String id = '/employee-profile';
@@ -152,9 +153,11 @@ class EmployeeProfilePage extends StatelessWidget {
                           builder: (context, state) {
                             return Center(
                               child: Text(
-                                state.loggedUser.firstName +
+                                toBeginningOfSentenceCase(
+                                        state.loggedUser.firstName) +
                                     ' ' +
-                                    state.loggedUser.lastName,
+                                    toBeginningOfSentenceCase(
+                                        state.loggedUser.lastName),
                                 style: TextStyle(
                                     color: ColorPrimary, fontSize: 28.0),
                               ),
@@ -231,9 +234,11 @@ class EmployeeProfilePage extends StatelessWidget {
                                       cur.loggedUser.firstName,
                                   builder: (context, state) {
                                     return ProfileInfoAttrText(
-                                      attr: state.loggedUser.firstName +
+                                      attr: toBeginningOfSentenceCase(
+                                              state.loggedUser.firstName) +
                                           ' ' +
-                                          state.loggedUser.lastName,
+                                          toBeginningOfSentenceCase(
+                                              state.loggedUser.lastName),
                                     );
                                   },
                                 ),
