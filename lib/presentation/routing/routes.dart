@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_provider.dart';
+import 'package:teclix/logic/bloc/salesperson_profile/salesperson_profile_provider.dart';
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/customer_late_payment_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
@@ -9,7 +10,8 @@ import 'package:teclix/presentation/screens/customer/customer_main.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_search_page.dart';
-import 'package:teclix/presentation/screens/employee/employee_profile/employee_profile_page.dart';
+import 'package:teclix/presentation/screens/employee/leaderboard_Schema/leaderboard_schema_page.dart';
+import 'package:teclix/presentation/screens/employee/sales_reports/sales_main_page.dart';
 import 'package:teclix/presentation/screens/leaderboard/leaderboard.dart';
 import 'package:teclix/presentation/screens/navbar/navbar_controller.dart';
 import 'package:teclix/presentation/screens/signin/signin_page.dart';
@@ -24,7 +26,7 @@ class Routes {
     SignupProvider.id: SignupProvider(),
     SignInPage.id: SignInPage(),
     CustomerRegistrationProvider.id: CustomerRegistrationProvider(),
-    EmployeeProfilePage.id: EmployeeProfilePage(),
+    SalespersonProfileProvider.id: SalespersonProfileProvider(),
     LeaderboardPage.id: LeaderboardPage(),
     CustomerViewSearchPage.id: CustomerViewSearchPage(),
     CustomerLatePaymentSearchPage.id: CustomerLatePaymentSearchPage(),
@@ -36,6 +38,8 @@ class Routes {
     VehicleMain.id: VehicleMain(),
     PaymentDetail.id: PaymentDetail(),
     CustomerSoProvider.id: CustomerSoProvider(),
+    LeaderboardSchemaPage.id: LeaderboardSchemaPage(),
+    SalesMainPage.id: SalesMainPage(),
   };
   //this is to call the material routes in pages
   static MaterialPageRoute getMaterialPageRoute(
