@@ -9,8 +9,8 @@ class AssetVehicleService {
     try {
       var response = await dio.get(UrlConstants.spVehicleURL);
       var data = SalespersonVehicle.fromJson(response.data[0]);
-      print(response.data);
-      print(data);
+
+      return data;
     } on DioError catch (e) {
       print(e.response.toString());
       return e.response.toString();

@@ -6,14 +6,12 @@ import 'package:teclix/presentation/screens/vehicle/widgets/vehicle_stat_card.da
 class ProductInfoCard extends StatelessWidget {
   final String productImage;
   final String productName;
-  final String productWeight;
   final String productPrice;
   final String productQuantity;
 
   const ProductInfoCard({
     this.productImage,
     this.productName,
-    this.productWeight,
     this.productPrice,
     this.productQuantity,
   });
@@ -37,9 +35,9 @@ class ProductInfoCard extends StatelessWidget {
                     topLeft: Radius.circular(10.0),
                     bottomLeft: Radius.circular(10.0),
                   ),
-                  child: Image.asset(
+                  child: Image.network(
                     productImage,
-                    height: 155.0,
+                    height: 150.0,
                   ),
                 ),
               ),
@@ -48,7 +46,7 @@ class ProductInfoCard extends StatelessWidget {
               flex: 2,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -63,15 +61,6 @@ class ProductInfoCard extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 5.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      MainHeading(
-                        text: productWeight,
-                        fontSize: 20.0,
-                      ),
-                    ],
                   ),
                   SizedBox(
                     height: 5.0,

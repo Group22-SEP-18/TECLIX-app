@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/data/models/SalespersonVehicle.dart';
+import 'package:teclix/data/models/Vehicle.dart';
 
 @immutable
 class SalespersonVehicleState {
@@ -16,7 +17,8 @@ class SalespersonVehicleState {
   static SalespersonVehicleState get initialState => SalespersonVehicleState(
         error: '',
         loadingData: false,
-        salespersonVehicle: SalespersonVehicle(),
+        salespersonVehicle: SalespersonVehicle(
+            salesperson: 0, vehicle: Vehicle(), assignedVehicle: []),
       );
 
   SalespersonVehicleState clone({

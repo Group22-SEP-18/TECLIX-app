@@ -11,12 +11,13 @@ import 'salesperson_vehicle_state.dart';
 class SalespersonVehicleBloc
     extends Bloc<SalespersonVehicleEvent, SalespersonVehicleState> {
   SalespersonVehicleBloc(BuildContext context)
-      : super(SalespersonVehicleState.initialState);
-  // _initialize(context);
+      : super(SalespersonVehicleState.initialState) {
+    _initialize(context);
+  }
 
-  // Future<void> _initialize(context) async {
-  //   // add(FetchVehicleDataEvent());
-  // }
+  Future<void> _initialize(context) async {
+    add(FetchVehicleDataEvent());
+  }
 
   @override
   Stream<SalespersonVehicleState> mapEventToState(
@@ -28,12 +29,11 @@ class SalespersonVehicleBloc
         yield state.clone(error: error);
         break;
       case FetchVehicleDataEvent:
-        print('running');
         yield state.clone(loadingData: true);
         var prefs = await SharedPreferences.getInstance();
         final token = (prefs.getString('token') ?? '');
         var response = await AssetVehicleService.fetchVehicleData(token: token);
-        yield state.clone(loadingData: false);
+        yield state.clone(loadingData: false, salespersonVehicle: response);
         break;
     }
   }
