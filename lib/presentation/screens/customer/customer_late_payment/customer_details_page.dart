@@ -13,6 +13,7 @@ import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
 import 'package:teclix/presentation/screens/customer/widgets/customer_details_card.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
+import 'package:intl/intl.dart';
 
 class CustomerDetails extends StatelessWidget {
   @override
@@ -99,7 +100,8 @@ class CustomerDetails extends StatelessWidget {
                         amount = state.selectedCus.outstanding;
                         cusId = state.selectedCus.id;
                         return Text(
-                          'Rs ' + state.selectedCus.outstanding,
+                          NumberFormat.currency(name: 'Rs ').format(
+                              double.parse(state.selectedCus.outstanding)),
                           style: TextStyle(
                               fontSize: 45.0,
                               color: ColorPrimary,
