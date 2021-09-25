@@ -16,4 +16,9 @@ abstract class UrlConstants {
   static final String customerSearchURL = customerBasicURL + 'search/';
   static final String customerLatePayURL =
       customerBasicURL + 'late-payment/pay';
+
+//  asset subsystem related urls
+
+  static final String assetBasicURL = baseURL + 'asset-api/';
+  static final String spVehicleURL = assetBasicURL + 'vehicle/salesperson/';
 }

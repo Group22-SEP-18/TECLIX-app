@@ -8,3 +8,5 @@ class ErrorEvent extends SalespersonVehicleEvent {
 
   ErrorEvent(this.error);
 }
+
+class FetchVehicleDataEvent extends SalespersonVehicleEvent {}

@@ -26,12 +26,12 @@ class Product {
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'].toString();
     shortName = json['short_name'];
     longName = json['long_name'];
     productImage = json['product_image'];
     category = json['category'];
-    price = json['price'];
+    price = double.parse(json['price']);
   }
 
   Map<String, dynamic> toJson() {

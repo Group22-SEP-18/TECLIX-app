@@ -1,5 +1,5 @@
 class Vehicle {
-  String id;
+  int id;
   String vehicleNumber;
   String vehicleType;
   String vehicleImage;

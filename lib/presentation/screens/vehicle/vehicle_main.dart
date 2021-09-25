@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_bloc.dart';
+import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_event.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
@@ -12,6 +15,8 @@ import 'package:teclix/presentation/screens/vehicle/widgets/vehicle_stat_card.da
 class VehicleMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final spVehicleBloc = BlocProvider.of<SalespersonVehicleBloc>(context);
+
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -65,51 +70,54 @@ class VehicleMain extends StatelessWidget {
                 SizedBox(
                   height: 5.0,
                 ),
-                VehicleStatCard(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          right: 10.0,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            bottomLeft: Radius.circular(10.0),
+                GestureDetector(
+                  onTap: () => spVehicleBloc.add(FetchVehicleDataEvent()),
+                  child: VehicleStatCard(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            right: 10.0,
                           ),
-                          child: Image.asset(
-                            'static/images/van.jpg',
-                            height: 170.0,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10.0),
+                              bottomLeft: Radius.circular(10.0),
+                            ),
+                            child: Image.asset(
+                              'static/images/van.jpg',
+                              height: 170.0,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            MainHeading(
-                              text: 'WP KA 2020',
-                              fontSize: 25.0,
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            MainHeading(
-                              text: 'Toyota',
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            MainHeading(
-                              text: 'Hiace',
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              MainHeading(
+                                text: 'WP KA 2020',
+                                fontSize: 25.0,
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              MainHeading(
+                                text: 'Toyota',
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              MainHeading(
+                                text: 'Hiace',
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
