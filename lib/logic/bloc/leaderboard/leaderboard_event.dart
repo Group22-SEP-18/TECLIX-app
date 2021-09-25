@@ -8,3 +8,5 @@ class ErrorEvent extends LeaderboardEvent {
 
   ErrorEvent(this.error);
 }
+
+class FetchLeaderboardEvent extends LeaderboardEvent {}
