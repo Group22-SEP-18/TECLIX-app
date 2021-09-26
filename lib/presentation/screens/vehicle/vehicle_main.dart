@@ -122,12 +122,9 @@ class VehicleMain extends StatelessWidget {
                                                   null
                                               ? Container(
                                                   height: 170.0,
-                                                  child: FittedBox(
-                                                    fit: BoxFit.fill,
-                                                    child: Image.network(
-                                                      state.salespersonVehicle
-                                                          .vehicle.vehicleImage,
-                                                    ),
+                                                  child: Image.network(
+                                                    state.salespersonVehicle
+                                                        .vehicle.vehicleImage,
                                                   ),
                                                 )
                                               : Image.asset(
