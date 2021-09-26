@@ -150,7 +150,7 @@ class VehicleMain extends StatelessWidget {
                                                     null
                                                 ? state.salespersonVehicle
                                                     .vehicle.vehicleNumber
-                                                : 'loading',
+                                                : 'unassigned',
                                             fontSize: 28.0,
                                           ),
                                           SizedBox(
@@ -159,7 +159,7 @@ class VehicleMain extends StatelessWidget {
                                           Row(
                                             children: [
                                               MainHeading(
-                                                text: 'Model/Make:',
+                                                text: 'Model:',
                                                 fontSize: 20.0,
                                                 color: ColorPrimary,
                                                 fontWeight: FontWeight.w500,
@@ -176,7 +176,7 @@ class VehicleMain extends StatelessWidget {
                                                     ? state.salespersonVehicle
                                                         .vehicle.vehicleModel
                                                         .toUpperCase()
-                                                    : 'loading',
+                                                    : 'unassigned',
                                               ),
                                             ],
                                             mainAxisAlignment:
@@ -205,7 +205,7 @@ class VehicleMain extends StatelessWidget {
                                                     ? state.salespersonVehicle
                                                         .vehicle.vehicleType
                                                         .toLowerCase()
-                                                    : 'loading',
+                                                    : 'unassigned',
                                               ),
                                             ],
                                             mainAxisAlignment:
