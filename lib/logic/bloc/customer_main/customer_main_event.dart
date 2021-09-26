@@ -8,3 +8,5 @@ class ErrorEvent extends CustomerMainEvent {
 
   ErrorEvent(this.error);
 }
+
+class FetchDailyStatEvent extends CustomerMainEvent {}

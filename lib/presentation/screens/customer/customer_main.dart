@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/logic/bloc/customer_main/customer_main_bloc.dart';
+import 'package:teclix/logic/bloc/customer_main/customer_main_event.dart';
+import 'package:teclix/logic/bloc/customer_main/customer_main_state.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/constants/utils.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/routing/routes.dart';
@@ -18,6 +22,8 @@ import 'package:teclix/presentation/screens/customer/widgets/stat_row_card.dart'
 class CustomerMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final customerMainBloc = BlocProvider.of<CustomerMainBloc>(context);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -90,12 +96,15 @@ class CustomerMain extends StatelessWidget {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.refresh_rounded,
-                        color: ColorPrimary,
-                        size: 35.0,
+                    GestureDetector(
+                      onTap: () => customerMainBloc.add(FetchDailyStatEvent()),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 5.0),
+                        child: Icon(
+                          Icons.refresh_rounded,
+                          color: ColorPrimary,
+                          size: 35.0,
+                        ),
                       ),
                     )
                   ],
@@ -103,31 +112,56 @@ class CustomerMain extends StatelessWidget {
                 SizedBox(
                   height: 10.0,
                 ),
-                Card(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    side: BorderSide(color: ColorPrimary),
-                  ),
-                  elevation: 5,
-                  child: Container(
-                    child: Column(
-                      children: [
-                        StatRowCard(
-                          statAttr: 'Stores Visited:',
-                          statValue: '21',
-                        ),
-                        StatRowCard(
-                          statAttr: 'Payments Collected:',
-                          statValue: '05',
-                        ),
-                        StatRowCard(
-                          statAttr: 'Total Sales:',
-                          statValue: 'Rs. 25,000',
-                        ),
-                      ],
-                    ),
-                  ),
+                BlocBuilder<CustomerMainBloc, CustomerMainState>(
+                  buildWhen: (prev, cur) => prev.loadingData != cur.loadingData,
+                  builder: (context, state) {
+                    return Card(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        side: BorderSide(color: ColorPrimary),
+                      ),
+                      elevation: 5,
+                      child: Container(
+                        child: state.loadingData
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 30.0),
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 50.0,
+                                    width: 50.0,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                              )
+                            : Column(
+                                children: [
+                                  StatRowCard(
+                                    statAttr: 'Stores Visited:',
+                                    statValue: state.dailyStats.shops
+                                        .toString()
+                                        .padLeft(2, '0'),
+                                  ),
+                                  StatRowCard(
+                                    statAttr: 'Payments Collected:',
+                                    statValue: state.dailyStats.payCount
+                                        .toString()
+                                        .padLeft(2, '0'),
+                                  ),
+                                  StatRowCard(
+                                    statAttr: 'Total Sales:',
+                                    statValue:
+                                        state.dailyStats.totalSales != null
+                                            ? Utils.returnCurrency(
+                                                state.dailyStats.totalSales)
+                                            : '0.00',
+                                  ),
+                                ],
+                              ),
+                      ),
+                    );
+                  },
                 ),
                 // TodaysStats(),
                 SizedBox(

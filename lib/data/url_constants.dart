@@ -27,6 +27,11 @@ abstract class UrlConstants {
   static final String salespersonBasicURL = baseURL + 'salesperson-api/';
   static final String allLeaderboardUrl = salespersonBasicURL + 'leaderboard/';
 
+//report sub system urls
+  static final String reportBasicURL = baseURL + 'report-api/';
+  static final String dailystatURL =
+      reportBasicURL + 'salesperson/daily-stats/';
+
 //  others
   static final String dummyprofileImage =
       'https://res.cloudinary.com/dtsbekuau/image/upload/v1632580308/teclix/media/staff/dummy-profile_i1v5wc.png';
