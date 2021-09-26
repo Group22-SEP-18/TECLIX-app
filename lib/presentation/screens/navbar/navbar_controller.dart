@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/logic/bloc/customer_main/customer_main_provider.dart';
 import 'package:teclix/logic/bloc/leaderboard/leaderboard_provider.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
-import 'package:teclix/presentation/screens/customer/customer_main.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/employee_profile_page.dart';
 import 'package:teclix/presentation/screens/navbar/bottom_navbar.dart';
 import 'package:teclix/presentation/screens/navbar/nav_tab_item.dart';
@@ -27,7 +27,7 @@ class NavbarControllerState extends State<NavbarController> {
   final List<NavbarTabItem> tabs = [
     NavbarTabItem(
       icon: Icons.supervised_user_circle,
-      page: CustomerMain(),
+      page: CustomerMainProvider(),
       tabName: 'Customer',
     ),
     NavbarTabItem(

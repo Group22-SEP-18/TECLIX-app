@@ -16,7 +16,6 @@ import 'package:teclix/presentation/screens/customer/widgets/option_card.dart';
 import 'package:teclix/presentation/screens/customer/widgets/stat_row_card.dart';
 
 class CustomerMain extends StatelessWidget {
-  static const String id = '/cutomer_main';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
