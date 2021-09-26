@@ -182,7 +182,7 @@ class EmployeeProfilePage extends StatelessWidget {
                                   height: 15.0,
                                 ),
                                 Text(
-                                  '1580 pts.',
+                                  '1,580.00 pts.',
                                   style: TextStyle(
                                       color: ColorPrimary, fontSize: 30.0),
                                 ),
@@ -201,7 +201,7 @@ class EmployeeProfilePage extends StatelessWidget {
                                   height: 15.0,
                                 ),
                                 Text(
-                                  '3/21',
+                                  '2/5',
                                   style: TextStyle(
                                     color: ColorPrimary,
                                     fontSize: 30.0,

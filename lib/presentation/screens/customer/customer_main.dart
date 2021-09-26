@@ -51,16 +51,16 @@ class CustomerMain extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
-          child: CommonPadding(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(
-                  height: 30.0,
-                ),
-                BlocBuilder<RootBloc, RootState>(
-                  builder: (context, state) {
-                    return Padding(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                height: 30.0,
+              ),
+              BlocBuilder<RootBloc, RootState>(
+                builder: (context, state) {
+                  return CommonPadding(
+                    child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
                       child: Text(
                         'Welcome Back, ' +
@@ -72,16 +72,18 @@ class CustomerMain extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             color: ColorDarkGreen),
                       ),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CommonPadding(
+                    child: Padding(
                       padding: const EdgeInsets.only(left: 5.0),
                       child: Text(
                         'Today\'s Stats',
@@ -91,20 +93,22 @@ class CustomerMain extends StatelessWidget {
                             fontWeight: FontWeight.w500),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5.0),
-                      child: Icon(
-                        Icons.refresh_rounded,
-                        color: ColorPrimary,
-                        size: 35.0,
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Card(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: Icon(
+                      Icons.refresh_rounded,
+                      color: ColorPrimary,
+                      size: 35.0,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              CommonPadding(
+                child: Card(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -130,10 +134,13 @@ class CustomerMain extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 30.0,
-                ),
-                Row(
+              ),
+              // TodaysStats(),
+              SizedBox(
+                height: 30.0,
+              ),
+              CommonPadding(
+                child: Row(
                   children: [
                     Expanded(
                       child: ProfileOptionCard(
@@ -159,10 +166,12 @@ class CustomerMain extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              CommonPadding(
+                child: Row(
                   children: [
                     Expanded(
                       child: ProfileOptionCard(
@@ -188,11 +197,11 @@ class CustomerMain extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 30.0,
-                ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+            ],
           ),
         ),
       ),
