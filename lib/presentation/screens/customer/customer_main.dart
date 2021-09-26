@@ -151,11 +151,11 @@ class CustomerMain extends StatelessWidget {
                                   ),
                                   StatRowCard(
                                     statAttr: 'Total Sales:',
-                                    statValue:
-                                        state.dailyStats.totalSales != null
-                                            ? Utils.returnCurrency(
-                                                state.dailyStats.totalSales)
-                                            : '0.00',
+                                    statValue: state.dailyStats.totalSales !=
+                                            null
+                                        ? Utils.returnCurrency(
+                                            state.dailyStats.totalSales, 'Rs ')
+                                        : '0.00',
                                   ),
                                 ],
                               ),

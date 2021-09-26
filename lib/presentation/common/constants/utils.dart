@@ -5,7 +5,7 @@ class Utils {
     return new DateFormat.MMMM().format(date);
   }
 
-  static String returnCurrency(var data) {
-    return new NumberFormat.currency(name: '').format(data);
+  static String returnCurrency(var data, String name) {
+    return new NumberFormat.currency(name: name).format(data);
   }
 }
