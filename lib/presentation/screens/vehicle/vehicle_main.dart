@@ -121,7 +121,6 @@ class VehicleMain extends StatelessWidget {
                                                       .vehicle.vehicleImage !=
                                                   null
                                               ? Container(
-                                                  width: 100.0,
                                                   height: 170.0,
                                                   child: FittedBox(
                                                     fit: BoxFit.fill,

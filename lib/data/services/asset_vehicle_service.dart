@@ -14,9 +14,10 @@ class AssetVehicleService {
 
       if (response.data.length != 0) {
         data = SalespersonVehicle.fromJson(response.data[0]);
+      } else {
+        data = SalespersonVehicle(
+            assignedVehicle: [], salesperson: 0, vehicle: Vehicle(), id: 0);
       }
-      data = SalespersonVehicle(
-          assignedVehicle: [], salesperson: 0, vehicle: Vehicle(), id: 0);
 
       return data;
     } on DioError catch (e) {
