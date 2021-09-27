@@ -6,6 +6,7 @@ class Product {
   String productImage;
   int quantity;
   String category;
+  String barcode;
 
   Product({
     this.id,
@@ -15,6 +16,7 @@ class Product {
     this.productImage,
     this.quantity,
     this.category,
+    this.barcode,
   });
 
   static Product getByProductId(String id, List<Product> products) {
@@ -32,6 +34,7 @@ class Product {
     productImage = json['product_image'];
     category = json['category'];
     price = double.parse(json['price']);
+    barcode = json['barcode'];
   }
 
   Map<String, dynamic> toJson() {
