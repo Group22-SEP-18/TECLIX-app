@@ -119,6 +119,9 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
           redeem: (event as ToggleredeemEvent).isSelected,
         );
         break;
+      case SetBarcodeValueEvent:
+        yield state.clone(barcodeVal: (event as SetBarcodeValueEvent).value);
+        break;
     }
   }
 

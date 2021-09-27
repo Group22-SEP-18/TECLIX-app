@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_event.dart';
@@ -9,12 +10,32 @@ import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/search_field.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/widgets/elevated_btn.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/widgets/item_card.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class SoAddItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final customerSoBloc = BlocProvider.of<CustomerSoBloc>(context);
     customerSoBloc.add(FetchVehicleItemsEvent());
+
+    Future<void> scanBarcodeNormal() async {
+      String barcodeScanRes;
+      // Platform messages may fail, so we use a try/catch PlatformException.
+      try {
+        barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+            '#00ab55', 'Go Back', false, ScanMode.BARCODE);
+        print(barcodeScanRes);
+      } on PlatformException {
+        barcodeScanRes = 'Failed to get platform version.';
+      }
+
+      // If the widget was removed from the tree while the asynchronous platform
+      // message was in flight, we want to discard the reply rather than calling
+      // setState to update our non-existent appearance.
+      // if (!mounted) return;
+
+      customerSoBloc.add(SetBarcodeValueEvent(value: barcodeScanRes));
+    }
 
     return Expanded(
       child: Column(
@@ -66,6 +87,7 @@ class SoAddItem extends StatelessWidget {
                     btnWidth: 300.0,
                     btnColor: ColorPrimary,
                     btnText: 'Barcode Scanner',
+                    onPressed: () => scanBarcodeNormal(),
                   ),
                 )
               ],

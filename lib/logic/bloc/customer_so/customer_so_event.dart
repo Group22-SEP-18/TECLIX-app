@@ -59,3 +59,9 @@ class ToggleredeemEvent extends CustomerSoEvent {
 
   ToggleredeemEvent({this.isSelected});
 }
+
+class SetBarcodeValueEvent extends CustomerSoEvent {
+  final String value;
+
+  SetBarcodeValueEvent({this.value});
+}
