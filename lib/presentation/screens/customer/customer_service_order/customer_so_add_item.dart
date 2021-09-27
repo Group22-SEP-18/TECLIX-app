@@ -99,7 +99,10 @@ class SoAddItem extends StatelessWidget {
                   prev.fetchingVehicleProducts != cur.fetchingVehicleProducts,
               builder: (context, state) {
                 return state.fetchingVehicleProducts
-                    ? Center(child: CircularProgressIndicator())
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 80.0),
+                        child: Center(child: CircularProgressIndicator()),
+                      )
                     : Column(
                         children: [
                           SizedBox(
