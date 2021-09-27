@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/data/models/Customer.dart';
-import 'package:teclix/data/temporary/data.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_provider.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_event.dart';
@@ -21,8 +19,6 @@ class CustomerSoSearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Customer> searchResults = [];
-
     final serachCustomerBloc = BlocProvider.of<SearchCustomerBloc>(context);
     return SafeArea(
       child: Scaffold(
@@ -51,12 +47,7 @@ class CustomerSoSearchPage extends StatelessWidget {
                         hintText: 'Enter Store Name',
                         onSubmit: (String searchString) => {
                           serachCustomerBloc
-                              .add(ToggleLoadingEvent(isLoading: true)),
-                          new Timer(new Duration(seconds: 2), () {
-                            searchResults = customerResults;
-                            serachCustomerBloc
-                                .add(ToggleLoadingEvent(isLoading: false));
-                          }),
+                              .add(SubmitSearchEvent(value: searchString)),
                         },
                       );
                     },
@@ -68,12 +59,15 @@ class CustomerSoSearchPage extends StatelessWidget {
           ),
         ),
         body: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+          buildWhen: (prev, cur) =>
+              prev.searchResult != cur.searchResult ||
+              prev.loading != cur.loading,
           builder: (context, state) {
             return state.loading
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
-                : searchResults.length == 0
+                : state.searchResult.length == 0
                     ? SearchbarPreview(
                         previewImage: 'static/images/customer_so_search.png',
                         size: 350.0,
@@ -98,20 +92,34 @@ class CustomerSoSearchPage extends StatelessWidget {
                           Expanded(
                             child: ListView.builder(
                                 physics: ClampingScrollPhysics(),
-                                itemCount: searchResults.length,
+                                itemCount: state.searchResult.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return SearchResultCard(
-                                    directTo: () => Navigator.of(context).push(
-                                      Routes.getMaterialPageRoute(
-                                          CustomerSoProvider.id, context),
-                                    ),
-                                    shopName: searchResults[index].shopName,
+                                    directTo: () => {
+                                      serachCustomerBloc.add(
+                                          AddSelectedCustomer(
+                                              selected:
+                                                  state.searchResult[index])),
+                                      new Timer(new Duration(milliseconds: 500),
+                                          () {
+                                        Navigator.of(context).push(
+                                          Routes.getMaterialPageRoute(
+                                              CustomerSoProvider.id, context),
+                                        );
+                                      }),
+                                    },
+                                    shopName:
+                                        state.searchResult[index].shopName,
                                     ownerLastName:
-                                        searchResults[index].ownerLastName,
-                                    ownerFistName:
-                                        searchResults[index].ownerFistName,
-                                    profilePicUrl:
-                                        searchResults[index].profilePicUrl,
+                                        state.searchResult[index].ownerLastName,
+                                    ownerFistName: state
+                                        .searchResult[index].ownerFirstName,
+                                    profilePicUrl: state.searchResult[index]
+                                                .profilePicture ==
+                                            null
+                                        ? ''
+                                        : state
+                                            .searchResult[index].profilePicture,
                                   );
                                 }),
                           ),
