@@ -31,7 +31,7 @@ class CustomerRegisterFinish extends StatelessWidget {
             color: ColorMintGreen,
             text: 'Registered Successfully',
             context: context,
-            durationInSec: 1,
+            durationInSec: 2,
           );
           new Timer(new Duration(milliseconds: 500), () {
             var count = 0;
