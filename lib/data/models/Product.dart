@@ -19,14 +19,6 @@ class Product {
     this.barcode,
   });
 
-  static Product getByProductId(String id, List<Product> products) {
-    for (var i = 0; i < products.length; i++) {
-      if (products[i].id == id) {
-        return products[i];
-      }
-    }
-  }
-
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'].toString();
     shortName = json['short_name'];
