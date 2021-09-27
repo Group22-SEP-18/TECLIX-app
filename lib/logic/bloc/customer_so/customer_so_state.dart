@@ -22,6 +22,7 @@ class CustomerSoState {
   final bool checkBoxValue;
   final bool redeem;
   final String barcodeVal;
+  final double totalAmount;
 
   CustomerSoState({
     @required this.error,
@@ -34,6 +35,7 @@ class CustomerSoState {
     @required this.checkBoxValue,
     @required this.redeem,
     @required this.barcodeVal,
+    @required this.totalAmount,
   });
 
   static CustomerSoState get initialState => CustomerSoState(
@@ -48,6 +50,7 @@ class CustomerSoState {
         checkBoxValue: true,
         redeem: false,
         barcodeVal: 'unknown',
+        totalAmount: 0.00,
       );
 
   CustomerSoState clone({
@@ -61,18 +64,21 @@ class CustomerSoState {
     bool checkBoxValue,
     bool redeem,
     String barcodeVal,
+    double totalAmount,
   }) {
     return CustomerSoState(
-        error: error ?? this.error,
-        step: step ?? this.step,
-        itemCount: itemCount ?? this.itemCount,
-        vehicleItems: vehicleItems ?? this.vehicleItems,
-        cart: cart ?? this.cart,
-        fetchingVehicleProducts:
-            fetchingVehicleProducts ?? this.fetchingVehicleProducts,
-        checkBoxValue: checkBoxValue ?? this.checkBoxValue,
-        loyaltyPoints: loyaltyPoints ?? this.loyaltyPoints,
-        redeem: redeem ?? this.redeem,
-        barcodeVal: barcodeVal ?? this.barcodeVal);
+      error: error ?? this.error,
+      step: step ?? this.step,
+      itemCount: itemCount ?? this.itemCount,
+      vehicleItems: vehicleItems ?? this.vehicleItems,
+      cart: cart ?? this.cart,
+      fetchingVehicleProducts:
+          fetchingVehicleProducts ?? this.fetchingVehicleProducts,
+      checkBoxValue: checkBoxValue ?? this.checkBoxValue,
+      loyaltyPoints: loyaltyPoints ?? this.loyaltyPoints,
+      redeem: redeem ?? this.redeem,
+      barcodeVal: barcodeVal ?? this.barcodeVal,
+      totalAmount: totalAmount ?? this.totalAmount,
+    );
   }
 }

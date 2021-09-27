@@ -32,7 +32,6 @@ class AssetVehicleService {
     try {
       var response = await dio.get(UrlConstants.spVehicleURL);
       SalespersonVehicle data;
-      print(response.data[0]['assigned_vehicle'][0]);
 
       if (response.data.length != 0) {
         data = SalespersonVehicle.fromJson(response.data[0]);

@@ -125,6 +125,9 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
       case SetBarcodeValueEvent:
         yield state.clone(barcodeVal: (event as SetBarcodeValueEvent).value);
         break;
+      case SetTotalAmount:
+        yield state.clone(totalAmount: (event as SetTotalAmount).amount);
+        break;
     }
   }
 

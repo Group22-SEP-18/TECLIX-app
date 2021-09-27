@@ -65,3 +65,9 @@ class SetBarcodeValueEvent extends CustomerSoEvent {
 
   SetBarcodeValueEvent({this.value});
 }
+
+class SetTotalAmount extends CustomerSoEvent {
+  final double amount;
+
+  SetTotalAmount({this.amount});
+}

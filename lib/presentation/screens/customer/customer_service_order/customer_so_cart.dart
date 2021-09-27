@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/data/models/Product.dart';
-import 'package:teclix/data/temporary/data.dart';
+import 'package:teclix/data/models/AssignedVehicle.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
@@ -67,14 +66,15 @@ class CustomerSoCart extends StatelessWidget {
               builder: (context, state) {
                 return Column(
                   children: state.cart.entries.map((entry) {
-                    Product p = Product.getByProductId(entry.key, vehicleProd);
+                    AssignedVehicle p = AssignedVehicle.getByProductId(
+                        entry.key, state.vehicleItems);
                     return Visibility(
                       visible: entry.value != 0,
                       child: OrderListCard(
                         quntity: entry.value,
-                        itemName: p.shortName,
-                        price: p.price,
-                        image: p.productImage,
+                        itemName: p.product.shortName,
+                        price: p.product.price,
+                        image: p.product.productImage,
                       ),
                     );
                   }).toList(),
