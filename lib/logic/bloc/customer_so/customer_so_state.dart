@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/Product.dart';
+import 'package:teclix/data/models/AssignedVehicle.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 
 enum CustomerSOProcessSteps {
@@ -15,7 +15,7 @@ class CustomerSoState {
   final String error;
   final CustomerSOProcessSteps step;
   final int itemCount;
-  final List<Product> vehicleItems;
+  final List<AssignedVehicle> vehicleItems;
   final Map<String, int> cart;
   final bool fetchingVehicleProducts;
   final double loyaltyPoints;
@@ -54,7 +54,7 @@ class CustomerSoState {
     String error,
     CustomerSOProcessSteps step,
     int itemCount,
-    List<Product> vehicleItems,
+    List<AssignedVehicle> vehicleItems,
     Map<String, int> cart,
     bool fetchingVehicleProducts,
     double loyaltyPoints,

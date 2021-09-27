@@ -118,21 +118,26 @@ class SoAddItem extends StatelessWidget {
                                           prev.itemCount != cur.itemCount,
                                       builder: (context, state) {
                                         return ItemCard(
-                                          imageUrl: state
-                                              .vehicleItems[i].productImage,
-                                          itemName:
-                                              state.vehicleItems[i].shortName,
-                                          price: state.vehicleItems[i].price,
+                                          imageUrl: state.vehicleItems[i]
+                                              .product.productImage,
+                                          itemName: state.vehicleItems[i]
+                                              .product.shortName,
+                                          price: state
+                                              .vehicleItems[i].product.price,
                                           addFunc: () => customerSoBloc.add(
                                             AddToCartEvent(
-                                                product: state.vehicleItems[i]),
+                                                product: state
+                                                    .vehicleItems[i].product),
                                           ),
                                           removeFunc: () => customerSoBloc.add(
                                             RemoveFromCartEvent(
-                                                product: state.vehicleItems[i]),
+                                                product: state
+                                                    .vehicleItems[i].product),
                                           ),
-                                          selectedAmount: state.cart[
-                                                  state.vehicleItems[i].id] ??
+                                          selectedAmount: state.cart[state
+                                                  .vehicleItems[i]
+                                                  .product
+                                                  .id] ??
                                               0,
                                         );
                                       },
@@ -149,26 +154,31 @@ class SoAddItem extends StatelessWidget {
                                               return ItemCard(
                                                 imageUrl: state
                                                     .vehicleItems[i + 1]
+                                                    .product
                                                     .productImage,
                                                 itemName: state
                                                     .vehicleItems[i + 1]
+                                                    .product
                                                     .shortName,
-                                                price: state
-                                                    .vehicleItems[i + 1].price,
+                                                price: state.vehicleItems[i + 1]
+                                                    .product.price,
                                                 addFunc: () =>
                                                     customerSoBloc.add(
                                                   AddToCartEvent(
                                                       product: state
-                                                          .vehicleItems[i + 1]),
+                                                          .vehicleItems[i + 1]
+                                                          .product),
                                                 ),
                                                 removeFunc: () =>
                                                     customerSoBloc.add(
                                                   RemoveFromCartEvent(
                                                       product: state
-                                                          .vehicleItems[i + 1]),
+                                                          .vehicleItems[i + 1]
+                                                          .product),
                                                 ),
                                                 selectedAmount: state.cart[state
                                                         .vehicleItems[i + 1]
+                                                        .product
                                                         .id] ??
                                                     0,
                                               );

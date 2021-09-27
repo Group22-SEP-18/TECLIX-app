@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:teclix/data/models/Product.dart';
-import 'package:teclix/data/temporary/data.dart';
+import 'package:teclix/data/services/asset_vehicle_service.dart';
 
 import 'customer_so_event.dart';
 import 'customer_so_state.dart';
@@ -79,11 +80,13 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
         break;
       case FetchVehicleItemsEvent:
         yield state.clone(fetchingVehicleProducts: true);
-        // place hlder for backend call
-
+        var prefs = await SharedPreferences.getInstance();
+        final token = (prefs.getString('token') ?? '');
+        var response =
+            await AssetVehicleService.fetchVehicleProducts(token: token);
         yield state.clone(
           fetchingVehicleProducts: false,
-          vehicleItems: vehicleProd,
+          vehicleItems: response,
         );
         break;
       case AddToCartEvent:
