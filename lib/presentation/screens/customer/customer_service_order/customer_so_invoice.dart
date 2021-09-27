@@ -87,16 +87,6 @@ class CustomerSoInvoice extends StatelessWidget {
           ),
         ),
         Spacer(),
-        CommonPadding(
-          child: RoundedOutlineButton(
-            title: 'Pay Later',
-            borderColor: ColorLightGreen,
-            fillColor: Colors.white,
-            titleColor: ColorPrimary,
-            //:TODO go to the main page fix
-            onPressed: () => Navigator.pop(context),
-          ),
-        ),
         BlocBuilder<CustomerSoBloc, CustomerSoState>(
           builder: (context, state) {
             return CommonPadding(
@@ -115,7 +105,20 @@ class CustomerSoInvoice extends StatelessWidget {
           },
         ),
         SizedBox(
-          height: 20.0,
+          height: 10.0,
+        ),
+        CommonPadding(
+          child: RoundedOutlineButton(
+            title: 'Pay Later',
+            borderColor: ColorLightGreen,
+            fillColor: Colors.white,
+            titleColor: ColorPrimary,
+            //:TODO go to the main page fix
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+        SizedBox(
+          height: 10.0,
         ),
       ],
     ));

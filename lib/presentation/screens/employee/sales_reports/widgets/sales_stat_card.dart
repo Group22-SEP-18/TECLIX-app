@@ -38,10 +38,13 @@ class SalesStatCard extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              SizedBox(
+                height: 5.0,
+              ),
               Text(
-                Utils.returnCurrency(amount),
+                Utils.returnCurrency(amount, 'Rs '),
                 style: TextStyle(
-                  fontSize: 30.0,
+                  fontSize: 28.0,
                   color: ColorHeadingFont,
                 ),
               ),

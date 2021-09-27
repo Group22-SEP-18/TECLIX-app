@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/logic/bloc/customer_late_pay/customer_late_pay_provider.dart';
+import 'package:teclix/logic/bloc/customer_main/customer_main_provider.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_provider.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_provider.dart';
 import 'package:teclix/logic/bloc/leaderboard/leaderboard_provider.dart';
@@ -8,7 +9,6 @@ import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_provid
 import 'package:teclix/logic/bloc/signup/signup_provider.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/customer_late_payment_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
-import 'package:teclix/presentation/screens/customer/customer_main.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_profile.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/customer_view_search_page.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_search_page.dart';
@@ -34,7 +34,7 @@ class Routes {
     CustomerLatePayProvider.id: CustomerLatePayProvider(),
     CustomerProfile.id: CustomerProfile(),
     NavbarController.id: NavbarController(),
-    CustomerMain.id: CustomerMain(),
+    CustomerMainProvider.id: CustomerMainProvider(),
     SalespersonVehicleProvider.id: SalespersonVehicleProvider(),
     PaymentDetail.id: PaymentDetail(),
     CustomerSoProvider.id: CustomerSoProvider(),

@@ -69,7 +69,7 @@ class RootBloc extends Bloc<RootEvent, RootState> {
           await prefs.setString('email', cred['email']);
           await prefs.setString('pw', cred['password']);
           await prefs.setString('token', response['data']['token']);
-
+          await prefs.setString('id', response['data']['id'].toString());
           yield state.clone(
             loggedUser: Salesperson.fromJson(response['data']),
             loginFailed: false,
@@ -108,6 +108,7 @@ class RootBloc extends Bloc<RootEvent, RootState> {
           await prefs.setString('token', '');
           await prefs.setString('email', '');
           await prefs.setString('pw', '');
+          await prefs.setString('id', '');
 
           yield state.clone(
             userLoginState: UserLoginState.LOGGED_OUT,
