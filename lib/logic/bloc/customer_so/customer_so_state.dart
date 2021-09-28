@@ -23,6 +23,10 @@ class CustomerSoState {
   final bool redeem;
   final String barcodeVal;
   final double totalAmount;
+  final int customerId;
+  final bool postingSo;
+  final bool postingDone;
+  final bool postingFailed;
 
   CustomerSoState({
     @required this.error,
@@ -36,6 +40,10 @@ class CustomerSoState {
     @required this.redeem,
     @required this.barcodeVal,
     @required this.totalAmount,
+    @required this.customerId,
+    @required this.postingSo,
+    @required this.postingFailed,
+    @required this.postingDone,
   });
 
   static CustomerSoState get initialState => CustomerSoState(
@@ -51,6 +59,10 @@ class CustomerSoState {
         redeem: false,
         barcodeVal: 'unknown',
         totalAmount: 0.00,
+        customerId: 0,
+        postingSo: false,
+        postingFailed: false,
+        postingDone: false,
       );
 
   CustomerSoState clone({
@@ -65,6 +77,10 @@ class CustomerSoState {
     bool redeem,
     String barcodeVal,
     double totalAmount,
+    int customerId,
+    bool postingSo,
+    bool postingDone,
+    bool postingFailed,
   }) {
     return CustomerSoState(
       error: error ?? this.error,
@@ -79,6 +95,10 @@ class CustomerSoState {
       redeem: redeem ?? this.redeem,
       barcodeVal: barcodeVal ?? this.barcodeVal,
       totalAmount: totalAmount ?? this.totalAmount,
+      customerId: customerId ?? this.customerId,
+      postingSo: postingSo ?? this.postingSo,
+      postingFailed: postingFailed ?? this.postingFailed,
+      postingDone: postingDone ?? this.postingDone,
     );
   }
 }

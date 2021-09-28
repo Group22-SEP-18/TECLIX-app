@@ -3,8 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:teclix/data/models/AssignedVehicle.dart';
+import 'package:teclix/data/models/OrderItem.dart';
 import 'package:teclix/data/models/Product.dart';
+import 'package:teclix/data/models/ServiceOrder.dart';
 import 'package:teclix/data/services/asset_vehicle_service.dart';
+import 'package:teclix/data/services/so_service.dart';
 
 import 'customer_so_event.dart';
 import 'customer_so_state.dart';
@@ -38,6 +42,19 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
 
   int getItemCount() {
     return state.cart.values.reduce((sum, element) => sum + element);
+  }
+
+  List<OrderItems> maptoOrderItems() {
+    AssignedVehicle p;
+    List<OrderItems> list = [];
+    state.cart.entries.map((e) {
+      p = AssignedVehicle.getByProductId(e.key, state.vehicleItems);
+      list.add(OrderItems(
+          product: int.parse(p.product.id),
+          priceAtTheTime: p.product.price.toString(),
+          quantity: e.value));
+    }).toList();
+    return list;
   }
 
   @override
@@ -127,6 +144,29 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
         break;
       case SetTotalAmount:
         yield state.clone(totalAmount: (event as SetTotalAmount).amount);
+        break;
+      case SetCustomerId:
+        yield state.clone(customerId: (event as SetCustomerId).id);
+        break;
+      case CreateLatePaySo:
+        yield state.clone(postingSo: true);
+        var prefs = await SharedPreferences.getInstance();
+        final token = (prefs.getString('token') ?? '');
+        print(maptoOrderItems());
+        final ServiceOrder so = ServiceOrder(
+            customer: state.customerId,
+            discount: '0.00',
+            orderItems: maptoOrderItems(),
+            originalPrice: state.totalAmount.toString(),
+            soType: 'later');
+        var response =
+            await SoService.createSo(token: token, data: so.toJson());
+        yield state.clone(postingSo: false);
+        if (response == '201') {
+          yield state.clone(postingFailed: false, postingDone: true);
+        } else {
+          yield state.clone(postingFailed: true, postingDone: false);
+        }
         break;
     }
   }

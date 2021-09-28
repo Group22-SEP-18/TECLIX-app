@@ -71,3 +71,11 @@ class SetTotalAmount extends CustomerSoEvent {
 
   SetTotalAmount({this.amount});
 }
+
+class SetCustomerId extends CustomerSoEvent {
+  final int id;
+
+  SetCustomerId({this.id});
+}
+
+class CreateLatePaySo extends CustomerSoEvent {}
