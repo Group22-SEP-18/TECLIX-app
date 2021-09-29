@@ -139,9 +139,6 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
           redeem: (event as ToggleredeemEvent).isSelected,
         );
         break;
-      case SetBarcodeValueEvent:
-        yield state.clone(barcodeVal: (event as SetBarcodeValueEvent).value);
-        break;
       case SetTotalAmount:
         yield state.clone(totalAmount: (event as SetTotalAmount).amount);
         break;
@@ -185,6 +182,14 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
         } else {
           yield state.clone(postingFailed: true, postingDone: false);
         }
+        break;
+      case AddSelectedItem:
+        yield state.clone(scannedProduct: (event as AddSelectedItem).product);
+        break;
+      case ChangeVehicleList:
+        yield state.clone(
+          vehicleItems: (event as ChangeVehicleList).list,
+        );
         break;
     }
   }

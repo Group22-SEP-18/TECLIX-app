@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teclix/data/models/AssignedVehicle.dart';
 import 'package:teclix/data/models/Product.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
 
@@ -60,12 +61,6 @@ class ToggleredeemEvent extends CustomerSoEvent {
   ToggleredeemEvent({this.isSelected});
 }
 
-class SetBarcodeValueEvent extends CustomerSoEvent {
-  final String value;
-
-  SetBarcodeValueEvent({this.value});
-}
-
 class SetTotalAmount extends CustomerSoEvent {
   final double amount;
 
@@ -81,3 +76,15 @@ class SetCustomerId extends CustomerSoEvent {
 class CreateLatePaySo extends CustomerSoEvent {}
 
 class CreateSo extends CustomerSoEvent {}
+
+class AddSelectedItem extends CustomerSoEvent {
+  final AssignedVehicle product;
+
+  AddSelectedItem({this.product});
+}
+
+class ChangeVehicleList extends CustomerSoEvent {
+  final List<AssignedVehicle> list;
+
+  ChangeVehicleList({this.list});
+}

@@ -21,12 +21,12 @@ class CustomerSoState {
   final double loyaltyPoints;
   final bool checkBoxValue;
   final bool redeem;
-  final String barcodeVal;
   final double totalAmount;
   final int customerId;
   final bool postingSo;
   final bool postingDone;
   final bool postingFailed;
+  final AssignedVehicle scannedProduct;
 
   CustomerSoState({
     @required this.error,
@@ -38,12 +38,12 @@ class CustomerSoState {
     @required this.loyaltyPoints,
     @required this.checkBoxValue,
     @required this.redeem,
-    @required this.barcodeVal,
     @required this.totalAmount,
     @required this.customerId,
     @required this.postingSo,
     @required this.postingFailed,
     @required this.postingDone,
+    @required this.scannedProduct,
   });
 
   static CustomerSoState get initialState => CustomerSoState(
@@ -53,16 +53,16 @@ class CustomerSoState {
         vehicleItems: [],
         cart: Map(),
         fetchingVehicleProducts: false,
-        //: TODO change the value to zero later
-        loyaltyPoints: 150.00,
+        loyaltyPoints: 0.0,
         checkBoxValue: true,
         redeem: false,
-        barcodeVal: 'unknown',
+        // barcodeVal: 'unknown',
         totalAmount: 0.00,
         customerId: 0,
         postingSo: false,
         postingFailed: false,
         postingDone: false,
+        scannedProduct: AssignedVehicle(),
       );
 
   CustomerSoState clone({
@@ -75,12 +75,12 @@ class CustomerSoState {
     double loyaltyPoints,
     bool checkBoxValue,
     bool redeem,
-    String barcodeVal,
     double totalAmount,
     int customerId,
     bool postingSo,
     bool postingDone,
     bool postingFailed,
+    AssignedVehicle scannedProduct,
   }) {
     return CustomerSoState(
       error: error ?? this.error,
@@ -93,12 +93,12 @@ class CustomerSoState {
       checkBoxValue: checkBoxValue ?? this.checkBoxValue,
       loyaltyPoints: loyaltyPoints ?? this.loyaltyPoints,
       redeem: redeem ?? this.redeem,
-      barcodeVal: barcodeVal ?? this.barcodeVal,
       totalAmount: totalAmount ?? this.totalAmount,
       customerId: customerId ?? this.customerId,
       postingSo: postingSo ?? this.postingSo,
       postingFailed: postingFailed ?? this.postingFailed,
       postingDone: postingDone ?? this.postingDone,
+      scannedProduct: scannedProduct ?? this.scannedProduct,
     );
   }
 }

@@ -13,6 +13,17 @@ class AssignedVehicle {
         return products[i];
       }
     }
+    return null;
+  }
+
+  static AssignedVehicle getByBarcode(
+      String barcode, List<AssignedVehicle> products) {
+    for (var i = 0; i < products.length; i++) {
+      if (products[i].product.barcode == barcode) {
+        return products[i];
+      }
+    }
+    return null;
   }
 
   AssignedVehicle.fromJson(Map<String, dynamic> json) {
