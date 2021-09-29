@@ -23,6 +23,9 @@ class SOCustomerDetails extends StatelessWidget {
           BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
             builder: (context, state) {
               customerSoBloc.add(SetCustomerId(id: state.selectedCus.id));
+              customerSoBloc.add(SetLoyaltyPointsEvent(
+                  amount: double.parse(state.selectedCus.loyaltyPoints)));
+
               return CustomerDetailsCard(
                 profilePic: state.selectedCus.profilePicture,
                 shop: state.selectedCus.shopName,

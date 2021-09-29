@@ -152,13 +152,31 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
         yield state.clone(postingSo: true);
         var prefs = await SharedPreferences.getInstance();
         final token = (prefs.getString('token') ?? '');
-        print(maptoOrderItems());
         final ServiceOrder so = ServiceOrder(
             customer: state.customerId,
             discount: '0.00',
             orderItems: maptoOrderItems(),
             originalPrice: state.totalAmount.toString(),
             soType: 'later');
+        var response =
+            await SoService.createSo(token: token, data: so.toJson());
+        yield state.clone(postingSo: false);
+        if (response == '201') {
+          yield state.clone(postingFailed: false, postingDone: true);
+        } else {
+          yield state.clone(postingFailed: true, postingDone: false);
+        }
+        break;
+      case CreateSo:
+        yield state.clone(postingSo: true);
+        var prefs = await SharedPreferences.getInstance();
+        final token = (prefs.getString('token') ?? '');
+        final ServiceOrder so = ServiceOrder(
+            customer: state.customerId,
+            discount: state.loyaltyPoints.toString(),
+            orderItems: maptoOrderItems(),
+            originalPrice: state.totalAmount.toString(),
+            soType: 'now');
         var response =
             await SoService.createSo(token: token, data: so.toJson());
         yield state.clone(postingSo: false);

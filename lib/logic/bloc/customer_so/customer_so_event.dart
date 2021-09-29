@@ -79,3 +79,5 @@ class SetCustomerId extends CustomerSoEvent {
 }
 
 class CreateLatePaySo extends CustomerSoEvent {}
+
+class CreateSo extends CustomerSoEvent {}
