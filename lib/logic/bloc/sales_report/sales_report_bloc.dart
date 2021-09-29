@@ -24,11 +24,14 @@ class SalesReportBloc extends Bloc<SalesReportEvent, SalesReportState> {
         var prefs = await SharedPreferences.getInstance();
         final token = (prefs.getString('token') ?? '');
         final id = (prefs.getString('id') ?? '');
-        var response =
+        var curMonth =
             await ReportService.fetchCurrentMonthStats(token: token, id: id);
+        var mothlyStat =
+            await ReportService.fetchMonthlySales(token: token, id: id);
         yield state.clone(
           loadingData: false,
-          currentMonthStat: response,
+          currentMonthStat: curMonth,
+          monthlyStatList: mothlyStat,
         );
         // print(state.dailyStats.totalSales);
         break;

@@ -18,7 +18,7 @@ class SalesMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final reportBloc = BlocProvider.of<SalesReportBloc>(context);
-
+    reportBloc.add(FetchReportData());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -103,8 +103,12 @@ class SalesMainPage extends StatelessWidget {
                                           image:
                                               'static/images/total_sales.png',
                                           title: 'Total Sales',
-                                          amount:
-                                              state.currentMonthStat.totalSales,
+                                          amount: state.currentMonthStat
+                                                      .totalSales !=
+                                                  null
+                                              ? state
+                                                  .currentMonthStat.totalSales
+                                              : 0.00,
                                           primary: ColorBlue,
                                         ),
                                         flex: 1,
@@ -113,8 +117,12 @@ class SalesMainPage extends StatelessWidget {
                                         child: SalesStatCard(
                                           image: 'static/images/grow.png',
                                           title: 'Total Late payments',
-                                          amount: state
-                                              .currentMonthStat.totalLatePay,
+                                          amount: state.currentMonthStat
+                                                      .totalLatePay !=
+                                                  null
+                                              ? state
+                                                  .currentMonthStat.totalLatePay
+                                              : 0.00,
                                           primary: ColorGold,
                                         ),
                                         flex: 1,
@@ -126,7 +134,13 @@ class SalesMainPage extends StatelessWidget {
                               SizedBox(
                                 height: 20.0,
                               ),
-                              SalesLineChart(),
+                              BlocBuilder<SalesReportBloc, SalesReportState>(
+                                builder: (context, state) {
+                                  return SalesLineChart(
+                                    data: state.monthlyStatList,
+                                  );
+                                },
+                              ),
                               SizedBox(
                                 height: 15.0,
                               ),

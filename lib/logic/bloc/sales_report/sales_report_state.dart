@@ -7,12 +7,14 @@ class SalesReportState {
   final bool loadingData;
   final bool fetchFailed;
   final CurrentMonthStat currentMonthStat;
+  final Map<int, double> monthlyStatList;
 
   SalesReportState({
     @required this.error,
     @required this.loadingData,
     @required this.fetchFailed,
     @required this.currentMonthStat,
+    @required this.monthlyStatList,
   });
 
   static SalesReportState get initialState => SalesReportState(
@@ -20,6 +22,7 @@ class SalesReportState {
         loadingData: false,
         fetchFailed: false,
         currentMonthStat: CurrentMonthStat(),
+        monthlyStatList: {},
       );
 
   SalesReportState clone({
@@ -27,12 +30,14 @@ class SalesReportState {
     bool loadingData,
     bool fetchFailed,
     CurrentMonthStat currentMonthStat,
+    Map<int, double> monthlyStatList,
   }) {
     return SalesReportState(
       error: error ?? this.error,
       loadingData: loadingData ?? this.loadingData,
       fetchFailed: fetchFailed ?? this.fetchFailed,
       currentMonthStat: currentMonthStat ?? this.currentMonthStat,
+      monthlyStatList: monthlyStatList ?? this.monthlyStatList,
     );
   }
 }
