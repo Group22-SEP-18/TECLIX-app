@@ -36,7 +36,6 @@ class CustomerMainBloc extends Bloc<CustomerMainEvent, CustomerMainState> {
           loadingData: false,
           dailyStats: response,
         );
-        print(state.dailyStats.totalSales);
         break;
     }
   }
