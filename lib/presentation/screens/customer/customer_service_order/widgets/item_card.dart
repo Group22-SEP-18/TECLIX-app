@@ -35,7 +35,7 @@ class ItemCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
+            Image.network(
               imageUrl,
               height: 130.0,
             ),

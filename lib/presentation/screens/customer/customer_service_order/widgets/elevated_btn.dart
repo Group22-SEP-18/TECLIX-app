@@ -4,12 +4,14 @@ class SoElevatedBtn extends StatelessWidget {
   final String btnText;
   final Color btnColor;
   final double btnWidth;
+  final Function onPressed;
 
-  const SoElevatedBtn({this.btnText, this.btnColor, this.btnWidth});
+  const SoElevatedBtn(
+      {this.btnText, this.btnColor, this.btnWidth, this.onPressed});
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

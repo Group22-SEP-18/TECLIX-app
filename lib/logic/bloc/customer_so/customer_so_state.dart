@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/Product.dart';
+import 'package:teclix/data/models/AssignedVehicle.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 
 enum CustomerSOProcessSteps {
@@ -15,12 +15,18 @@ class CustomerSoState {
   final String error;
   final CustomerSOProcessSteps step;
   final int itemCount;
-  final List<Product> vehicleItems;
+  final List<AssignedVehicle> vehicleItems;
   final Map<String, int> cart;
   final bool fetchingVehicleProducts;
   final double loyaltyPoints;
   final bool checkBoxValue;
   final bool redeem;
+  final double totalAmount;
+  final int customerId;
+  final bool postingSo;
+  final bool postingDone;
+  final bool postingFailed;
+  final AssignedVehicle scannedProduct;
 
   CustomerSoState({
     @required this.error,
@@ -32,6 +38,12 @@ class CustomerSoState {
     @required this.loyaltyPoints,
     @required this.checkBoxValue,
     @required this.redeem,
+    @required this.totalAmount,
+    @required this.customerId,
+    @required this.postingSo,
+    @required this.postingFailed,
+    @required this.postingDone,
+    @required this.scannedProduct,
   });
 
   static CustomerSoState get initialState => CustomerSoState(
@@ -41,22 +53,34 @@ class CustomerSoState {
         vehicleItems: [],
         cart: Map(),
         fetchingVehicleProducts: false,
-        //: TODO change the value to zero later
-        loyaltyPoints: 150.00,
+        loyaltyPoints: 0.0,
         checkBoxValue: true,
         redeem: false,
+        // barcodeVal: 'unknown',
+        totalAmount: 0.00,
+        customerId: 0,
+        postingSo: false,
+        postingFailed: false,
+        postingDone: false,
+        scannedProduct: AssignedVehicle(),
       );
 
   CustomerSoState clone({
     String error,
     CustomerSOProcessSteps step,
     int itemCount,
-    List<Product> vehicleItems,
+    List<AssignedVehicle> vehicleItems,
     Map<String, int> cart,
     bool fetchingVehicleProducts,
     double loyaltyPoints,
     bool checkBoxValue,
     bool redeem,
+    double totalAmount,
+    int customerId,
+    bool postingSo,
+    bool postingDone,
+    bool postingFailed,
+    AssignedVehicle scannedProduct,
   }) {
     return CustomerSoState(
       error: error ?? this.error,
@@ -69,6 +93,12 @@ class CustomerSoState {
       checkBoxValue: checkBoxValue ?? this.checkBoxValue,
       loyaltyPoints: loyaltyPoints ?? this.loyaltyPoints,
       redeem: redeem ?? this.redeem,
+      totalAmount: totalAmount ?? this.totalAmount,
+      customerId: customerId ?? this.customerId,
+      postingSo: postingSo ?? this.postingSo,
+      postingFailed: postingFailed ?? this.postingFailed,
+      postingDone: postingDone ?? this.postingDone,
+      scannedProduct: scannedProduct ?? this.scannedProduct,
     );
   }
 }

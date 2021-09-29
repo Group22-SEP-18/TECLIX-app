@@ -6,6 +6,7 @@ class Product {
   String productImage;
   int quantity;
   String category;
+  String barcode;
 
   Product({
     this.id,
@@ -15,15 +16,8 @@ class Product {
     this.productImage,
     this.quantity,
     this.category,
+    this.barcode,
   });
-
-  static Product getByProductId(String id, List<Product> products) {
-    for (var i = 0; i < products.length; i++) {
-      if (products[i].id == id) {
-        return products[i];
-      }
-    }
-  }
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'].toString();
@@ -32,6 +26,7 @@ class Product {
     productImage = json['product_image'];
     category = json['category'];
     price = double.parse(json['price']);
+    barcode = json['barcode'];
   }
 
   Map<String, dynamic> toJson() {

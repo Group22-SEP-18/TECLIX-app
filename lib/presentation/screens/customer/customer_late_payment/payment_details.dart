@@ -28,6 +28,14 @@ class PaymentDetail extends StatelessWidget {
             prev.paymentDone != cur.paymentDone,
         listener: (context, state) {
           if (state.paymentDone) {
+            showToast(
+              iconSize: 40,
+              height: 60.0,
+              color: ColorMintGreen,
+              text: 'Payment Successfully',
+              context: context,
+              durationInSec: 2,
+            );
             var count = 0;
             Navigator.popUntil(context, (route) {
               return count++ == 3;

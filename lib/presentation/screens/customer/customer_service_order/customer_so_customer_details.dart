@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teclix/data/models/AssignedVehicle.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_event.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
+import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
+import 'package:teclix/logic/bloc/search_customer/search_customer_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
@@ -18,14 +21,24 @@ class SOCustomerDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          CustomerDetailsCard(
-            profilePic: 'static/images/profile_dummy.jpg',
-            shop: 'Gamini Stores (Pvt) Ltd',
-            owner: 'Owner Name',
-            street: '4A , hilda lane',
-            city: 'Dehiwala',
-            district: 'Colombo',
-            borderTop: 0.0,
+          BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+            builder: (context, state) {
+              customerSoBloc.add(SetCustomerId(id: state.selectedCus.id));
+              customerSoBloc.add(SetLoyaltyPointsEvent(
+                  amount: double.parse(state.selectedCus.loyaltyPoints)));
+
+              return CustomerDetailsCard(
+                profilePic: state.selectedCus.profilePicture,
+                shop: state.selectedCus.shopName,
+                owner: state.selectedCus.ownerFirstName +
+                    ' ' +
+                    state.selectedCus.ownerLastName,
+                street: state.selectedCus.street,
+                city: state.selectedCus.city,
+                district: state.selectedCus.district,
+                borderTop: 0.0,
+              );
+            },
           ),
           Spacer(),
           Container(
@@ -43,6 +56,9 @@ class SOCustomerDetails extends StatelessWidget {
                   titleColor: Colors.white,
                   colour: ColorPrimary,
                   onPressed: () => {
+                    customerSoBloc.add(
+                      AddSelectedItem(product: AssignedVehicle()),
+                    ),
                     customerSoBloc.add(
                       NextStepEvent(currentStep: state.step),
                     ),

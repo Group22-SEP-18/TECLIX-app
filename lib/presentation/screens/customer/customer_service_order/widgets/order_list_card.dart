@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/constants/utils.dart';
 
 class OrderListCard extends StatelessWidget {
   final String image;
@@ -26,12 +27,18 @@ class OrderListCard extends StatelessWidget {
         ),
         elevation: 3,
         child: Container(
-          height: 80.0,
+          height: 100.0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(image),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Image.network(
+                  image,
+                  height: 60.0,
+                ),
+              ),
               SizedBox(
                 width: 10.0,
               ),
@@ -57,10 +64,10 @@ class OrderListCard extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                'Rs ' + price.toString(),
+                Utils.returnCurrency(price, 'Rs '),
                 style: TextStyle(
                   color: ColorHeadingFont,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                 ),
               ),
               Padding(
@@ -70,12 +77,12 @@ class OrderListCard extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.w500,
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                   ),
                 ),
               ),
               SizedBox(
-                width: 20.0,
+                width: 5.0,
               ),
             ],
           ),

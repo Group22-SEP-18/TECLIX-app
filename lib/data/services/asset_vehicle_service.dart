@@ -25,4 +25,25 @@ class AssetVehicleService {
       return e.response.toString();
     }
   }
+
+  static Future<dynamic> fetchVehicleProducts({token}) async {
+    var dio = Dio();
+    dio.options.headers['Authorization'] = 'Token ' + token;
+    try {
+      var response = await dio.get(UrlConstants.spVehicleURL);
+      SalespersonVehicle data;
+
+      if (response.data.length != 0) {
+        data = SalespersonVehicle.fromJson(response.data[0]);
+      } else {
+        data = SalespersonVehicle(
+            assignedVehicle: [], salesperson: 0, vehicle: Vehicle(), id: 0);
+      }
+
+      return data.assignedVehicle;
+    } on DioError catch (e) {
+      print(e.response.toString());
+      return e.response.toString();
+    }
+  }
 }
