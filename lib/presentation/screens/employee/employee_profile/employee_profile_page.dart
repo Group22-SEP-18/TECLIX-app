@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_event.dart';
 import 'package:teclix/logic/bloc/root/root_state.dart';
+import 'package:teclix/logic/bloc/sales_report/sales_report_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
@@ -14,8 +16,6 @@ import 'package:teclix/presentation/screens/employee/employee_profile/widgets/pr
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/profile_option_card.dart';
 import 'package:teclix/presentation/screens/employee/employee_profile/widgets/sub_heading_text.dart';
 import 'package:teclix/presentation/screens/employee/leaderboard_Schema/leaderboard_schema_page.dart';
-import 'package:teclix/presentation/screens/employee/sales_reports/sales_main_page.dart';
-import 'package:intl/intl.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
   static const String id = '/employee-profile';
@@ -331,7 +331,7 @@ class EmployeeProfilePage extends StatelessWidget {
                                   optionText: 'Sales',
                                   onSelect: () => Navigator.of(context).push(
                                     Routes.getMaterialPageRoute(
-                                        SalesMainPage.id, context),
+                                        SalesReportProvider.id, context),
                                   ),
                                 ),
                               ),

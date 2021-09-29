@@ -33,6 +33,10 @@ abstract class UrlConstants {
   static final String reportBasicURL = baseURL + 'report-api/';
   static final String dailystatURL =
       reportBasicURL + 'salesperson/daily-stats/';
+  static final String currentMonthStatURL =
+      reportBasicURL + 'salesperson/month/';
+  static final String monthlyStatURL =
+      reportBasicURL + 'salesperson/monthly-sales/';
 
 //  others
   static final String dummyprofileImage =
