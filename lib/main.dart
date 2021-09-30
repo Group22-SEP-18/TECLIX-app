@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:teclix/logic/bloc/leaderboard/leaderboard_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
@@ -25,6 +26,9 @@ class TeclixApp extends StatelessWidget {
         ),
         BlocProvider<SearchCustomerBloc>(
           create: (context) => SearchCustomerBloc(context),
+        ),
+        BlocProvider<LeaderboardBloc>(
+          create: (context) => LeaderboardBloc(context),
         ),
       ],
       child: MaterialApp(

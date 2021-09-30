@@ -29,8 +29,13 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
         yield state.clone(loadingData: true);
         var prefs = await SharedPreferences.getInstance();
         final token = (prefs.getString('token') ?? '');
+        final id = (prefs.getString('id') ?? '');
+
         var response = await LeaderboardService.fetchLeaderboard(token: token);
-        yield state.clone(loadingData: false, leaderboard: response);
+        yield state.clone(
+            loadingData: false,
+            leaderboard: response,
+            loggedUser: int.parse(id));
     }
   }
 

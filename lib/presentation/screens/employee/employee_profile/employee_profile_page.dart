@@ -1,12 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:teclix/data/models/Leaderboard.dart';
+import 'package:teclix/logic/bloc/leaderboard/leaderboard_bloc.dart';
+import 'package:teclix/logic/bloc/leaderboard/leaderboard_event.dart';
+import 'package:teclix/logic/bloc/leaderboard/leaderboard_state.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_event.dart';
 import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/logic/bloc/sales_report/sales_report_provider.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/constants/utils.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/routing/routes.dart';
@@ -23,7 +29,8 @@ class EmployeeProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final rootBloc = BlocProvider.of<RootBloc>(context);
-
+    final leaderbordBloc = BlocProvider.of<LeaderboardBloc>(context);
+    // leaderbordBloc.add(FetchLeaderboardEvent());
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromRGBO(249, 249, 249, 1),
@@ -165,51 +172,229 @@ class EmployeeProfilePage extends StatelessWidget {
                           },
                         ),
                         SizedBox(
-                          height: 15.0,
+                          height: 5.0,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.trophy,
-                                  color: ColorGold,
-                                  size: 40.0,
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.trophy,
+                                size: 36.0,
+                                color: ColorGold,
+                              ),
+                              SizedBox(
+                                width: 15.0,
+                              ),
+                              BlocBuilder<LeaderboardBloc, LeaderboardState>(
+                                buildWhen: (pre, cur) =>
+                                    pre.loadingData != cur.loadingData,
+                                builder: (context, state) {
+                                  Map<String, dynamic> user =
+                                      Leaderboard.getPointsByCustomerId(
+                                          list: state.leaderboard,
+                                          id: state.loggedUser);
+                                  return Row(
+                                    children: [
+                                      Text(
+                                        user['rank'].toString().padLeft(1, '0'),
+                                        style: TextStyle(
+                                          color: ColorGold,
+                                          fontSize: 35.0,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 15.0),
+                                        child: Text(
+                                          '/' +
+                                              state.leaderboard.length
+                                                  .toString(),
+                                          style: TextStyle(
+                                            color: ColorMintGreen,
+                                            fontSize: 22.0,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        BlocBuilder<LeaderboardBloc, LeaderboardState>(
+                          buildWhen: (pre, cur) =>
+                              pre.loadingData != cur.loadingData,
+                          builder: (context, state) {
+                            Map<String, dynamic> user =
+                                Leaderboard.getPointsByCustomerId(
+                                    list: state.leaderboard,
+                                    id: state.loggedUser);
+                            return Card(
+                              color: Colors.grey.shade100,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                side: BorderSide(
+                                  color: ColorPrimaryLight,
                                 ),
-                                SizedBox(
-                                  height: 15.0,
-                                ),
-                                Text(
-                                  '1,580.00 pts.',
-                                  style: TextStyle(
-                                      color: ColorPrimary, fontSize: 30.0),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.medal,
-                                  size: 40.0,
-                                  color: ColorToastRed,
-
-                                  // color: ColorGold,
-                                ),
-                                SizedBox(
-                                  height: 15.0,
-                                ),
-                                Text(
-                                  '2/5',
-                                  style: TextStyle(
-                                    color: ColorPrimary,
-                                    fontSize: 30.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                              ),
+                              child: state.loadingData
+                                  ? Center(
+                                      child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 15.0),
+                                      child: CircularProgressIndicator(),
+                                    ))
+                                  : Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 5.0,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Spacer(),
+                                            Text(
+                                              'Leaderboard Stats',
+                                              style: TextStyle(
+                                                color: ColorMintGreen,
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            GestureDetector(
+                                              onTap: () => leaderbordBloc
+                                                  .add(FetchLeaderboardEvent()),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 5.0),
+                                                child: Icon(
+                                                  Icons.refresh_rounded,
+                                                  color: ColorPrimary,
+                                                  size: 28.0,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 10.0,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 10.0,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 5.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                    'Today',
+                                                    style: TextStyle(
+                                                        color: ColorMintGreen,
+                                                        fontSize: 20.0),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5.0,
+                                                  ),
+                                                  Text(
+                                                    Utils.returnCurrency(
+                                                        double.parse(
+                                                            user['details']
+                                                                .pointsToday),
+                                                        ''),
+                                                    style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 22.0),
+                                                  ),
+                                                ],
+                                              ),
+                                              Container(
+                                                height: 60.0,
+                                                child: VerticalDivider(
+                                                  thickness: 1.0,
+                                                  width: 0.0,
+                                                  color: ColorMintGreen,
+                                                  endIndent: 5.0,
+                                                ),
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                    'Current Month',
+                                                    style: TextStyle(
+                                                        color: ColorMintGreen,
+                                                        fontSize: 20.0),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5.0,
+                                                  ),
+                                                  Text(
+                                                    Utils.returnCurrency(
+                                                        double.parse(user[
+                                                                'details']
+                                                            .pointsCurrentMonth),
+                                                        ''),
+                                                    style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 22.0),
+                                                  ),
+                                                ],
+                                              ),
+                                              Container(
+                                                height: 60.0,
+                                                child: VerticalDivider(
+                                                  thickness: 1.0,
+                                                  width: 0.0,
+                                                  color: ColorMintGreen,
+                                                  endIndent: 5.0,
+                                                ),
+                                              ),
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                    'All Time',
+                                                    style: TextStyle(
+                                                        color: ColorMintGreen,
+                                                        fontSize: 20.0),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5.0,
+                                                  ),
+                                                  Text(
+                                                    Utils.returnCurrency(
+                                                        double.parse(
+                                                            user['details']
+                                                                .pointsAllTime),
+                                                        ''),
+                                                    style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 22.0),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                            );
+                          },
                         ),
                         SizedBox(
                           height: 5.0,
