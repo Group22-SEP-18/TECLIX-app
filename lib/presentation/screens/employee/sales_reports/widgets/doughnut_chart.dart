@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:teclix/data/models/MonthlyStatComparison.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
+import 'package:teclix/presentation/common/constants/utils.dart';
 
 class DoughnutCharts extends StatelessWidget {
+  final MonthlyStatComparison monthlyStatData;
+
+  const DoughnutCharts({Key key, this.monthlyStatData}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final List<ChartData> chartData = [
-      ChartData('Late Payments', 10, ColorYellow),
-      ChartData('Service Orders', 22, ColorBlue),
-      ChartData('Stores visited', 22, ColorPrimary)
+      ChartData('Late Payments', monthlyStatData.payCount, ColorYellow),
+      ChartData('Service Orders', monthlyStatData.soCount, ColorBlue),
+      ChartData(
+          'Customers created', monthlyStatData.customerCount, ColorPrimary)
     ];
     return Center(
         child: Card(
@@ -27,7 +33,10 @@ class DoughnutCharts extends StatelessWidget {
                       position: LegendPosition.bottom,
                       textStyle: TextStyle(fontSize: 16.0)),
                   title: ChartTitle(
-                      text: 'Today\'s Stats',
+                      text: 'Monthly Stats ' +
+                          '( ' +
+                          Utils.returnMonth(DateTime.now()) +
+                          ' )',
                       textStyle:
                           TextStyle(color: ColorPrimary, fontSize: 18.0)),
                   series: <CircularSeries>[

@@ -5,37 +5,38 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:teclix/data/services/report_service.dart';
 
-import 'customer_main_event.dart';
-import 'customer_main_state.dart';
+import 'sales_report_event.dart';
+import 'sales_report_state.dart';
 
-class CustomerMainBloc extends Bloc<CustomerMainEvent, CustomerMainState> {
-  CustomerMainBloc(BuildContext context)
-      : super(CustomerMainState.initialState) {
-    _initialize(context);
-  }
-  Future<void> _initialize(context) async {
-    add(FetchDailyStatEvent());
-  }
+class SalesReportBloc extends Bloc<SalesReportEvent, SalesReportState> {
+  SalesReportBloc(BuildContext context) : super(SalesReportState.initialState);
 
   @override
-  Stream<CustomerMainState> mapEventToState(CustomerMainEvent event) async* {
+  Stream<SalesReportState> mapEventToState(SalesReportEvent event) async* {
     switch (event.runtimeType) {
       case ErrorEvent:
         final error = (event as ErrorEvent).error;
         yield state.clone(error: "");
         yield state.clone(error: error);
         break;
-      case FetchDailyStatEvent:
+      case FetchReportData:
         yield state.clone(loadingData: true);
         var prefs = await SharedPreferences.getInstance();
         final token = (prefs.getString('token') ?? '');
         final id = (prefs.getString('id') ?? '');
-        var response =
-            await ReportService.fetchDailyStats(token: token, id: id);
+        var curMonth =
+            await ReportService.fetchCurrentMonthStats(token: token, id: id);
+        var mothlyStat =
+            await ReportService.fetchMonthlySales(token: token, id: id);
+        var mothlyStatComp =
+            await ReportService.fetchMonthlyStats(token: token, id: id);
         yield state.clone(
           loadingData: false,
-          dailyStats: response,
+          currentMonthStat: curMonth,
+          monthlyStatList: mothlyStat,
+          monthlyStatComparison: mothlyStatComp,
         );
+        // print(state.dailyStats.totalSales);
         break;
     }
   }

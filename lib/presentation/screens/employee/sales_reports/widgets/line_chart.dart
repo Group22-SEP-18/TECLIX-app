@@ -3,9 +3,23 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 
 class SalesLineChart extends StatelessWidget {
-  const SalesLineChart({
-    Key key,
-  }) : super(key: key);
+  final Map<int, double> data;
+
+  SalesLineChart({this.data});
+  final List<String> months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,23 +48,10 @@ class SalesLineChart extends StatelessWidget {
                       markerSettings: MarkerSettings(
                         isVisible: true,
                       ),
-                      // dataLabelSettings: DataLabelSettings(
-                      //     // Renders the data label
-                      //     isVisible: true),
                       color: ColorPrimary,
-                      dataSource: [
-                        // Bind data source
-                        SalesData('Jan', 2000),
-                        SalesData('Feb', 2448),
-                        SalesData('Mar', 4434),
-                        SalesData('Apr', 15232),
-                        SalesData('May', 1440),
-                        SalesData('jun', 1135),
-                        SalesData('Jul', 8828),
-                        SalesData('Aug', 8834),
-                        SalesData('Sep', 7732),
-                      ],
-                      xValueMapper: (SalesData sales, _) => sales.year,
+                      dataSource: SalesData.generatesalesData(
+                          data: data, months: months),
+                      xValueMapper: (SalesData sales, _) => sales.month,
                       yValueMapper: (SalesData sales, _) => sales.sales)
                 ]),
           ),
@@ -59,7 +60,17 @@ class SalesLineChart extends StatelessWidget {
 }
 
 class SalesData {
-  SalesData(this.year, this.sales);
-  final String year;
+  SalesData(this.month, this.sales);
+  final String month;
   final double sales;
+
+  static List<SalesData> generatesalesData(
+      {List<String> months, Map<int, double> data}) {
+    List<SalesData> list = [];
+    for (int i = 0; i < DateTime.now().month; i++) {
+      var value = data[i + 1] ?? 0.00;
+      list.add(SalesData(months[i], value));
+    }
+    return list;
+  }
 }

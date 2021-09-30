@@ -44,7 +44,7 @@ class SalesStatCard extends StatelessWidget {
               Text(
                 Utils.returnCurrency(amount, 'Rs '),
                 style: TextStyle(
-                  fontSize: 28.0,
+                  fontSize: 25.0,
                   color: ColorHeadingFont,
                 ),
               ),
