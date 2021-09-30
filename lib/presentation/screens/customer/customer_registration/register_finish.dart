@@ -71,9 +71,8 @@ class CustomerRegisterFinish extends StatelessWidget {
                 CommonPadding(
                   child: InfoText(
                     text:
-                        " 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla ex, "
-                        "vitae tempus lacus condimentum vel. Praesent semper, "
-                        "lectus in dictum scelerisque, erat Leo viverra sem, non sagittis est diam ut nisl',",
+                        "Please note that, upon confirmation the customer account will be created and it is irreversible. Please contact relevant authorities, "
+                        "if any assitance is required.",
                   ),
                 ),
                 SizedBox(
@@ -113,7 +112,10 @@ class CustomerRegisterFinish extends StatelessWidget {
                     );
                   },
                 ),
-                TextBtn(text: 'Cancel'),
+                TextBtn(
+                  text: 'Cancel',
+                  onClick: () => Navigator.pop(context),
+                ),
               ],
             ),
           ],

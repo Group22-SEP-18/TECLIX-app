@@ -37,9 +37,8 @@ class CustomerRegisterStart extends StatelessWidget {
               CommonPadding(
                 child: InfoText(
                   text:
-                      " 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla ex, "
-                      "vitae tempus lacus condimentum vel. Praesent semper, "
-                      "lectus in dictum scelerisque, erat Leo viverra sem, non sagittis est diam ut nisl',",
+                      "Welcome!\nPlease note that registering customers without customer\'s consent is against our company policies."
+                      "\nPlease note that, all the fields are required to complete the registration flow unless specified otherwise.",
                 ),
               ),
             ],
