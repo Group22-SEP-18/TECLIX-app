@@ -28,10 +28,13 @@ class SalesReportBloc extends Bloc<SalesReportEvent, SalesReportState> {
             await ReportService.fetchCurrentMonthStats(token: token, id: id);
         var mothlyStat =
             await ReportService.fetchMonthlySales(token: token, id: id);
+        var mothlyStatComp =
+            await ReportService.fetchMonthlyStats(token: token, id: id);
         yield state.clone(
           loadingData: false,
           currentMonthStat: curMonth,
           monthlyStatList: mothlyStat,
+          monthlyStatComparison: mothlyStatComp,
         );
         // print(state.dailyStats.totalSales);
         break;

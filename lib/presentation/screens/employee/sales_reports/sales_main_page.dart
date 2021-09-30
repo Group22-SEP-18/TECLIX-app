@@ -144,7 +144,14 @@ class SalesMainPage extends StatelessWidget {
                               SizedBox(
                                 height: 15.0,
                               ),
-                              DoughnutCharts(),
+                              BlocBuilder<SalesReportBloc, SalesReportState>(
+                                builder: (context, state) {
+                                  return DoughnutCharts(
+                                    monthlyStatData:
+                                        state.monthlyStatComparison,
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ),
