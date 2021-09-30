@@ -10,6 +10,7 @@ import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/common/widgets/rounded_text_field.dart';
 import 'package:teclix/presentation/common/widgets/text_button.dart';
+import 'package:teclix/presentation/common/widgets/toast_message.dart';
 import 'package:teclix/presentation/screens/navbar/navbar_controller.dart';
 import 'package:teclix/presentation/screens/signup/widgets/infoText.dart';
 
@@ -24,9 +25,22 @@ class SignInPage extends StatelessWidget {
     final rootBloc = BlocProvider.of<RootBloc>(context);
     return SafeArea(
       child: BlocListener<RootBloc, RootState>(
+        listenWhen: (prev, cur) =>
+            prev.userLoginState != cur.userLoginState ||
+            prev.loginFailed != cur.loginFailed,
         listener: (context, state) {
           if (state.userLoginState == UserLoginState.LOGGED_IN) {
             Navigator.pushReplacementNamed(context, NavbarController.id);
+          } else if (state.loginFailed) {
+            showToast(
+              isError: true,
+              iconSize: 40,
+              height: 60.0,
+              color: ColorToastRed,
+              text: state.loginError,
+              context: context,
+              durationInSec: 5,
+            );
           }
         },
         child: Scaffold(
@@ -114,7 +128,6 @@ class SignInPage extends StatelessWidget {
                               'email': emailController.text,
                               'password': passwordController.text,
                             },
-                            buildContext: context,
                           ),
                         ),
                       ),
