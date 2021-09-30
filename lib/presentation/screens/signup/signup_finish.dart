@@ -54,10 +54,12 @@ class SignupFinish extends StatelessWidget {
                         ),
                         CommonPadding(
                           child: InfoText(
+                            fontSize: 18.0,
                             text:
-                                " 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla ex, "
-                                "vitae tempus lacus condimentum vel. Praesent semper, "
-                                "lectus in dictum scelerisque, erat Leo viverra sem, non sagittis est diam ut nisl',",
+                                "Please note that once you confirm your registration the account "
+                                "will be sent to the relevant authorities for approval."
+                                "Please contact your supervisor for more information.\n"
+                                "Welcome to Team TECLIX!",
                           ),
                         ),
                       ],
@@ -99,6 +101,7 @@ class SignupFinish extends StatelessWidget {
                         ),
                         TextBtn(
                           text: 'Cancel',
+                          onClick: () => Navigator.pop(context),
                         ),
                       ],
                     );
