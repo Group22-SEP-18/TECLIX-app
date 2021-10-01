@@ -26,7 +26,7 @@ class SignupStart extends StatelessWidget {
                 child: Image.asset('static/images/test.png'),
               ),
               MainHeading(
-                text: "Welcome!!!",
+                text: "Welcome!",
                 fontSize: 30.0,
               ),
               SizedBox(
@@ -34,11 +34,9 @@ class SignupStart extends StatelessWidget {
               ),
               CommonPadding(
                 child: InfoText(
-                  text:
-                      " 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla ex, "
-                      "vitae tempus lacus condimentum vel. Praesent semper, "
-                      "lectus in dictum scelerisque, erat Leo viverra sem, non sagittis est diam ut nisl',",
-                ),
+                    fontSize: 18.0,
+                    text:
+                        'The entire team of TECLIX is thrilled to welcome you on board. We hope you’ll do some amazing works here. Please note that this app is intended for employees of TECLIX, any unauthorized personnel will not be able to access the app. \n -- Team TECLIX --'),
               ),
             ],
           ),

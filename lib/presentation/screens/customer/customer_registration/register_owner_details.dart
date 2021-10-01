@@ -146,7 +146,7 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                 ),
                 InfoText(
                   text:
-                      'Customer Picture is not required, you can skip it if required.',
+                      'Customer Picture is not required, you can skip it if necessary.',
                 )
               ],
             ),

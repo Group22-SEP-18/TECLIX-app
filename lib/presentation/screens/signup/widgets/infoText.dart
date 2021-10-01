@@ -10,7 +10,7 @@ class InfoText extends StatelessWidget {
   InfoText(
       {this.text,
       this.textAlign = TextAlign.justify,
-      this.fontSize = 16.0,
+      this.fontSize = 17.0,
       this.fontWeight,
       this.textColor = ColorPrimary});
 

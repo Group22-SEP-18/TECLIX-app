@@ -30,8 +30,6 @@ class RootBloc extends Bloc<RootEvent, RootState> {
             'email': email,
             'password': password,
           },
-          buildContext: context,
-          showToast: false,
         ),
       );
     } else {
@@ -57,9 +55,9 @@ class RootBloc extends Bloc<RootEvent, RootState> {
       case LogInUserEvent:
         yield state.clone(
           loading: true,
+          loginError: null,
         );
         final cred = (event as LogInUserEvent).credentials;
-        final show = (event as LogInUserEvent).showToast ?? true;
 
         final response = await AuthService.loginUser(cred);
 
@@ -78,20 +76,9 @@ class RootBloc extends Bloc<RootEvent, RootState> {
           );
         } else if (response.containsKey('error')) {
           yield state.clone(
-            loginFailed: true,
-            loading: false,
-          );
-          show
-              ? showToast(
-                  isError: true,
-                  iconSize: 40,
-                  height: 60.0,
-                  color: ColorToastRed,
-                  text: response['error']['detail'],
-                  context: (event as LogInUserEvent).buildContext,
-                  durationInSec: 5,
-                )
-              : null;
+              loginFailed: true,
+              loading: false,
+              loginError: response['error']['detail']);
         }
         break;
       case LogoutEvent:

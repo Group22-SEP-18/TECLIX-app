@@ -48,32 +48,26 @@ class SignupPassword extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 20.0,
-                ),
-                BlocBuilder<SignupBloc, SignupState>(
-                  builder: (context, state) {
-                    return RoundedTextField(
-                      hint: 'Re-enter Password',
-                      hideText: true,
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 20.0,
+                  height: 50.0,
                 ),
               ],
             ),
           ),
-          Spacer(),
           CommonPadding(
             child: InfoText(
-              text:
-                  " 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla ex, "
-                  "vitae tempus lacus condimentum vel. Praesent semper, "
-                  "lectus in dictum scelerisque, erat Leo viverra sem, non sagittis est diam ut nisl',",
+              text: "1. MUST contain at least 6 characters. "
+                  "\n2. MUST contain at least one uppercase letter."
+                  "\n3. MUST contain at least one lowercase letter."
+                  "\n4. MUST contain at least one number."
+                  "\n5. MUST contain at least one special character.\n (!”#\$%&'()*+,-./:;<=>?@[\]^_`{|}~ )."
+                  "\n\nPlease make sure to avoid commonly used passwords,further if possible please avoid using "
+                  "first name, last name, email address mailbox or domain as your password.",
             ),
           ),
           Spacer(),
+          SizedBox(
+            height: 20.0,
+          ),
           BlocBuilder<SignupBloc, SignupState>(
             builder: (context, state) {
               return CommonPadding(
