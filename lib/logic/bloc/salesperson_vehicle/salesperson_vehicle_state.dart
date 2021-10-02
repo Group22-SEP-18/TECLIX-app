@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/SalespersonVehicle.dart';
-import 'package:teclix/data/models/Vehicle.dart';
+import 'package:teclix/data/models/salesperson_vehicle.dart';
+import 'package:teclix/data/models/vehicle.dart';
 
 @immutable
 class SalespersonVehicleState {

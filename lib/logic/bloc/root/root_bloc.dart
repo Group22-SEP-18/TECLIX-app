@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:teclix/data/models/Salesperson.dart';
+import 'package:teclix/data/models/salesperson.dart';
 import 'package:teclix/data/services/auth_service.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/toast_message.dart';

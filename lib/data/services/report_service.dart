@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:teclix/data/models/DailyStats.dart';
-import 'package:teclix/data/models/MonthlyStat.dart';
-import 'package:teclix/data/models/MonthlyStatComparison.dart';
+import 'package:teclix/data/models/daily_stats.dart';
+import 'package:teclix/data/models/monthly_stat.dart';
+import 'package:teclix/data/models/monthly_stat_comparison.dart';
 import 'package:teclix/data/models/current_month_stat.dart';
 import 'package:teclix/data/url_constants.dart';
 

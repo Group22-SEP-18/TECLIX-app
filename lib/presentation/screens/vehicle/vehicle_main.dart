@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/data/models/AssignedVehicle.dart';
+import 'package:teclix/data/models/assigned_vehicle.dart';
 import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_bloc.dart';
 import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_event.dart';
 import 'package:teclix/logic/bloc/salesperson_vehicle/salesperson_vehicle_state.dart';

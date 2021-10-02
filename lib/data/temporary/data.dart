@@ -1,6 +1,6 @@
-import 'package:teclix/data/models/Customer.dart';
-import 'package:teclix/data/models/CustomerLocation.dart';
-import 'package:teclix/data/models/Product.dart';
+import 'package:teclix/data/models/customer.dart';
+import 'package:teclix/data/models/customer_location.dart';
+import 'package:teclix/data/models/product.dart';
 
 List<Customer> customerResults = [
   Customer.searchResult(

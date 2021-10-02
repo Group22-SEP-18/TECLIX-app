@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:teclix/data/models/CustomerSearch.dart';
+import 'package:teclix/data/models/customer_search.dart';
 import 'package:teclix/data/url_constants.dart';
 
 class CustomerSearchService {

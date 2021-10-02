@@ -1,4 +1,4 @@
-import 'package:teclix/data/models/LeaderboardSalesperson.dart';
+import 'package:teclix/data/models/leaderboard_salesperson.dart';
 
 class Leaderboard {
   LeaderboardSalesperson salesperson;

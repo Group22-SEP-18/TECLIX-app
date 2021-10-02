@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:teclix/data/models/MonthlyStatComparison.dart';
+import 'package:teclix/data/models/monthly_stat_comparison.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/constants/utils.dart';
 

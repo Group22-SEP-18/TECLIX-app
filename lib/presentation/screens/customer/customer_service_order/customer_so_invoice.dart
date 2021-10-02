@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/data/models/AssignedVehicle.dart';
+import 'package:teclix/data/models/assigned_vehicle.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_event.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';

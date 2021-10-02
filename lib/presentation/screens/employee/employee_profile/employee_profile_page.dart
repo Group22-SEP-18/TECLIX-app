@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:teclix/data/models/Leaderboard.dart';
+import 'package:teclix/data/models/leaderboard.dart';
 import 'package:teclix/logic/bloc/leaderboard/leaderboard_bloc.dart';
 import 'package:teclix/logic/bloc/leaderboard/leaderboard_event.dart';
 import 'package:teclix/logic/bloc/leaderboard/leaderboard_state.dart';

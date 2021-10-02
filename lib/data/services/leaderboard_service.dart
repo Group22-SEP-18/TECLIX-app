@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:teclix/data/models/Leaderboard.dart';
+import 'package:teclix/data/models/leaderboard.dart';
 import 'package:teclix/data/url_constants.dart';
 
 class LeaderboardService {

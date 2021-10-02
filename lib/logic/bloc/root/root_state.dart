@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/Salesperson.dart';
+import 'package:teclix/data/models/salesperson.dart';
 
 enum UserLoginState {
   LOGGED_IN,

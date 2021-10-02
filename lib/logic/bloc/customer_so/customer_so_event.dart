@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/AssignedVehicle.dart';
-import 'package:teclix/data/models/Product.dart';
+import 'package:teclix/data/models/assigned_vehicle.dart';
+import 'package:teclix/data/models/product.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
 
 @immutable

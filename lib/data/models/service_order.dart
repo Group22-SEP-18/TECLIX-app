@@ -1,4 +1,4 @@
-import 'package:teclix/data/models/OrderItem.dart';
+import 'package:teclix/data/models/order_item.dart';
 
 class ServiceOrder {
   List<OrderItems> orderItems;

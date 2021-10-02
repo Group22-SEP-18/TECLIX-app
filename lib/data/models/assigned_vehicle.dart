@@ -1,4 +1,4 @@
-import 'package:teclix/data/models/Product.dart';
+import 'package:teclix/data/models/product.dart';
 
 class AssignedVehicle {
   Product product;

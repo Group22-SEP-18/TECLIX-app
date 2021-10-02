@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:teclix/data/models/Salesperson.dart';
+import 'package:teclix/data/models/salesperson.dart';
 import 'package:teclix/data/url_constants.dart';
 
 class AuthService {

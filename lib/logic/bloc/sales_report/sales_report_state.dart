@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/MonthlyStatComparison.dart';
+import 'package:teclix/data/models/monthly_stat_comparison.dart';
 import 'package:teclix/data/models/current_month_stat.dart';
 
 @immutable
