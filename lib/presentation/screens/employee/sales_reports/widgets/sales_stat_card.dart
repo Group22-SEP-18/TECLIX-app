@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
-import 'package:teclix/presentation/common/constants/utils.dart';
+import 'package:teclix/presentation/common/utils.dart';
 
 class SalesStatCard extends StatelessWidget {
   final Color primary;

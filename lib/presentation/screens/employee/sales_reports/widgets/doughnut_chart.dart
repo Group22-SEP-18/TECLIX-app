@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:teclix/data/models/monthly_stat_comparison.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
-import 'package:teclix/presentation/common/constants/utils.dart';
+import 'package:teclix/presentation/common/utils.dart';
 
 class DoughnutCharts extends StatelessWidget {
   final MonthlyStatComparison monthlyStatData;
