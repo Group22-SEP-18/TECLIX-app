@@ -1,4 +1,4 @@
-# teclix
+# Teclix
 
 A new Flutter project.
 
