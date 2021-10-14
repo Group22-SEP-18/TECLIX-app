@@ -39,6 +39,7 @@ class SignupEmpDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 BlocBuilder<SignupBloc, SignupState>(
+                  key: Key('email_text'),
                   builder: (context, state) {
                     emailController.text = state.salesperson.email;
                     return RoundedTextField(
@@ -51,6 +52,7 @@ class SignupEmpDetails extends StatelessWidget {
                   height: 20.0,
                 ),
                 BlocBuilder<SignupBloc, SignupState>(
+                  key: Key('emp_text'),
                   builder: (context, state) {
                     empNoController.text = state.salesperson.employeeNo;
                     return RoundedTextField(
@@ -63,6 +65,7 @@ class SignupEmpDetails extends StatelessWidget {
                   height: 20.0,
                 ),
                 BlocBuilder<SignupBloc, SignupState>(
+                  key: Key('contact_text'),
                   builder: (context, state) {
                     contactNoController.text = state.salesperson.contactNo;
                     return RoundedTextField(

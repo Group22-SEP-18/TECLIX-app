@@ -37,6 +37,7 @@ class SignupName extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 BlocBuilder<SignupBloc, SignupState>(
+                  key: Key('fn_text'),
                   builder: (context, state) {
                     firstNameController.text = state.salesperson.firstName;
                     return RoundedTextField(
@@ -49,6 +50,7 @@ class SignupName extends StatelessWidget {
                   height: 20.0,
                 ),
                 BlocBuilder<SignupBloc, SignupState>(
+                  key: Key('ln_text'),
                   builder: (context, state) {
                     lastNameController.text = state.salesperson.lastName;
                     return RoundedTextField(

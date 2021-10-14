@@ -38,6 +38,7 @@ class SignupPassword extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 BlocBuilder<SignupBloc, SignupState>(
+                  key: Key('pw_text'),
                   builder: (context, state) {
                     passwordController.text = state.salesperson.password;
                     return RoundedTextField(
