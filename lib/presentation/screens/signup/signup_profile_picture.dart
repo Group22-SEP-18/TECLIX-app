@@ -12,6 +12,7 @@ import 'package:teclix/presentation/common/constants/camera_cropper_settings.dar
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/common/widgets/rounded_outline_button.dart';
+import 'package:teclix/presentation/common/widgets/toast_message.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class SignupProfilePicture extends StatefulWidget {
@@ -99,6 +100,7 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
                             source: ImageSource.gallery,
                             imageQuality: 50,
                           );
+
                           _cropImage(pickedImage.path);
                         },
                       ),
@@ -137,9 +139,24 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
                   titleColor: Colors.white,
                   colour: ColorPrimary,
                   onPressed: () => {
-                    signupBloc.add(
-                      NextStepEvent(currentStep: state.step),
-                    ),
+                    if (state.salesperson.profilePicture != null)
+                      {
+                        signupBloc.add(
+                          NextStepEvent(currentStep: state.step),
+                        ),
+                      }
+                    else
+                      {
+                        showToast(
+                          isError: true,
+                          iconSize: 40,
+                          height: 60.0,
+                          color: ColorToastRed,
+                          text: 'Profile picture can\'t be empty.',
+                          context: context,
+                          durationInSec: 5,
+                        ),
+                      }
                   },
                 ),
               );
