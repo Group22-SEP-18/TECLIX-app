@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:teclix/data/services/auth_service.dart';
-import 'package:teclix/presentation/common/constants/TeclixColors.dart';
-import 'package:teclix/presentation/common/widgets/toast_message.dart';
 
 import 'signup_event.dart';
 import 'signup_state.dart';
@@ -87,28 +85,20 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
       case SubmitUserEvent:
         yield state.clone(loading: true);
         final salesperson = (event as SubmitUserEvent).salesperson;
-        final context = (event as SubmitUserEvent).context;
 
         final response = await AuthService.registerUser(salesperson);
         yield state.clone(
           loading: false,
         );
 
-        if (response == '200') {
-          showToast(
-            iconSize: 40,
-            height: 100.0,
-            color: ColorMintGreen,
-            text:
-                'Your Account has been successfully created.\nPlease contact the relevant authorities to activate your account',
-            context: context,
-            durationInSec: 20,
-          );
+        if (response == '201') {
           yield state.clone(
             registeredSucessfully: true,
           );
         } else {
-          print(response);
+          yield state.clone(
+            registeredSucessfully: false,
+          );
         }
     }
   }

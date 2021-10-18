@@ -7,6 +7,8 @@ import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/animated_page_switcher.dart';
 import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
+import 'package:teclix/presentation/common/widgets/toast_message.dart';
+import 'package:teclix/presentation/screens/signin/signin_page.dart';
 import 'package:teclix/presentation/screens/signup/signup_employee_Details.dart';
 import 'package:teclix/presentation/screens/signup/signup_finish.dart';
 import 'package:teclix/presentation/screens/signup/signup_name.dart';
@@ -29,82 +31,110 @@ class SignupScaffold extends StatelessWidget {
             return;
           },
           child: SafeArea(
-            child: Scaffold(
-              backgroundColor: Colors.white,
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                titleSpacing: 0.0,
-                title: Stack(
-                  children: [
-                    Positioned(
-                      left: 10.0,
-                      top: 0.0,
-                      child: HeaderBackButton(
-                        whenTapped: () => signupBloc.add(
-                          PreviousStepEvent(
-                              currentStep: state.step, context: context),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      child: AppbarHeadingText(
-                        title: 'Register',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              body: CustomScrollView(
-                  physics: state.step == SignupProcessSteps.SIGNUP_START
-                      ? NeverScrollableScrollPhysics()
-                      : ClampingScrollPhysics(),
-                  slivers: [
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Container(
-                        child: getAnimatedPageSwitcher(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              pageSwitcher(state.step),
-                              SizedBox(
-                                height: state.step ==
-                                        SignupProcessSteps.SIGNUP_FINISH
-                                    ? 22.0
-                                    : 43.0,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    bottom: 5.0, top: 5.0),
-                                child: Visibility(
-                                  visible: (state.step !=
-                                      SignupProcessSteps.SIGNUP_START),
-                                  child: DotsIndicator(
-                                    dotsCount:
-                                        SignupBloc.processOrder.length - 1,
-                                    position: (state.flowPosition - 1 < 0)
-                                        ? 0
-                                        : state.flowPosition - 1,
-                                    decorator: DotsDecorator(
-                                      activeColor: ColorPrimary,
-                                      color: ColorLightGreen,
-                                      spacing:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      activeSize: Size(13.0, 13.0),
-                                      size: Size(12.0, 12.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20.0,
-                              ),
-                            ],
+            child: BlocListener<SignupBloc, SignupState>(
+              listenWhen: (prev, cur) =>
+                  prev.registeredSucessfully != cur.registeredSucessfully,
+              listener: (context, state) {
+                if (state.registeredSucessfully) {
+                  showToast(
+                    isError: false,
+                    iconSize: 40,
+                    height: 60.0,
+                    color: ColorMintGreen,
+                    text: 'Registered Successfully!',
+                    context: context,
+                    durationInSec: 5,
+                  );
+                  Navigator.pushReplacementNamed(context, SignInPage.id);
+                } else {
+                  showToast(
+                    isError: true,
+                    iconSize: 40,
+                    height: 60.0,
+                    color: ColorToastRed,
+                    text: state.error,
+                    context: context,
+                    durationInSec: 5,
+                  );
+                }
+              },
+              child: Scaffold(
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  automaticallyImplyLeading: false,
+                  titleSpacing: 0.0,
+                  title: Stack(
+                    children: [
+                      Positioned(
+                        left: 10.0,
+                        top: 0.0,
+                        child: HeaderBackButton(
+                          whenTapped: () => signupBloc.add(
+                            PreviousStepEvent(
+                                currentStep: state.step, context: context),
                           ),
                         ),
                       ),
-                    )
-                  ]),
+                      Align(
+                        child: AppbarHeadingText(
+                          title: 'Register',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                body: CustomScrollView(
+                    physics: state.step == SignupProcessSteps.SIGNUP_START
+                        ? NeverScrollableScrollPhysics()
+                        : ClampingScrollPhysics(),
+                    slivers: [
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Container(
+                          child: getAnimatedPageSwitcher(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                pageSwitcher(state.step),
+                                SizedBox(
+                                  height: state.step ==
+                                          SignupProcessSteps.SIGNUP_FINISH
+                                      ? 22.0
+                                      : 43.0,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      bottom: 5.0, top: 5.0),
+                                  child: Visibility(
+                                    visible: (state.step !=
+                                        SignupProcessSteps.SIGNUP_START),
+                                    child: DotsIndicator(
+                                      dotsCount:
+                                          SignupBloc.processOrder.length - 1,
+                                      position: (state.flowPosition - 1 < 0)
+                                          ? 0
+                                          : state.flowPosition - 1,
+                                      decorator: DotsDecorator(
+                                        activeColor: ColorPrimary,
+                                        color: ColorLightGreen,
+                                        spacing: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        activeSize: Size(13.0, 13.0),
+                                        size: Size(12.0, 12.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20.0,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ]),
+              ),
             ),
           ),
         );

@@ -13,6 +13,7 @@ class SignupEmpDetails extends StatelessWidget {
   static final emailController = TextEditingController();
   static final empNoController = TextEditingController();
   static final contactNoController = TextEditingController();
+  static final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,52 +34,85 @@ class SignupEmpDetails extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-          CommonPadding(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                BlocBuilder<SignupBloc, SignupState>(
-                  key: Key('email_text'),
-                  builder: (context, state) {
-                    emailController.text = state.salesperson.email;
-                    return RoundedTextField(
-                      controller: emailController,
-                      hint: 'Email',
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                BlocBuilder<SignupBloc, SignupState>(
-                  key: Key('emp_text'),
-                  builder: (context, state) {
-                    empNoController.text = state.salesperson.employeeNo;
-                    return RoundedTextField(
-                      controller: empNoController,
-                      hint: 'Employee Number',
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                BlocBuilder<SignupBloc, SignupState>(
-                  key: Key('contact_text'),
-                  builder: (context, state) {
-                    contactNoController.text = state.salesperson.contactNo;
-                    return RoundedTextField(
-                      keyboardType: TextInputType.number,
-                      controller: contactNoController,
-                      hint: 'Contact Number',
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-              ],
+          Form(
+            key: _formKey,
+            child: CommonPadding(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  BlocBuilder<SignupBloc, SignupState>(
+                    key: Key('email_text'),
+                    builder: (context, state) {
+                      emailController.text = state.salesperson.email;
+                      return RoundedTextField(
+                        controller: emailController,
+                        hint: 'Email',
+                        validation: (String email) {
+                          if (email == '' || email == null) {
+                            return "Email Field can\'t be empty.";
+                          }
+
+                          RegExp emailReg = RegExp(
+                            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
+                            caseSensitive: false,
+                          );
+                          if (!emailReg.hasMatch(email)) {
+                            return "Email address is invalid";
+                          }
+
+                          return null;
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  BlocBuilder<SignupBloc, SignupState>(
+                    key: Key('emp_text'),
+                    builder: (context, state) {
+                      empNoController.text = state.salesperson.employeeNo;
+                      return RoundedTextField(
+                        controller: empNoController,
+                        hint: 'Employee Number',
+                        validation: (String emp) {
+                          if (emp == '' || emp == null) {
+                            return "Employee Id field can\'t be empty.";
+                          }
+                          return null;
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  BlocBuilder<SignupBloc, SignupState>(
+                    key: Key('contact_text'),
+                    builder: (context, state) {
+                      contactNoController.text = state.salesperson.contactNo;
+                      return RoundedTextField(
+                        keyboardType: TextInputType.number,
+                        controller: contactNoController,
+                        hint: 'Contact Number',
+                        validation: (String number) {
+                          if (number == '' || number == null) {
+                            return "Contact number field can\'t be empty.";
+                          }
+                          if (number.length != 10) {
+                            return "Contact number should contain 10 digits.";
+                          }
+                          return null;
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                ],
+              ),
             ),
           ),
           Spacer(),
@@ -90,16 +124,19 @@ class SignupEmpDetails extends StatelessWidget {
                   titleColor: Colors.white,
                   colour: ColorPrimary,
                   onPressed: () => {
-                    signupBloc.add(
-                      AddEmployeeDetialsEvent(
-                        email: emailController.text,
-                        employeeNo: empNoController.text,
-                        contactNo: contactNoController.text,
-                      ),
-                    ),
-                    signupBloc.add(
-                      NextStepEvent(currentStep: state.step),
-                    ),
+                    if (_formKey.currentState.validate())
+                      {
+                        signupBloc.add(
+                          AddEmployeeDetialsEvent(
+                            email: emailController.text,
+                            employeeNo: empNoController.text,
+                            contactNo: contactNoController.text,
+                          ),
+                        ),
+                        signupBloc.add(
+                          NextStepEvent(currentStep: state.step),
+                        ),
+                      }
                   },
                 ),
               );

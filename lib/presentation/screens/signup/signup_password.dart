@@ -12,7 +12,10 @@ import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 
 class SignupPassword extends StatelessWidget {
   static final passwordController = TextEditingController();
-
+  static final _formKey = GlobalKey<FormState>();
+  RegExp pwReg = RegExp(
+    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$',
+  );
   @override
   Widget build(BuildContext context) {
     final signupBloc = BlocProvider.of<SignupBloc>(context);
@@ -32,26 +35,40 @@ class SignupPassword extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-          CommonPadding(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                BlocBuilder<SignupBloc, SignupState>(
-                  key: Key('pw_text'),
-                  builder: (context, state) {
-                    passwordController.text = state.salesperson.password;
-                    return RoundedTextField(
-                      controller: passwordController,
-                      hint: 'Password',
-                      hideText: true,
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 50.0,
-                ),
-              ],
+          Form(
+            key: _formKey,
+            child: CommonPadding(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  BlocBuilder<SignupBloc, SignupState>(
+                    key: Key('pw_text'),
+                    builder: (context, state) {
+                      passwordController.text = state.salesperson.password;
+                      return RoundedTextField(
+                        controller: passwordController,
+                        hint: 'Password',
+                        hideText: true,
+                        validation: (String email) {
+                          if (email == '' || email == null) {
+                            return "Password Field can\'t be empty.";
+                          }
+
+                          if (!pwReg.hasMatch(email)) {
+                            return "Password must follow the given constraints.";
+                          }
+
+                          return null;
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 50.0,
+                  ),
+                ],
+              ),
             ),
           ),
           CommonPadding(
@@ -77,12 +94,15 @@ class SignupPassword extends StatelessWidget {
                   titleColor: Colors.white,
                   colour: ColorPrimary,
                   onPressed: () => {
-                    signupBloc.add(
-                      AddPasswordEvent(password: passwordController.text),
-                    ),
-                    signupBloc.add(
-                      NextStepEvent(currentStep: state.step),
-                    ),
+                    if (_formKey.currentState.validate())
+                      {
+                        signupBloc.add(
+                          AddPasswordEvent(password: passwordController.text),
+                        ),
+                        signupBloc.add(
+                          NextStepEvent(currentStep: state.step),
+                        ),
+                      }
                   },
                 ),
               );
