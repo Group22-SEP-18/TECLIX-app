@@ -38,6 +38,7 @@ class VehicleMain extends StatelessWidget {
                   GestureDetector(
                     onTap: () => spVehicleBloc.add(FetchVehicleDataEvent()),
                     child: Center(
+                      key: Key('vehicle-heading'),
                       child: AppbarHeadingText(
                         title: 'Vehicle',
                         fontSize: 30.0,
