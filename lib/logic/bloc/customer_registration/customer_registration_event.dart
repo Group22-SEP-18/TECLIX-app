@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/Customer.dart';
-import 'package:teclix/data/models/CustomerLocation.dart';
+import 'package:teclix/data/models/customer.dart';
+import 'package:teclix/data/models/customer_location.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_state.dart';
 
 @immutable

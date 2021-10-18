@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/CustomerSearch.dart';
+import 'package:teclix/data/models/customer_search.dart';
 
 @immutable
 class SearchCustomerState {

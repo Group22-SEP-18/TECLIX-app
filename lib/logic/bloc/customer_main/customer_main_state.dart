@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/DailyStats.dart';
+import 'package:teclix/data/models/daily_stats.dart';
 
 @immutable
 class CustomerMainState {

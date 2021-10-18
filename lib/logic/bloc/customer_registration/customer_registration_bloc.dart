@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:teclix/data/models/Customer.dart';
+import 'package:teclix/data/models/customer.dart';
 import 'package:teclix/data/services/customer_register_service.dart';
 
 import 'customer_registration_event.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/data/models/AssignedVehicle.dart';
+import 'package:teclix/data/models/assigned_vehicle.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_event.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
-import 'package:teclix/presentation/common/constants/utils.dart';
+import 'package:teclix/presentation/common/utils.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/common/widgets/rounded_outline_button.dart';

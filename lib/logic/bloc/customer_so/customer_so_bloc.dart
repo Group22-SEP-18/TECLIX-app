@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:teclix/data/models/AssignedVehicle.dart';
-import 'package:teclix/data/models/OrderItem.dart';
-import 'package:teclix/data/models/Product.dart';
-import 'package:teclix/data/models/ServiceOrder.dart';
+import 'package:teclix/data/models/assigned_vehicle.dart';
+import 'package:teclix/data/models/order_item.dart';
+import 'package:teclix/data/models/product.dart';
+import 'package:teclix/data/models/service_order.dart';
 import 'package:teclix/data/services/asset_vehicle_service.dart';
 import 'package:teclix/data/services/so_service.dart';
 

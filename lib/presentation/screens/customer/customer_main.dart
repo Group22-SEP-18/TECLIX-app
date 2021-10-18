@@ -8,7 +8,7 @@ import 'package:teclix/logic/bloc/customer_registration/customer_registration_pr
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_state.dart';
 import 'package:teclix/presentation/common/constants/TeclixColors.dart';
-import 'package:teclix/presentation/common/constants/utils.dart';
+import 'package:teclix/presentation/common/utils.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/routing/routes.dart';

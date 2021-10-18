@@ -36,7 +36,9 @@ class SignupStart extends StatelessWidget {
                 child: InfoText(
                     fontSize: 18.0,
                     text:
-                        'The entire team of TECLIX is thrilled to welcome you on board. We hope you’ll do some amazing works here. Please note that this app is intended for employees of TECLIX, any unauthorized personnel will not be able to access the app. \n -- Team TECLIX --'),
+                        'The entire team of TECLIX is thrilled to welcome you on board. '
+                        'We hope you’ll do some amazing works here. Please note that this app is intended for employees of TECLIX,'
+                        ' any unauthorized personnel will not be able to access the app. \n -- Team TECLIX --'),
               ),
             ],
           ),

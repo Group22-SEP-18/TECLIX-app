@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:teclix/data/models/CustomerLocation.dart';
+import 'package:teclix/data/models/customer_location.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_bloc.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_event.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_state.dart';

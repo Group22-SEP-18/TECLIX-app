@@ -1,5 +1,5 @@
-import 'package:teclix/data/models/AssignedVehicle.dart';
-import 'package:teclix/data/models/Vehicle.dart';
+import 'package:teclix/data/models/assigned_vehicle.dart';
+import 'package:teclix/data/models/vehicle.dart';
 
 class SalespersonVehicle {
   int id;

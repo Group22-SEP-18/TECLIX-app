@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/Salesperson.dart';
+import 'package:teclix/data/models/salesperson.dart';
 import 'package:teclix/logic/bloc/signup/signup_state.dart';
 
 @immutable

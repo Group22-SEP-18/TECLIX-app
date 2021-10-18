@@ -4,7 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teclix/data/models/AssignedVehicle.dart';
+import 'package:teclix/data/models/assigned_vehicle.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_bloc.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_event.dart';
 import 'package:teclix/logic/bloc/customer_so/customer_so_state.dart';
@@ -159,11 +159,36 @@ class SoAddItem extends StatelessWidget {
                                               .scannedProduct.product.shortName,
                                           price: state
                                               .scannedProduct.product.price,
-                                          addFunc: () => customerSoBloc.add(
-                                            AddToCartEvent(
-                                                product: state
-                                                    .scannedProduct.product),
-                                          ),
+                                          addFunc: () => {
+                                            if (state.cart[state.scannedProduct
+                                                        .product.id] !=
+                                                    null &&
+                                                state.cart[state.scannedProduct
+                                                            .product.id] +
+                                                        1 >
+                                                    state.scannedProduct
+                                                        .quantity)
+                                              {
+                                                showToast(
+                                                  isError: true,
+                                                  iconSize: 40,
+                                                  height: 60.0,
+                                                  color: ColorToastRed,
+                                                  text: 'Stock is empty',
+                                                  context: context,
+                                                  durationInSec: 2,
+                                                ),
+                                              }
+                                            else
+                                              {
+                                                customerSoBloc.add(
+                                                  AddToCartEvent(
+                                                      product: state
+                                                          .scannedProduct
+                                                          .product),
+                                                ),
+                                              }
+                                          },
                                           removeFunc: () => customerSoBloc.add(
                                             RemoveFromCartEvent(
                                                 product: state
@@ -212,11 +237,36 @@ class SoAddItem extends StatelessWidget {
                                               .product.shortName,
                                           price: state
                                               .vehicleItems[i].product.price,
-                                          addFunc: () => customerSoBloc.add(
-                                            AddToCartEvent(
-                                                product: state
-                                                    .vehicleItems[i].product),
-                                          ),
+                                          addFunc: () => {
+                                            if (state.cart[state.vehicleItems[i]
+                                                        .product.id] !=
+                                                    null &&
+                                                state.cart[state.vehicleItems[i]
+                                                            .product.id] +
+                                                        1 >
+                                                    state.vehicleItems[i]
+                                                        .quantity)
+                                              {
+                                                showToast(
+                                                  isError: true,
+                                                  iconSize: 40,
+                                                  height: 60.0,
+                                                  color: ColorToastRed,
+                                                  text: 'Stock is empty',
+                                                  context: context,
+                                                  durationInSec: 2,
+                                                ),
+                                              }
+                                            else
+                                              {
+                                                customerSoBloc.add(
+                                                  AddToCartEvent(
+                                                      product: state
+                                                          .vehicleItems[i]
+                                                          .product),
+                                                ),
+                                              }
+                                          },
                                           removeFunc: () => customerSoBloc.add(
                                             RemoveFromCartEvent(
                                                 product: state
@@ -250,13 +300,45 @@ class SoAddItem extends StatelessWidget {
                                                     .shortName,
                                                 price: state.vehicleItems[i + 1]
                                                     .product.price,
-                                                addFunc: () =>
-                                                    customerSoBloc.add(
-                                                  AddToCartEvent(
-                                                      product: state
-                                                          .vehicleItems[i + 1]
-                                                          .product),
-                                                ),
+                                                addFunc: () => {
+                                                  if (state.cart[state
+                                                              .vehicleItems[
+                                                                  i + 1]
+                                                              .product
+                                                              .id] !=
+                                                          null &&
+                                                      state.cart[state
+                                                                  .vehicleItems[
+                                                                      i + 1]
+                                                                  .product
+                                                                  .id] +
+                                                              1 >
+                                                          state
+                                                              .vehicleItems[
+                                                                  i + 1]
+                                                              .quantity)
+                                                    {
+                                                      showToast(
+                                                        isError: true,
+                                                        iconSize: 40,
+                                                        height: 60.0,
+                                                        color: ColorToastRed,
+                                                        text: 'Stock is empty',
+                                                        context: context,
+                                                        durationInSec: 2,
+                                                      ),
+                                                    }
+                                                  else
+                                                    {
+                                                      customerSoBloc.add(
+                                                        AddToCartEvent(
+                                                            product: state
+                                                                .vehicleItems[
+                                                                    i + 1]
+                                                                .product),
+                                                      ),
+                                                    }
+                                                },
                                                 removeFunc: () =>
                                                     customerSoBloc.add(
                                                   RemoveFromCartEvent(

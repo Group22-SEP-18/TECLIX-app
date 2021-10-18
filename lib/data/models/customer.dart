@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:teclix/data/models/CustomerLocation.dart';
+import 'package:teclix/data/models/customer_location.dart';
 
 class Customer {
   String customerId;

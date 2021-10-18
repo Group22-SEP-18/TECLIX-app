@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teclix/data/models/Leaderboard.dart';
+import 'package:teclix/data/models/leaderboard.dart';
 
 @immutable
 class LeaderboardState {
