@@ -12,6 +12,13 @@ import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
 class SignupName extends StatelessWidget {
   static final firstNameController = TextEditingController();
   static final lastNameController = TextEditingController();
+  static final _formKey = GlobalKey<FormState>();
+
+  RegExp nameReg = RegExp(
+    r'[A-Z]',
+    caseSensitive: false,
+  );
+
   @override
   Widget build(BuildContext context) {
     final signupBloc = BlocProvider.of<SignupBloc>(context);
@@ -31,38 +38,59 @@ class SignupName extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-          CommonPadding(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                BlocBuilder<SignupBloc, SignupState>(
-                  key: Key('fn_text'),
-                  builder: (context, state) {
-                    firstNameController.text = state.salesperson.firstName;
-                    return RoundedTextField(
-                      controller: firstNameController,
-                      hint: 'First Name',
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                BlocBuilder<SignupBloc, SignupState>(
-                  key: Key('ln_text'),
-                  builder: (context, state) {
-                    lastNameController.text = state.salesperson.lastName;
-                    return RoundedTextField(
-                      controller: lastNameController,
-                      hint: 'Last Name',
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-              ],
+          Form(
+            key: _formKey,
+            child: CommonPadding(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  BlocBuilder<SignupBloc, SignupState>(
+                    key: Key('fn_text'),
+                    builder: (context, state) {
+                      firstNameController.text = state.salesperson.firstName;
+                      return RoundedTextField(
+                        controller: firstNameController,
+                        hint: 'First Name',
+                        validation: (String fname) {
+                          if (fname == '' || fname == null) {
+                            return "First name can\'t be empty.";
+                          }
+                          if (!nameReg.hasMatch(fname)) {
+                            return "First name should only contain letters";
+                          }
+                          return null;
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  BlocBuilder<SignupBloc, SignupState>(
+                    key: Key('ln_text'),
+                    builder: (context, state) {
+                      lastNameController.text = state.salesperson.lastName;
+                      return RoundedTextField(
+                        controller: lastNameController,
+                        hint: 'Last Name',
+                        validation: (String lname) {
+                          if (lname == '' || lname == null) {
+                            return "Last name can\'t be empty.";
+                          }
+                          if (!nameReg.hasMatch(lname)) {
+                            return "Last name should only contain letters";
+                          }
+                          return null;
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                ],
+              ),
             ),
           ),
           Spacer(),
@@ -74,15 +102,18 @@ class SignupName extends StatelessWidget {
                   titleColor: Colors.white,
                   colour: ColorPrimary,
                   onPressed: () => {
-                    signupBloc.add(
-                      AddNameEvent(
-                        firstName: firstNameController.text,
-                        lastName: lastNameController.text,
-                      ),
-                    ),
-                    signupBloc.add(
-                      NextStepEvent(currentStep: state.step),
-                    ),
+                    if (_formKey.currentState.validate())
+                      {
+                        signupBloc.add(
+                          AddNameEvent(
+                            firstName: firstNameController.text,
+                            lastName: lastNameController.text,
+                          ),
+                        ),
+                        signupBloc.add(
+                          NextStepEvent(currentStep: state.step),
+                        ),
+                      }
                   },
                 ),
               );

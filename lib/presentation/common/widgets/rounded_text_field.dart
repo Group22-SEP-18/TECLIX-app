@@ -93,7 +93,7 @@ class RoundedTextField extends StatelessWidget {
             Radius.circular(50.0),
           ),
         ),
-        errorStyle: TextStyle(height: 0, color: Colors.transparent),
+        errorStyle: TextStyle(color: ColorToastRed, fontSize: 13.0),
         filled: true,
         fillColor: filColor ?? Colors.white,
       ),

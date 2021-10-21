@@ -12,6 +12,7 @@ import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
+import 'package:teclix/presentation/common/widgets/toast_message.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_add_item.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_cart.dart';
 import 'package:teclix/presentation/screens/customer/customer_service_order/customer_so_customer_details.dart';
@@ -136,9 +137,27 @@ class CustomerSoScaffold extends StatelessWidget {
                                 customerSoBloc.add(
                                   AddSelectedItem(product: AssignedVehicle()),
                                 ),
-                                customerSoBloc.add(
-                                  NextStepEvent(currentStep: state.step),
-                                ),
+                                if (state.step ==
+                                        CustomerSOProcessSteps.SO_CART &&
+                                    CustomerSoBloc.cartIsEmpty(state.cart))
+                                  {
+                                    showToast(
+                                      isError: true,
+                                      iconSize: 40,
+                                      height: 60.0,
+                                      color: ColorToastRed,
+                                      text:
+                                          'Cart is empty. Go to previous screen.',
+                                      context: context,
+                                      durationInSec: 3,
+                                    ),
+                                  }
+                                else
+                                  {
+                                    customerSoBloc.add(
+                                      NextStepEvent(currentStep: state.step),
+                                    ),
+                                  }
                               },
                             ),
                           ),
