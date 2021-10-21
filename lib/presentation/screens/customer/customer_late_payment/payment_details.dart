@@ -230,23 +230,49 @@ class PaymentDetail extends StatelessWidget {
                                         titleColor: Colors.white,
                                         colour: ColorPrimary,
                                         onPressed: () {
-                                          showPayConfirmDialog(context)
-                                              .then((val) {
-                                            if (val) {
-                                              customerLatePayBloc.add(
-                                                SubmitLatePayEvent(
-                                                  data: {
-                                                    "amount": state
-                                                            .checkBoxValue
-                                                        ? state.amount
-                                                        : amountController.text,
-                                                    "customer":
-                                                        state.customerId,
-                                                  },
-                                                ),
-                                              );
-                                            }
-                                          });
+                                          if (amountController.text.isEmpty) {
+                                            showToast(
+                                              isError: true,
+                                              iconSize: 40,
+                                              height: 60.0,
+                                              color: ColorToastRed,
+                                              text: 'Please enter amount.',
+                                              context: context,
+                                              durationInSec: 5,
+                                            );
+                                          } else if (double.parse(
+                                                  amountController.text) >
+                                              double.parse(state.amount)) {
+                                            showToast(
+                                              isError: true,
+                                              iconSize: 40,
+                                              height: 60.0,
+                                              color: ColorToastRed,
+                                              text:
+                                                  'you can\'t pay more than current outstanding.',
+                                              context: context,
+                                              durationInSec: 5,
+                                            );
+                                          } else {
+                                            showPayConfirmDialog(context)
+                                                .then((val) {
+                                              if (val) {
+                                                customerLatePayBloc.add(
+                                                  SubmitLatePayEvent(
+                                                    data: {
+                                                      "amount":
+                                                          state.checkBoxValue
+                                                              ? state.amount
+                                                              : amountController
+                                                                  .text,
+                                                      "customer":
+                                                          state.customerId,
+                                                    },
+                                                  ),
+                                                );
+                                              }
+                                            });
+                                          }
                                         });
                                   },
                                 ),

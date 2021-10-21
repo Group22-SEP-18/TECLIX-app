@@ -10,6 +10,7 @@ import 'package:teclix/presentation/common/widgets/appbar_back_btn.dart';
 import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
+import 'package:teclix/presentation/common/widgets/toast_message.dart';
 import 'package:teclix/presentation/screens/customer/customer_late_payment/payment_details.dart';
 import 'package:teclix/presentation/screens/customer/widgets/customer_details_card.dart';
 import 'package:teclix/presentation/screens/signup/widgets/main_heading.dart';
@@ -123,18 +124,31 @@ class CustomerDetails extends StatelessWidget {
                       titleColor: Colors.white,
                       colour: ColorPrimary,
                       onPressed: () {
-                        customerLatePayBloc.add(
-                          SetSelctedCustomerEvent(
-                              amount: amount, customerId: cusId),
-                        );
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => BlocProvider.value(
-                              value: customerLatePayBloc,
-                              child: PaymentDetail(),
+                        if (amount == '0.00') {
+                          showToast(
+                            isError: true,
+                            iconSize: 40,
+                            height: 60.0,
+                            color: ColorToastRed,
+                            text:
+                                'Can not proceed! no outstanding for the selected customer.',
+                            context: context,
+                            durationInSec: 3,
+                          );
+                        } else {
+                          customerLatePayBloc.add(
+                            SetSelctedCustomerEvent(
+                                amount: amount, customerId: cusId),
+                          );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => BlocProvider.value(
+                                value: customerLatePayBloc,
+                                child: PaymentDetail(),
+                              ),
                             ),
-                          ),
-                        );
+                          );
+                        }
                       },
                     );
                   },
