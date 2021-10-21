@@ -40,6 +40,15 @@ class CustomerSoBloc extends Bloc<CustomerSoEvent, CustomerSoState> {
     return state.cart;
   }
 
+  static bool cartIsEmpty(cart) {
+    for (var k in cart.keys) {
+      if (cart[k] != 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   int getItemCount() {
     return state.cart.values.reduce((sum, element) => sum + element);
   }
