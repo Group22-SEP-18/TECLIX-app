@@ -19,6 +19,7 @@ class SignInPage extends StatelessWidget {
 
   static final emailController = TextEditingController();
   static final passwordController = TextEditingController();
+  static final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -71,34 +72,51 @@ class SignInPage extends StatelessWidget {
                     SizedBox(
                       height: 20.0,
                     ),
-                    CommonPadding(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          BlocBuilder<RootBloc, RootState>(
-                            builder: (context, state) {
-                              return RoundedTextField(
-                                controller: emailController,
-                                hint: 'Email',
-                              );
-                            },
-                          ),
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          BlocBuilder<RootBloc, RootState>(
-                            builder: (context, state) {
-                              return RoundedTextField(
-                                controller: passwordController,
-                                hint: 'Password',
-                                hideText: true,
-                              );
-                            },
-                          ),
-                        ],
+                    Form(
+                      key: _formKey,
+                      child: CommonPadding(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              height: 20.0,
+                            ),
+                            BlocBuilder<RootBloc, RootState>(
+                              builder: (context, state) {
+                                return RoundedTextField(
+                                  controller: emailController,
+                                  hint: 'Email',
+                                  validation: (String fname) {
+                                    if (fname == '' || fname == null) {
+                                      return "Email address can\'t be empty.";
+                                    }
+
+                                    return null;
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 20.0,
+                            ),
+                            BlocBuilder<RootBloc, RootState>(
+                              builder: (context, state) {
+                                return RoundedTextField(
+                                  controller: passwordController,
+                                  hint: 'Password',
+                                  hideText: true,
+                                  validation: (String fname) {
+                                    if (fname == '' || fname == null) {
+                                      return "Password  can\'t be empty.";
+                                    }
+
+                                    return null;
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -119,18 +137,22 @@ class SignInPage extends StatelessWidget {
                     ),
                     CommonPadding(
                       child: RoundedButton(
-                        title: 'Login to my account',
-                        titleColor: Colors.white,
-                        colour: ColorPrimary,
-                        onPressed: () => rootBloc.add(
-                          LogInUserEvent(
-                            credentials: {
-                              'email': emailController.text,
-                              'password': passwordController.text,
-                            },
-                          ),
-                        ),
-                      ),
+                          title: 'Login to my account',
+                          titleColor: Colors.white,
+                          colour: ColorPrimary,
+                          onPressed: () => {
+                                if (_formKey.currentState.validate())
+                                  {
+                                    rootBloc.add(
+                                      LogInUserEvent(
+                                        credentials: {
+                                          'email': emailController.text,
+                                          'password': passwordController.text,
+                                        },
+                                      ),
+                                    ),
+                                  }
+                              }),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
