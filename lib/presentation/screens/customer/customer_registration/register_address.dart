@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:teclix/data/models/customer_location.dart';
 import 'package:teclix/logic/bloc/customer_registration/customer_registration_bloc.dart';
@@ -17,6 +16,7 @@ class CustomerRegisterAddress extends StatelessWidget {
   static final streetController = TextEditingController();
   static final cityController = TextEditingController();
   static final districtController = TextEditingController();
+  static final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,59 +47,85 @@ class CustomerRegisterAddress extends StatelessWidget {
             builder: (context, state) {
               return state.fetchingLocation
                   ? Center(
-                      child: SpinKitDualRing(
-                        color: ColorLightGreen,
-                        size: 100.0,
+                      child: SizedBox(
+                        child: CircularProgressIndicator(),
+                        width: 50.0,
+                        height: 50.0,
                       ),
                     )
                   : CommonPadding(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          BlocBuilder<CustomerRegistrationBloc,
-                              CustomerRegistrationState>(
-                            builder: (context, state) {
-                              streetController.text = state.storeAddress.street;
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            BlocBuilder<CustomerRegistrationBloc,
+                                CustomerRegistrationState>(
+                              builder: (context, state) {
+                                streetController.text =
+                                    state.storeAddress.street;
 
-                              return RoundedTextField(
-                                controller: streetController,
-                                hint: 'Street',
-                              );
-                            },
-                          ),
-                          SizedBox(
-                            height: 25.0,
-                          ),
-                          BlocBuilder<CustomerRegistrationBloc,
-                              CustomerRegistrationState>(
-                            builder: (context, state) {
-                              cityController.text = state.storeAddress.city;
+                                return RoundedTextField(
+                                  controller: streetController,
+                                  hint: 'Street',
+                                  validation: (String street) {
+                                    if (street == '' || street == null) {
+                                      return "Street field can\'t be empty.";
+                                    }
 
-                              return RoundedTextField(
-                                controller: cityController,
-                                hint: 'City',
-                              );
-                            },
-                          ),
-                          SizedBox(
-                            height: 25.0,
-                          ),
-                          BlocBuilder<CustomerRegistrationBloc,
-                              CustomerRegistrationState>(
-                            builder: (context, state) {
-                              districtController.text =
-                                  state.storeAddress.district;
-                              return RoundedTextField(
-                                controller: districtController,
-                                hint: 'district',
-                              );
-                            },
-                          ),
-                          SizedBox(
-                            height: 25.0,
-                          ),
-                        ],
+                                    return null;
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 25.0,
+                            ),
+                            BlocBuilder<CustomerRegistrationBloc,
+                                CustomerRegistrationState>(
+                              builder: (context, state) {
+                                cityController.text = state.storeAddress.city;
+
+                                return RoundedTextField(
+                                  controller: cityController,
+                                  hint: 'City',
+                                  validation: (String street) {
+                                    if (street == '' || street == null) {
+                                      return "City field can\'t be empty.";
+                                    }
+
+                                    return null;
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 25.0,
+                            ),
+                            BlocBuilder<CustomerRegistrationBloc,
+                                CustomerRegistrationState>(
+                              builder: (context, state) {
+                                districtController.text =
+                                    state.storeAddress.district;
+                                return RoundedTextField(
+                                  controller: districtController,
+                                  hint: 'district',
+                                  validation: (String street) {
+                                    if (street == '' || street == null) {
+                                      return "District field can\'t be empty.";
+                                    }
+
+                                    return null;
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 25.0,
+                            ),
+                          ],
+                        ),
                       ),
                     );
             },
@@ -154,31 +180,33 @@ class CustomerRegisterAddress extends StatelessWidget {
             builder: (context, state) {
               return CommonPadding(
                 child: RoundedButton(
-                  title: 'Next',
-                  titleColor: Colors.white,
-                  colour: ColorPrimary,
-                  onPressed: () => {
-                    customerRegisterBloc.add(AddAddressEvent(
-                      street: streetController.text,
-                      city: cityController.text,
-                      district: districtController.text,
-                      lat: _currentLocation.latitude,
-                      lang: _currentLocation.longitude,
-                    )),
-                    customerRegisterBloc.add(AddCustomerFinalAddressEvent(
-                        finalAddress: CustomerLocation(
-                      street: streetController.text,
-                      city: cityController.text,
-                      district: districtController.text,
-                      latitude: _currentLocation.latitude,
-                      longitude: _currentLocation.longitude,
-                    ))),
-                    print(_currentLocation.latitude),
-                    customerRegisterBloc.add(
-                      NextStepEvent(currentStep: state.step),
-                    ),
-                  },
-                ),
+                    title: 'Next',
+                    titleColor: Colors.white,
+                    colour: ColorPrimary,
+                    onPressed: () => {
+                          if (_formKey.currentState.validate())
+                            {
+                              customerRegisterBloc.add(AddAddressEvent(
+                                street: streetController.text,
+                                city: cityController.text,
+                                district: districtController.text,
+                                lat: _currentLocation.latitude,
+                                lang: _currentLocation.longitude,
+                              )),
+                              customerRegisterBloc
+                                  .add(AddCustomerFinalAddressEvent(
+                                      finalAddress: CustomerLocation(
+                                street: streetController.text,
+                                city: cityController.text,
+                                district: districtController.text,
+                                latitude: _currentLocation.latitude,
+                                longitude: _currentLocation.longitude,
+                              ))),
+                              customerRegisterBloc.add(
+                                NextStepEvent(currentStep: state.step),
+                              ),
+                            },
+                        }),
               );
             },
           ),

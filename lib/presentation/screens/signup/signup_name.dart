@@ -57,7 +57,7 @@ class SignupName extends StatelessWidget {
                             return "First name can\'t be empty.";
                           }
                           if (!nameReg.hasMatch(fname)) {
-                            return "The first name should only contain letters";
+                            return "First name should only contain letters";
                           }
                           return null;
                         },
@@ -79,7 +79,7 @@ class SignupName extends StatelessWidget {
                             return "Last name can\'t be empty.";
                           }
                           if (!nameReg.hasMatch(lname)) {
-                            return "The first name should only contain letters";
+                            return "Last name should only contain letters";
                           }
                           return null;
                         },
