@@ -47,6 +47,7 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                 children: [
                   BlocBuilder<CustomerRegistrationBloc,
                       CustomerRegistrationState>(
+                    key: Key('store'),
                     builder: (context, state) {
                       storeNameController.text = state.customer.shopName;
                       return RoundedTextField(
@@ -66,6 +67,7 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                   ),
                   BlocBuilder<CustomerRegistrationBloc,
                       CustomerRegistrationState>(
+                    key: Key('email'),
                     builder: (context, state) {
                       emailController.text = state.customer.email;
                       return RoundedTextField(
@@ -91,6 +93,7 @@ class CustomerRegisterStoreDetails extends StatelessWidget {
                       CustomerRegistrationState>(
                     buildWhen: (prev, cur) =>
                         prev.customer.contactNo != cur.customer.contactNo,
+                    key: Key('contact'),
                     builder: (context, state) {
                       contactNoController.text = state.customer.contactNo;
                       return RoundedTextField(

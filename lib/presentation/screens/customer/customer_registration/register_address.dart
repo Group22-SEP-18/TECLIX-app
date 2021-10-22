@@ -62,6 +62,7 @@ class CustomerRegisterAddress extends StatelessWidget {
                           children: [
                             BlocBuilder<CustomerRegistrationBloc,
                                 CustomerRegistrationState>(
+                              key: Key('street'),
                               builder: (context, state) {
                                 streetController.text =
                                     state.storeAddress.street;
@@ -84,6 +85,7 @@ class CustomerRegisterAddress extends StatelessWidget {
                             ),
                             BlocBuilder<CustomerRegistrationBloc,
                                 CustomerRegistrationState>(
+                              key: Key('city'),
                               builder: (context, state) {
                                 cityController.text = state.storeAddress.city;
 
@@ -105,6 +107,7 @@ class CustomerRegisterAddress extends StatelessWidget {
                             ),
                             BlocBuilder<CustomerRegistrationBloc,
                                 CustomerRegistrationState>(
+                              key: Key('dist'),
                               builder: (context, state) {
                                 districtController.text =
                                     state.storeAddress.district;
