@@ -110,7 +110,7 @@ class CustomerRegisterAddress extends StatelessWidget {
                                     state.storeAddress.district;
                                 return RoundedTextField(
                                   controller: districtController,
-                                  hint: 'district',
+                                  hint: 'District',
                                   validation: (String street) {
                                     if (street == '' || street == null) {
                                       return "District field can\'t be empty.";
