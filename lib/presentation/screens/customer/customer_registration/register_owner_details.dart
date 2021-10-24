@@ -127,6 +127,7 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                   ),
                   BlocBuilder<CustomerRegistrationBloc,
                       CustomerRegistrationState>(
+                    key: Key('fn'),
                     builder: (context, state) {
                       firstNameController.text = state.customer.ownerFistName;
 
@@ -150,6 +151,7 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                   ),
                   BlocBuilder<CustomerRegistrationBloc,
                       CustomerRegistrationState>(
+                    key: Key('ln'),
                     builder: (context, state) {
                       lastNameController.text = state.customer.ownerLastName;
 

@@ -40,7 +40,7 @@ class WelcomePage extends StatelessWidget {
               child: Image.asset('static/images/welcome.png'),
             ),
             SizedBox(
-              height: 20.0,
+              height: 10.0,
             ),
             Column(
               children: [
@@ -68,7 +68,7 @@ class WelcomePage extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 30.0,
+              height: 20.0,
             )
           ],
         ),

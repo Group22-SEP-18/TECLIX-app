@@ -82,6 +82,7 @@ class SignInPage extends StatelessWidget {
                               height: 20.0,
                             ),
                             BlocBuilder<RootBloc, RootState>(
+                              key: Key('email'),
                               builder: (context, state) {
                                 return RoundedTextField(
                                   controller: emailController,
@@ -100,6 +101,7 @@ class SignInPage extends StatelessWidget {
                               height: 20.0,
                             ),
                             BlocBuilder<RootBloc, RootState>(
+                              key: Key('pw'),
                               builder: (context, state) {
                                 return RoundedTextField(
                                   controller: passwordController,

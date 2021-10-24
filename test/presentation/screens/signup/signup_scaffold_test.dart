@@ -6,18 +6,7 @@ import 'package:teclix/logic/bloc/signup/signup_state.dart';
 import 'package:teclix/presentation/screens/signup/signup_scaffold.dart';
 
 void main() {
-  // testWidgets("initially sign up start screen is loaded",
-  //     (WidgetTester tester) async {
-  //   final button = find.text('Create Account');
-  //   await tester.pumpWidget(MaterialApp(
-  //     home: BlocProvider(
-  //       create: (context) => SignupBloc(context),
-  //       child: SignupScaffold(),
-  //     ),
-  //   ));
-  //   expect(button, findsOneWidget);
-  // });
-  group('Test page switcher functionality', () {
+  group('Test page switcher functionality of the signup flow', () {
     testWidgets('when SIGNUP_START is given as the signup process',
         (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(
