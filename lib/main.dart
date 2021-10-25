@@ -1,7 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:teclix/logic/bloc/internet/internet_bloc.dart';
 import 'package:teclix/logic/bloc/leaderboard/leaderboard_bloc.dart';
 import 'package:teclix/logic/bloc/root/root_bloc.dart';
 import 'package:teclix/logic/bloc/search_customer/search_customer_bloc.dart';
@@ -18,6 +20,7 @@ class TeclixApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    Connectivity connectivity = Connectivity();
 
     return MultiBlocProvider(
       providers: [
@@ -29,6 +32,9 @@ class TeclixApp extends StatelessWidget {
         ),
         BlocProvider<LeaderboardBloc>(
           create: (context) => LeaderboardBloc(context),
+        ),
+        BlocProvider<InternetBloc>(
+          create: (context) => InternetBloc(context, connectivity),
         ),
       ],
       child: MaterialApp(
