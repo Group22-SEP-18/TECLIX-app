@@ -139,8 +139,9 @@ class _SignupProfilePictureState extends State<SignupProfilePicture> {
                   titleColor: Colors.white,
                   colour: ColorPrimary,
                   onPressed: () => {
-                    if (state.salesperson.profilePicture != null)
+                    if (_image != null)
                       {
+                        print(state.salesperson.profilePicture),
                         signupBloc.add(
                           NextStepEvent(currentStep: state.step),
                         ),
