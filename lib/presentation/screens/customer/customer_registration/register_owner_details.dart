@@ -171,12 +171,15 @@ class CustomerRegisterOwnerDetails extends StatelessWidget {
                     },
                   ),
                   SizedBox(
-                    height: 30.0,
+                    height: 15.0,
                   ),
                   InfoText(
                     text:
                         'Customer Picture is not required, you can skip it if necessary.',
-                  )
+                  ),
+                  SizedBox(
+                    height: 15.0,
+                  ),
                 ],
               ),
             ),

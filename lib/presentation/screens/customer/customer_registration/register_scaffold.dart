@@ -53,32 +53,30 @@ class CustomerRegisterScaffold extends StatelessWidget {
                 ),
               ),
               body: CustomScrollView(
-                  physics:
-                      state.step == CustomerRegProcessSteps.CUSTOMER_REG_START
-                          ? NeverScrollableScrollPhysics()
-                          : ClampingScrollPhysics(),
-                  slivers: [
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Container(
-                        child: getAnimatedPageSwitcher(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              pageSwitcher(state.step),
-                              SizedBox(
-                                height: state.step ==
-                                        CustomerRegProcessSteps
-                                            .CUSTOMER_REG_FINISH
-                                    ? 22.0
-                                    : 43.0,
-                              ),
-                            ],
-                          ),
+                physics: ClampingScrollPhysics(),
+                slivers: [
+                  SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Container(
+                      child: getAnimatedPageSwitcher(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            pageSwitcher(state.step),
+                            SizedBox(
+                              height: state.step ==
+                                      CustomerRegProcessSteps
+                                          .CUSTOMER_REG_FINISH
+                                  ? 22.0
+                                  : 43.0,
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                  ]),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         );

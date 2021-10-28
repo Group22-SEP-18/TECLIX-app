@@ -190,9 +190,11 @@ class VehicleMain extends StatelessWidget {
                                                               .vehicle
                                                               .vehicleType !=
                                                           null
-                                                      ? state.salespersonVehicle
-                                                          .vehicle.vehicleModel
-                                                          .toUpperCase()
+                                                      ? toBeginningOfSentenceCase(
+                                                          state
+                                                              .salespersonVehicle
+                                                              .vehicle
+                                                              .vehicleModel)
                                                       : 'unassigned',
                                                 ),
                                               ],

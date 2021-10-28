@@ -44,7 +44,7 @@ class CustomerRegisterStart extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           Column(
             children: [
