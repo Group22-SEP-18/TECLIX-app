@@ -83,7 +83,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         );
         break;
       case SubmitUserEvent:
-        yield state.clone(loading: true);
+        yield state.clone(loading: true, registerErrs: '');
         final salesperson = (event as SubmitUserEvent).salesperson;
 
         final response = await AuthService.registerUser(salesperson);
@@ -94,10 +94,12 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         if (response == '201') {
           yield state.clone(
             registeredSucessfully: true,
+            registerErrs: '',
           );
         } else {
           yield state.clone(
             registeredSucessfully: false,
+            registerErrs: response,
           );
         }
     }

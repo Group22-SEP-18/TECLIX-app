@@ -33,7 +33,8 @@ class SignupScaffold extends StatelessWidget {
           child: SafeArea(
             child: BlocListener<SignupBloc, SignupState>(
               listenWhen: (prev, cur) =>
-                  prev.registeredSucessfully != cur.registeredSucessfully,
+                  prev.registeredSucessfully != cur.registeredSucessfully ||
+                  prev.registerErrs != cur.registerErrs,
               listener: (context, state) {
                 if (state.registeredSucessfully) {
                   showToast(
@@ -47,15 +48,17 @@ class SignupScaffold extends StatelessWidget {
                   );
                   Navigator.pushReplacementNamed(context, SignInPage.id);
                 } else {
-                  showToast(
-                    isError: true,
-                    iconSize: 40,
-                    height: 60.0,
-                    color: ColorToastRed,
-                    text: state.error,
-                    context: context,
-                    durationInSec: 5,
-                  );
+                  if (state.registerErrs != '') {
+                    showToast(
+                      isError: true,
+                      iconSize: 40,
+                      height: 80.0,
+                      color: ColorToastRed,
+                      text: state.registerErrs,
+                      context: context,
+                      durationInSec: 5,
+                    );
+                  }
                 }
               },
               child: Scaffold(
