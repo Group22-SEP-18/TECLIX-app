@@ -32,8 +32,11 @@ class CustomerRegisterService {
           await dio.post(UrlConstants.customerBasicURL, data: formData);
       return response.statusCode.toString();
     } on DioError catch (e) {
-      print(e.response.toString());
-      return e.response.toString();
+      String errorString = '';
+      for (var err in e.response.data.values) {
+        errorString += err[0] + '\n';
+      }
+      return errorString;
     }
   }
 }

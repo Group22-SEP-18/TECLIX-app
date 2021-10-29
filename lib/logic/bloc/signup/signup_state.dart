@@ -19,6 +19,7 @@ class SignupState {
   final double flowPosition;
   final bool loading;
   final bool registeredSucessfully;
+  final String registerErrs;
 
   SignupState({
     @required this.error,
@@ -27,6 +28,7 @@ class SignupState {
     @required this.flowPosition,
     @required this.loading,
     @required this.registeredSucessfully,
+    @required this.registerErrs,
   });
 
   static SignupState get initialState => SignupState(
@@ -36,6 +38,7 @@ class SignupState {
         flowPosition: 0,
         loading: false,
         registeredSucessfully: false,
+        registerErrs: '',
       );
 
   SignupState clone({
@@ -45,6 +48,7 @@ class SignupState {
     double flowPosition,
     bool loading,
     bool registeredSucessfully,
+    String registerErrs,
   }) {
     return SignupState(
       error: error ?? this.error,
@@ -54,6 +58,7 @@ class SignupState {
       loading: loading ?? this.loading,
       registeredSucessfully:
           registeredSucessfully ?? this.registeredSucessfully,
+      registerErrs: registerErrs ?? this.registerErrs,
     );
   }
 }

@@ -23,8 +23,11 @@ class AuthService {
           await dio.post(UrlConstants.userRegitserURL, data: formData);
       return response.statusCode.toString();
     } on DioError catch (e) {
-      print(e.response.toString());
-      return e.response.toString();
+      String errorString = '';
+      for (var err in e.response.data['error'].values) {
+        errorString += err[0] + '\n';
+      }
+      return errorString;
     }
   }
 

@@ -43,7 +43,7 @@ class CustomerRegisterFinish extends StatelessWidget {
           showToast(
             isError: true,
             iconSize: 40,
-            height: 100.0,
+            height: 60.0,
             color: ColorToastRed,
             text: state.registerErr,
             context: context,
