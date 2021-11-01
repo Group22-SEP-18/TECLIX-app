@@ -19,6 +19,7 @@ class Salesperson {
     this.contactNo,
     this.password,
     this.profilePicture,
+    this.profilePictureUrl,
     this.userRole = 'SALESPERSON',
   });
 
@@ -30,6 +31,7 @@ class Salesperson {
     String contactNo,
     String password,
     File profilePicture,
+    String profilePictureUrl,
   }) {
     return Salesperson(
       employeeNo: employeeNo ?? this.employeeNo,
@@ -39,6 +41,7 @@ class Salesperson {
       contactNo: contactNo ?? this.contactNo,
       password: password ?? this.password,
       profilePicture: profilePicture ?? this.profilePicture,
+      profilePictureUrl: profilePictureUrl ?? this.profilePictureUrl,
     );
   }
 

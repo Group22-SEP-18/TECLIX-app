@@ -41,9 +41,10 @@ class CustomerViewSearchPage extends StatelessWidget {
                 Spacer(),
                 CommonPadding(
                   child: BlocBuilder<SearchCustomerBloc, SearchCustomerState>(
+                    key: Key('s-field'),
                     builder: (context, state) {
                       return SearchField(
-                        hintText: 'Enter Store Name,customer name',
+                        hintText: 'Enter store name,customer name',
                         onSubmit: (String searchString) => {
                           serachCustomerBloc
                               .add(SubmitSearchEvent(value: searchString)),

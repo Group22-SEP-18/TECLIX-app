@@ -36,7 +36,7 @@ class SalesLineChart extends StatelessWidget {
             height: 330.0,
             child: SfCartesianChart(
                 title: ChartTitle(
-                    text: 'Monthly Total sales',
+                    text: 'Monthly Total Sales',
                     textStyle: TextStyle(color: ColorPrimary, fontSize: 18.0)),
 
                 // Initialize category axis
