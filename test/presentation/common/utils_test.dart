@@ -4,7 +4,7 @@ import 'package:teclix/presentation/common/utils.dart';
 main() {
   test('Should return current month\'s name', () {
     String month = Utils.returnMonth(DateTime.now());
-    expect(month, 'October');
+    expect(month, 'November');
   });
 
   test('Should return number converted to currency format', () {
