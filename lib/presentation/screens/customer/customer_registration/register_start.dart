@@ -52,13 +52,15 @@ class CustomerRegisterStart extends StatelessWidget {
                 builder: (context, state) {
                   return CommonPadding(
                     child: RoundedButton(
-                      title: 'Add a New Customer',
-                      titleColor: Colors.white,
-                      colour: ColorPrimary,
-                      onPressed: () => customerRegisterBloc.add(
-                        NextStepEvent(currentStep: state.step),
-                      ),
-                    ),
+                        title: 'Add a New Customer',
+                        titleColor: Colors.white,
+                        colour: ColorPrimary,
+                        onPressed: () => {
+                              customerRegisterBloc.add(ResetToInitialState()),
+                              customerRegisterBloc.add(
+                                NextStepEvent(currentStep: state.step),
+                              ),
+                            }),
                   );
                 },
               ),

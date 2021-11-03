@@ -74,3 +74,5 @@ class SubmitRegisterEvent extends CustomerRegistrationEvent {
 
   SubmitRegisterEvent({this.customer});
 }
+
+class ResetToInitialState extends CustomerRegistrationEvent {}

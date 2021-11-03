@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:teclix/data/models/customer.dart';
+import 'package:teclix/data/models/customer_location.dart';
 import 'package:teclix/data/services/customer_register_service.dart';
 
 import 'customer_registration_event.dart';
@@ -120,7 +121,29 @@ class CustomerRegistrationBloc
             registerErr: response,
           );
         }
-
+        break;
+      case ResetToInitialState:
+        yield state.clone(
+          error: '',
+          step: CustomerRegistrationBloc.processOrder[0],
+          customer: Customer(
+              email: '',
+              contactNo: '',
+              ownerFistName: '',
+              ownerLastName: '',
+              shopName: '',
+              address: CustomerLocation(
+                  latitude: 0.0,
+                  longitude: 0.0,
+                  district: '',
+                  street: '',
+                  city: '')),
+          storeAddress: CustomerLocation(),
+          fetchingLocation: false,
+          loading: false,
+          registerErr: '',
+          registerDone: false,
+        );
         break;
     }
   }
