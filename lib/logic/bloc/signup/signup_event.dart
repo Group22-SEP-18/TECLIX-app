@@ -57,3 +57,5 @@ class SubmitUserEvent extends SignupEvent {
 
   SubmitUserEvent({this.salesperson, this.context});
 }
+
+class ResetToInitialState extends SignupEvent {}

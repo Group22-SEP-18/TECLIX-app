@@ -184,18 +184,20 @@ class VehicleMain extends StatelessWidget {
                                                 SizedBox(
                                                   width: 15.0,
                                                 ),
-                                                MainHeading(
-                                                  text: state
-                                                              .salespersonVehicle
-                                                              .vehicle
-                                                              .vehicleType !=
-                                                          null
-                                                      ? toBeginningOfSentenceCase(
-                                                          state
-                                                              .salespersonVehicle
-                                                              .vehicle
-                                                              .vehicleModel)
-                                                      : 'unassigned',
+                                                Flexible(
+                                                  child: MainHeading(
+                                                    text: state
+                                                                .salespersonVehicle
+                                                                .vehicle
+                                                                .vehicleType !=
+                                                            null
+                                                        ? toBeginningOfSentenceCase(
+                                                            state
+                                                                .salespersonVehicle
+                                                                .vehicle
+                                                                .vehicleModel)
+                                                        : 'unassigned',
+                                                  ),
                                                 ),
                                               ],
                                               mainAxisAlignment:

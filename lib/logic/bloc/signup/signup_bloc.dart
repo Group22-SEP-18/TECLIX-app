@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:teclix/data/models/salesperson.dart';
 import 'package:teclix/data/services/auth_service.dart';
 
 import 'signup_event.dart';
@@ -102,6 +103,18 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
             registerErrs: response,
           );
         }
+        break;
+      case ResetToInitialState:
+        yield state.clone(
+            salesperson: Salesperson(
+                contactNo: '',
+                email: '',
+                profilePictureUrl: '',
+                employeeNo: '',
+                lastName: '',
+                firstName: '',
+                password: ''));
+        break;
     }
   }
 

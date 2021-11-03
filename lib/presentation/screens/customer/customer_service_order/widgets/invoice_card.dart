@@ -21,7 +21,7 @@ class InvoiceCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Colors.grey.shade200,
         ),
-        height: 72.0,
+        height: 100.0,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
