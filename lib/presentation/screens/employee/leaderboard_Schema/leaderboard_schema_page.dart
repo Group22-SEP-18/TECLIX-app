@@ -108,7 +108,7 @@ class LeaderboardSchemaPage extends StatelessWidget {
                       ),
                       TextSpan(
                         text:
-                            ' However, this is only valid if the amount is collected at the time of delivery. Otherwise, you will on;y be awarded 300 points. ',
+                            ' However, this is only valid if the amount is collected at the time of delivery. Otherwise, you will only be awarded 300 points. ',
                         style: TextStyle(color: ColorMintGreen),
                       ),
                     ],
