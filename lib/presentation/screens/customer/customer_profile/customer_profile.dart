@@ -8,6 +8,7 @@ import 'package:teclix/presentation/common/widgets/appbar_heading_text.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/customer_profile_card.dart';
 import 'package:teclix/presentation/screens/customer/customer_profile/widgets/customer_profile_clip_path.dart';
 import 'package:teclix/presentation/screens/leaderboard/widgets/profile_picture_avatar.dart';
+import 'package:intl/intl.dart';
 
 class CustomerProfile extends StatelessWidget {
   static const String id = '/customer-profile';
@@ -71,7 +72,7 @@ class CustomerProfile extends StatelessWidget {
                         pre.selectedCus.shopName != cur.selectedCus.shopName,
                     builder: (context, state) {
                       return Text(
-                        state.selectedCus.shopName,
+                        toBeginningOfSentenceCase(state.selectedCus.shopName),
                         style: TextStyle(fontSize: 28.0, color: Colors.white),
                       );
                     },

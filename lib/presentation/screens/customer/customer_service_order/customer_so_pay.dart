@@ -196,16 +196,76 @@ class CustomerSoPay extends StatelessWidget {
                               onPressed: () => {
                                 if (state.redeem)
                                   {
-                                    customerSoBloc.add(SetLoyaltyPointsEvent(
-                                        amount: double.parse(
-                                            pointsController.text)))
+                                    if (pointsController.text.isEmpty)
+                                      {
+                                        showToast(
+                                          isError: true,
+                                          iconSize: 40,
+                                          height: 60.0,
+                                          color: ColorToastRed,
+                                          text: 'Please enter amount.',
+                                          context: context,
+                                          durationInSec: 3,
+                                        ),
+                                      }
+                                    else if (state.totalAmount <
+                                        double.parse(pointsController.text))
+                                      {
+                                        showToast(
+                                          isError: true,
+                                          iconSize: 40,
+                                          height: 60.0,
+                                          color: ColorToastRed,
+                                          text:
+                                              'Discount can\'t be higher than the order amount.',
+                                          context: context,
+                                          durationInSec: 3,
+                                        ),
+                                      }
+                                    else if (state.loyaltyPoints <
+                                        double.parse(pointsController.text))
+                                      {
+                                        showToast(
+                                          isError: true,
+                                          iconSize: 40,
+                                          height: 60.0,
+                                          color: ColorToastRed,
+                                          text:
+                                              'Exceeds the avalible loyalty points balance.',
+                                          context: context,
+                                          durationInSec: 3,
+                                        ),
+                                      }
+                                    else if (double.parse(
+                                            pointsController.text) <
+                                        0)
+                                      {
+                                        showToast(
+                                          isError: true,
+                                          iconSize: 40,
+                                          height: 60.0,
+                                          color: ColorToastRed,
+                                          text:
+                                              'Discount can\'t ne a negative value.',
+                                          context: context,
+                                          durationInSec: 3,
+                                        ),
+                                      }
+                                    else
+                                      {
+                                        customerSoBloc.add(
+                                            SetLoyaltyPointsEvent(
+                                                amount: double.parse(
+                                                    pointsController.text))),
+                                        customerSoBloc.add(CreateSo())
+                                      }
                                   }
                                 else
                                   {
                                     customerSoBloc.add(
-                                        SetLoyaltyPointsEvent(amount: 0.00))
+                                        SetLoyaltyPointsEvent(amount: 0.00)),
+                                    customerSoBloc.add(CreateSo())
                                   },
-                                customerSoBloc.add(CreateSo())
                               },
                             ),
                           );

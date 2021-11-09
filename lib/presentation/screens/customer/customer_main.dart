@@ -22,6 +22,7 @@ import 'package:teclix/presentation/screens/customer/customer_service_order/cust
 import 'package:teclix/presentation/screens/customer/widgets/customer_main_clip_path.dart';
 import 'package:teclix/presentation/screens/customer/widgets/option_card.dart';
 import 'package:teclix/presentation/screens/customer/widgets/stat_row_card.dart';
+import 'package:intl/intl.dart';
 
 class CustomerMain extends StatelessWidget {
   @override
@@ -85,9 +86,11 @@ class CustomerMain extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
                           'Welcome Back, ' +
-                              state.loggedUser.firstName +
+                              toBeginningOfSentenceCase(
+                                  state.loggedUser.firstName) +
                               ' ' +
-                              state.loggedUser.lastName,
+                              toBeginningOfSentenceCase(
+                                  state.loggedUser.lastName),
                           style: TextStyle(
                               fontSize: 25.0,
                               fontWeight: FontWeight.w400,

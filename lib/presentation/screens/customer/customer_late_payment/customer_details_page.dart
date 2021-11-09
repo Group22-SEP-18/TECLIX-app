@@ -58,7 +58,7 @@ class CustomerDetails extends StatelessWidget {
                   return CustomerDetailsCard(
                     borderTop: 0.0,
                     profilePic: state.selectedCus.profilePicture,
-                    shop: state.selectedCus.shopName,
+                    shop: toBeginningOfSentenceCase(state.selectedCus.shopName),
                     owner: state.selectedCus.ownerFirstName +
                         ' ' +
                         state.selectedCus.ownerLastName,
