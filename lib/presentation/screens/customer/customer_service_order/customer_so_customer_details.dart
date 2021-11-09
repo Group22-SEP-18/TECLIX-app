@@ -10,6 +10,7 @@ import 'package:teclix/presentation/common/constants/TeclixColors.dart';
 import 'package:teclix/presentation/common/widgets/common_padding.dart';
 import 'package:teclix/presentation/common/widgets/rounded_button.dart';
 import 'package:teclix/presentation/screens/customer/widgets/customer_details_card.dart';
+import 'package:intl/intl.dart';
 
 class SOCustomerDetails extends StatelessWidget {
   @override
@@ -29,10 +30,11 @@ class SOCustomerDetails extends StatelessWidget {
 
               return CustomerDetailsCard(
                 profilePic: state.selectedCus.profilePicture,
-                shop: state.selectedCus.shopName,
-                owner: state.selectedCus.ownerFirstName +
+                shop: toBeginningOfSentenceCase(state.selectedCus.shopName),
+                owner: toBeginningOfSentenceCase(
+                        state.selectedCus.ownerFirstName) +
                     ' ' +
-                    state.selectedCus.ownerLastName,
+                    toBeginningOfSentenceCase(state.selectedCus.ownerLastName),
                 street: state.selectedCus.street,
                 city: state.selectedCus.city,
                 district: state.selectedCus.district,
