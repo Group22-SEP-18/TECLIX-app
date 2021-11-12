@@ -546,7 +546,7 @@ class EmployeeProfilePage extends StatelessWidget {
                                   child: ProfileOptionCard(
                                     coverColor: ColorGold,
                                     image: 'static/images/winner.png',
-                                    optionText: 'Leaderboard Scheme',
+                                    optionText: 'Leaderboard Schema',
                                     onSelect: () => Navigator.of(context).push(
                                       Routes.getMaterialPageRoute(
                                           LeaderboardSchemaPage.id, context),
