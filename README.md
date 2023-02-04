@@ -1,18 +1,10 @@
-# Teclix
-
-A new Flutter project.
+# Teclix Mobile App
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# TECLIX_app" 
-"# TECLIX-app" 
+This project focuses on creating a comprehensive POS system which can be used by
+companies that deal with the distribution of goods among wholesale and retail sellers.
+The primary goal is to provide a platform that can be used by companies’ sales
+personnel to deliver the goods, and at the same time allow the company to monitor
+and track each sale personnel and transaction. the mobile is used by the companies’ sales
+personnel to to deliver goods and manage customers.
