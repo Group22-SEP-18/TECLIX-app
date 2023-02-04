@@ -7,3 +7,6 @@ companies that deal with the distribution of goods among wholesale and retail se
 The primary goal is to provide a platform that can be used by companies’ sales
 personnel to deliver the goods, and at the same time allow the company to monitor
 and track each sale personnel and transaction. the mobile is used by the companies’ sales personnels to to deliver goods and manage customers.
+
+## Demo
+ [App Demo](https://drive.google.com/file/d/1Kq-QjHo84_Ku9AT-l2VBxInseJElkUtA/view?usp=sharing)
